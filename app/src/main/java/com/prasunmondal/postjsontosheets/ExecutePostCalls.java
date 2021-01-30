@@ -37,7 +37,7 @@ public class ExecutePostCalls extends AsyncTask<String, Void, String> {
 
     protected String doInBackground(String... arg0) {
         try {
-            Log.e("params", postDataParams.toString());
+            Log.e("DBCall:: Outbound", postDataParams.toString());
 
             HttpURLConnection conn = (HttpURLConnection) scriptUrl.openConnection();
             conn.setReadTimeout(150000 /* milliseconds */);
@@ -78,7 +78,7 @@ public class ExecutePostCalls extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Log.e("DBCall Result: ", result);
+        Log.e("DBCall::  Inbound", result);
         onCompletion.accept(result);
     }
 

@@ -20,12 +20,20 @@ class InsertUniqueDataToDB(
     }
 
     init {
+        var sp: ArrayList<String> = mutableListOf("Prasun", "Dona") as ArrayList<String>
+        val map = mutableMapOf<String, String>()
+        map["one"] = "1"
+        map.put("two","two")
+
+//        val map = mutableMapOf("one" to 1, "two" to 2)
+//        numbersMap.put("three", 3)
+//        println(numbersMap)
+
         scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
-        postDataParams.put("data", data)
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)
         postDataParams.put("opCode", "INSERT_UNIQUE")
         postDataParams.put("uniqueCol", uniqueCol)
-        postDataParams.put("objectData", "{\"ColThree\":8}")
+        postDataParams.put("objectData", Gson().toJson(TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)))
     }
 }
