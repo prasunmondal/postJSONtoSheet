@@ -32,7 +32,8 @@ class InsertUniqueDataToDB(
         scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)
-        postDataParams.put("opCode", "INSERT_UNIQUE")
+//        postDataParams.put("opCode", "INSERT_UNIQUE")
+        postDataParams.put("opCode", "INSERT_RAW")
         postDataParams.put("uniqueCol", uniqueCol)
         postDataParams.put("objectData", Gson().toJson(TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)))
     }
