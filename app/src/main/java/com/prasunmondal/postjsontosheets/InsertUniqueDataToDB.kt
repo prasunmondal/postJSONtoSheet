@@ -28,13 +28,14 @@ class InsertUniqueDataToDB(
 //        val map = mutableMapOf("one" to 1, "two" to 2)
 //        numbersMap.put("three", 3)
 //        println(numbersMap)
-
+        var y = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
+        println("Check -- Sent   Object: $y")
         scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)
 //        postDataParams.put("opCode", "INSERT_UNIQUE")
-        postDataParams.put("opCode", "INSERT_RAW")
+        postDataParams.put("opCode", StringConstants.DB_OPERATION)
         postDataParams.put("uniqueCol", uniqueCol)
-        postDataParams.put("objectData", Gson().toJson(TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)))
+        postDataParams.put("objectData", Gson().toJson(y))
     }
 }

@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun get(view: View) {
+        var t2: TestClass? = null
         val ft = FetchDataFromDB("9", StringConstants.DB_TAB_APP_OWNER, "0") { p1 ->
             System.err.println("============")
             var p2 = "{\"records\":[{\"arrayList\":[\"Prasun\",\"Dona\"],\"map\":{\"one\":\"1\",\"two\":\"two\"},\"name\":\"prasunmondal\",\"number\":9,\"second\":{\"seconday\":\"ding-ding-ding\"}}]}";
@@ -32,9 +33,12 @@ class MainActivity : AppCompatActivity() {
 //                p1);
                 p2,
             )
+            t2 = t?.get(0)
             System.out.println(t)
+            println("Check -- Parsed Object: $t2")
         }
         ft.execute()
+
     }
 
     fun post(view: View) {
@@ -116,6 +120,6 @@ class Secondary {
     }
 
     override fun toString(): String {
-        return "Secondary:: seconday: " + seconday
+        return seconday
     }
 }
