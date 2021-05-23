@@ -15,7 +15,7 @@ public class FetchDataFromDB {
 
         scriptUrl = new URL(StringConstants.DB_SERVER_SCRIPT_URL);
 
-        postDataParams.put("opCode", "FETCH");
+        postDataParams.put("opCode", "FETCH_OBJECT");
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID);
         postDataParams.put("tabName", tabName);
         postDataParams.put("keys", keys);

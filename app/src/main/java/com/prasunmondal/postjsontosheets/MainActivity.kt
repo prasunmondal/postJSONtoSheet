@@ -24,17 +24,40 @@ class MainActivity : AppCompatActivity() {
         val ft = FetchDataFromDB("9", StringConstants.DB_TAB_APP_OWNER, "0") { p1 ->
             System.err.println("============")
             var p2 = "{\"records\":[{\"arrayList\":[\"Prasun\",\"Dona\"],\"map\":{\"one\":\"1\",\"two\":\"two\"},\"name\":\"prasunmondal\",\"number\":9,\"second\":{\"seconday\":\"ding-ding-ding\"}}]}";
-            System.err.println(p2)
+//            System.err.println(p2)
 //            TestClass.parseJSONObject(object :
 //                TypeToken<ArrayList<com.groupG.teleID.Models.Contact?>?>() {}.type, p2, "records")
 //            TestClass().parseJSONObject<>()
 
-            var t = TestClass.parseJSONObject(object : TypeToken<ArrayList<TestClass>>() {}.type,
+            var p3 = p1
+            p3 = p3.replace("\"\\\"","\"")
+            p3 = p3.replace("\\\"\"","\"")
+
+            // handle lists
+            p3 = p3.replace("\":\"[\\\"","\":[\"")
+            p3 = p3.replace("\\\",\\\"","\",\"")
+            p3 = p3.replace("\\\"]\"","\"]")
+
+            // handle maps
+            p3 = p3.replace("\":\"{\\\"","\":{\"")
+            p3 = p3.replace("\\\":\\\"","\":\"")
+            p3 = p3.replace("\\\"}\"","\"}")
+
+            p3 = p3.replace("{\"arraylist\":\"arraylist\",\"map\":\"map\",\"name\":\"name\",\"number\":\"number\",\"second\":\"second\"},","")
+            println("Check -- Response to Parse p1: $p1")
+            println("Check -- Response to Parse p2: $p2")
+            println("Check -- Response to Parse p3: $p3")
+//            var t = TestClass.parseJSONObject(object : TypeToken<ArrayList<TestClass>>() {}.type,
+////                p1);
+////                p2);
+//                p2);
+            var t2 = TestClass.parseJSONObject(object : TypeToken<ArrayList<TestClass>>() {}.type,
 //                p1);
-                p2,
-            )
-            t2 = t?.get(0)
-            System.out.println(t)
+//                p2);
+                p3);
+//            t2 = t?.get(0)
+//            System.out.println(t)
+//            println("Check -- Parsed Object: $t")
             println("Check -- Parsed Object: $t2")
         }
         ft.execute()
@@ -56,7 +79,7 @@ class TestClass {
     var number: Int
     var name: String
     var second: Secondary
-    var arrayList: ArrayList<String>
+    var arraylist: ArrayList<String>
     var map: Map<String, String>
 
     constructor(
@@ -69,14 +92,14 @@ class TestClass {
         this.number = number
         this.name = name
         this.second = secondary
-        this.arrayList = arrayList
+        this.arraylist = arrayList
         this.map = map
     }
 
     override fun toString(): String {
         return "TestClass: number: " + number +
                 " name: " + name +
-                " arrayList: " + arrayList +
+                " arrayList: " + arraylist +
                 " map: " + map +
                 " secondary:" + second
     }
@@ -87,6 +110,8 @@ class TestClass {
             jsonString: String?,
         ): ArrayList<TestClass>? { //throws Exception {
             System.out.println("Type is: ")
+            var t = jsonString!!.replace("{\"\\\"number\\\"\":\"number\",\"\\\"name\\\"\":\"name\",\"\\\"arraylist\\\"\":\"arrayList\",\"\\\"second\\\"\":\"second\",\"\\\"map\\\"\":\"map\"},","")
+            Log.e("parsing", t)
             if(type == null) {
                 System.out.println("Null")
             } else {
@@ -94,10 +119,11 @@ class TestClass {
             }
             var arrayLabel = "records"
             val parser = JsonParser()
-            val jsonObject = parser.parse(jsonString).asJsonObject ?: return null
+            val jsonObject = parser.parse(t).asJsonObject ?: return null
             var jsonarray: JsonArray? = null
             try {
                 jsonarray = jsonObject.getAsJsonArray(arrayLabel)
+                println("Check - arrayLabel: " + jsonarray)
             } catch (e: Exception) {
                 Log.e("parseJSONObject", "Error while parsing")
             }

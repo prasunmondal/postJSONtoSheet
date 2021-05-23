@@ -24,6 +24,7 @@ class InsertUniqueDataToDB(
         val map = mutableMapOf<String, String>()
         map["one"] = "1"
         map.put("two","two")
+        map.put("three","3")
 
 //        val map = mutableMapOf("one" to 1, "two" to 2)
 //        numbersMap.put("three", 3)
