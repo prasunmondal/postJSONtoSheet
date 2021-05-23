@@ -61,7 +61,7 @@ class TestClass {
     var number: Int
     var name: String
     var second: Secondary
-    var arraylist: ArrayList<String>
+    var arrayList: ArrayList<String>
     var map: Map<String, String>
 
     constructor(
@@ -74,14 +74,14 @@ class TestClass {
         this.number = number
         this.name = name
         this.second = secondary
-        this.arraylist = arrayList
+        this.arrayList = arrayList
         this.map = map
     }
 
     override fun toString(): String {
         return "TestClass: number: " + number +
                 " name: " + name +
-                " arrayList: " + arraylist +
+                " arrayList: " + arrayList +
                 " map: " + map +
                 " secondary:" + second
     }
