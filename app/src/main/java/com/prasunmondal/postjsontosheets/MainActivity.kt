@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Field
 import java.lang.reflect.Type
 import java.util.*
 
@@ -21,26 +22,45 @@ class MainActivity : AppCompatActivity() {
 
     fun get(view: View) {
         var t2: TestClass? = null
-        val ft = FetchDataFromDB("9", StringConstants.DB_TAB_APP_OWNER, "3") { p1 ->
+//        println()
+//        var obj = TestClass
+//        println("looking for: " + obj.javaClass.fields.get(0).name)
+
+
+
+        val ft = FetchDataFromDB("prasunmondal,42", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var p3 = p1
-            p3 = p3.replace("\"\\\"","\"")
-            p3 = p3.replace("\\\"\"","\"")
+            p3 = p3.replace("\"\\\"", "\"")
+            p3 = p3.replace("\\\"\"", "\"")
 
             // handle lists
-            p3 = p3.replace("\":\"[\\\"","\":[\"")
-            p3 = p3.replace("\\\",\\\"","\",\"")
-            p3 = p3.replace("\\\"]\"","\"]")
+            p3 = p3.replace("\":\"[\\\"", "\":[\"")
+            p3 = p3.replace("\\\",\\\"", "\",\"")
+            p3 = p3.replace("\\\"]\"", "\"]")
 
             // handle maps
-            p3 = p3.replace("\":\"{\\\"","\":{\"")
-            p3 = p3.replace("\\\":\\\"","\":\"")
-            p3 = p3.replace("\\\"}\"","\"}")
+            p3 = p3.replace("\":\"{\\\"", "\":{\"")
+            p3 = p3.replace("\\\":\\\"", "\":\"")
+            p3 = p3.replace("\\\"}\"", "\"}")
 
-            p3 = p3.replace("{\"arraylist\":\"arraylist\",\"map\":\"map\",\"name\":\"name\",\"number\":\"number\",\"second\":\"second\"},","")
             println("Check -- Response to Parse p1: $p1")
             println("Check -- Response to Parse p3: $p3")
-            var t2 = TestClass.parseJSONObject(object : TypeToken<ArrayList<TestClass>>() {}.type, p3)
+            var t2 = TestClass.parseJSONObject(
+                object : TypeToken<ArrayList<TestClass>>() {}.type,
+                p3
+            )
             println("Check -- Parsed Object: $t2")
+//            println("lookin2: " + TestClass::class.java.getDeclaredField(t2!![0].number::javaClass.get().name))
+//            val fld2: Field = TestClass::class.java.getDeclaredField(t2!![0].name::class.java.name)
+//            for (x in fld2) {
+//                println("Looking for: " + x)
+//            }
+//
+//
+//            val fld: Array<Field> = TestClass::class.java.declaredFields
+//            for (x in fld) {
+//                println("Looking for: " + x)
+//            }
         }
         ft.execute()
 
@@ -53,8 +73,6 @@ class MainActivity : AppCompatActivity() {
             ) { }
             sd.execute()
     }
-
-
 }
 
 class TestClass {

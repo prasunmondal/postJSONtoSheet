@@ -4,10 +4,10 @@ public class StringConstants {
 //      Script ID: 1rm7eBju_fdhGl7faifjtMNrmtl43fOM2SdHly3K7kJ5gOwQIV9ZyCZkY
 //      Script Edit: https://script.google.com/home/projects/1rm7eBju_fdhGl7faifjtMNrmtl43fOM2SdHly3K7kJ5gOwQIV9ZyCZkY/edit
 //    public static String DB_SERVER_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzBamFrEhCDbH1B31N9yfK7XT91UGxBf7-78kAL63fR7u6FBI/exec";
-    public static String DB_SERVER_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUexeAc4o6mdAmMzTVlSjudTq6bSTh4tZQzEDurOvipuPfeWFbZITSd76jY4c-Z0Q/exec";
+    public static String DB_SERVER_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbxWWufvFPocIuEX4CiF7x7SbWWrhJBhWyi8ycIMuZjO1A8Zb_s4uvhFvCgHzgdP_TZcuw/exec";
     public static String DB_SHEET_ID = "1uu_VTWuTpLyjyl_X6VbqdkYkKoR-mkMzk-a4AuYpkjc";
     public static String DB_TAB_APP_OWNER = "Sheet2";
     public static String DB_OPERATION = "INSERT_UNIQUE";
 
 }
-
