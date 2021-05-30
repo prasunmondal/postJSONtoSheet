@@ -84,6 +84,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/FETCH_BY_CONDITION_AND" />
 
             <Button
+                android:id="@+id/INSERT_RAW_OBJECT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="insertRawObject"
+                android:text="INSERT_RAW_OBJECT"
+                app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
+                app:layout_constraintTop_toBottomOf="@+id/FETCH_BY_CONDITION_AND" />
+
+            <Button
                 android:id="@+id/INSERT_OBJECT_CONDITIONAL_AND_UNIQUE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

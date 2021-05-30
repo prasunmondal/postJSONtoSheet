@@ -80,22 +80,23 @@ class MainActivity : AppCompatActivity() {
 
     fun deleteConditionalAnd(view: View) {
         DELETE_CONDITIONAL_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseJSONObject(
-                    object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1)
-            )
+            var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
     }
 
     fun deleteConditionalOr(view: View) {
         DELETE_CONDITIONAL_OR("prasunmondal,9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseJSONObject(
-                    object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1)
-            )
+            var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
+    }
+
+    fun insertRawObject(view: View) {
+        INSERT_RAW_OBJECT(
+                "data",
+                StringConstants.DB_TAB_APP_OWNER
+        ) { }.execute()
     }
 
     fun insertObject(view: View) {
@@ -176,6 +177,14 @@ class TestClass {
                 return false
             return null
         }
+
+        fun parseDeleteResponse(jsonString: String): String? {
+            if(jsonString.contains("SUCCESS:"))
+                return "SUCCESS"
+            throw java.lang.Exception("DELETE FAILED");
+        }
+
+
     }
 }
 
