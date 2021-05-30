@@ -10,7 +10,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="post"
+        android:onClick="insertObject"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:onClick="post"
+        android:onClick="insertObject"
         android:text="IS_PRESENT"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:id="@+id/IS_PRESENT_CONDITIONAL_OR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="post"
+        android:onClick="insertObject"
         android:text="IS_PRESENT_CONDITIONAL_OR"
         app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
         app:layout_constraintTop_toBottomOf="@+id/IS_PRESENT" />
@@ -40,7 +40,7 @@
         android:id="@+id/IS_PRESENT_CONDITIONAL_AND"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="post"
+        android:onClick="insertObject"
         android:text="IS_PRESENT_CONDITIONAL_AND"
         app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
         app:layout_constraintTop_toBottomOf="@+id/IS_PRESENT_CONDITIONAL_OR" />
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:onClick="post"
+        android:onClick="insertObject"
         android:text="INSERT_OBJECT"
         app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
         app:layout_constraintTop_toBottomOf="@+id/FETCH_BY_CONDITION_AND" />
@@ -87,7 +87,7 @@
         android:id="@+id/INSERT_OBJECT_CONDITIONAL_AND_UNIQUE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="post"
+        android:onClick="insertObject"
         android:text="INSERT_OBJECT_CONDITIONAL_AND_UNIQUE"
         app:layout_constraintStart_toStartOf="@+id/INSERT_OBJECT"
         app:layout_constraintTop_toBottomOf="@+id/INSERT_OBJECT" />

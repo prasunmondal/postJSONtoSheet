@@ -8,10 +8,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.operations.DELETE_CONDITIONAL_AND
-import com.prasunmondal.postjsontosheets.operations.FETCH_ALL
-import com.prasunmondal.postjsontosheets.operations.FETCH_BY_CONDITION_AND
-import com.prasunmondal.postjsontosheets.operations.FETCH_BY_CONDITION_OR
+import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
 
@@ -77,8 +74,8 @@ class MainActivity : AppCompatActivity() {
         }.execute()
     }
 
-    fun post(view: View) {
-            val sd = InsertUniqueDataToDB(
+    fun insertObject(view: View) {
+            val sd = INSERT_OBJECT(
                 "data",
                 StringConstants.DB_TAB_APP_OWNER, "name,number"
             ) { }
