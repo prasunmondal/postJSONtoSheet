@@ -44,6 +44,20 @@ class MainActivity : AppCompatActivity() {
         }.execute()
     }
 
+    fun isPresentConditionOR(view: View) {
+        IS_PRESENT_CONDITIONAL_OR("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+            var t2 = TestClass.parseBoolean(p1)
+            println("Check -- Parsed Object: $t2")
+        }.execute()
+    }
+
+    fun isPresentConditionAND(view: View) {
+        IS_PRESENT_CONDITIONAL_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+            var t2 = TestClass.parseBoolean(p1)
+            println("Check -- Parsed Object: $t2")
+        }.execute()
+    }
+
     fun fetchByConditionAND(view: View) {
         val fetchByConditionAND = FETCH_BY_CONDITION_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
@@ -75,11 +89,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun insertObject(view: View) {
-            val sd = INSERT_OBJECT(
+            INSERT_OBJECT(
+                "data",
+                StringConstants.DB_TAB_APP_OWNER
+            ) { }.execute()
+    }
+
+    fun insertObjectUnique(view: View) {
+        INSERT_OBJECT_UNIQUE(
                 "data",
                 StringConstants.DB_TAB_APP_OWNER, "name,number"
-            ) { }
-            sd.execute()
+        ) { }.execute()
     }
 }
 
@@ -137,6 +157,14 @@ class TestClass {
                 type
             )
             return result
+        }
+
+        fun parseBoolean(jsonString: String?): Boolean? {
+            if(jsonString.equals("{\"records\":true}"))
+                return true
+            if(jsonString.equals("{\"records\":false}"))
+                return false
+            return null
         }
     }
 }

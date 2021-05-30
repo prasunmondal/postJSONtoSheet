@@ -10,9 +10,10 @@ import com.prasunmondal.postjsontosheets.TestClass
 import java.net.URL
 import java.util.function.Consumer
 
-class INSERT_OBJECT(
+class INSERT_OBJECT_UNIQUE(
     data: String?,
     tabName: String?,
+    uniqueCol: String?,
     private val onCompletion: Consumer<String>
 ) {
     private val postDataParams = JSONObject()
@@ -35,10 +36,10 @@ class INSERT_OBJECT(
         var y = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
         println("Check -- Sent   Object: $y")
         scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
+        postDataParams.put("opCode", "INSERT_OBJECT_UNIQUE")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)
-//        postDataParams.put("opCode", "INSERT_UNIQUE")
-        postDataParams.put("opCode", "INSERT_OBJECT")
+        postDataParams.put("uniqueCol", uniqueCol)
         postDataParams.put("objectData", Gson().toJson(y))
     }
 }
