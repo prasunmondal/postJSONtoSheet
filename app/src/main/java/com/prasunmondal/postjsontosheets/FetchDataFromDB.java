@@ -15,11 +15,11 @@ public class FetchDataFromDB {
 
         scriptUrl = new URL(StringConstants.DB_SERVER_SCRIPT_URL);
 
-        postDataParams.put("opCode", "FETCH_MULTI_MATCH");
+        postDataParams.put("opCode", "IS_PRESENT_CONDITIONAL_OR");
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID);
         postDataParams.put("tabName", tabName);
-        postDataParams.put("keys", keys);
-        postDataParams.put("searchColumn", column);
+        postDataParams.put("dataValue", keys);
+        postDataParams.put("dataColumn", column);
     }
 
     public void execute() {

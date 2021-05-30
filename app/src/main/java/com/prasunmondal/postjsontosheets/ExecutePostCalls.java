@@ -26,7 +26,7 @@ public class ExecutePostCalls extends AsyncTask<String, Void, String> {
     private JSONObject postDataParams;
     private URL scriptUrl;
 
-    ExecutePostCalls(URL scriptUrl, JSONObject postDataParams, Consumer<String> onCompletion) {
+    public ExecutePostCalls(URL scriptUrl, JSONObject postDataParams, Consumer<String> onCompletion) {
         this.onCompletion = onCompletion;
         this.postDataParams = postDataParams;
         this.scriptUrl = scriptUrl;
@@ -77,7 +77,7 @@ public class ExecutePostCalls extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    public void onPostExecute(String result) {
         Log.e("DBCall::  Inbound", result);
 //        TestClass.
         onCompletion.accept(result);

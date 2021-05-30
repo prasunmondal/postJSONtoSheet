@@ -8,7 +8,10 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Field
+import com.prasunmondal.postjsontosheets.operations.DELETE_CONDITIONAL_AND
+import com.prasunmondal.postjsontosheets.operations.FETCH_ALL
+import com.prasunmondal.postjsontosheets.operations.FETCH_BY_CONDITION_AND
+import com.prasunmondal.postjsontosheets.operations.FETCH_BY_CONDITION_OR
 import java.lang.reflect.Type
 import java.util.*
 
@@ -22,54 +25,62 @@ class MainActivity : AppCompatActivity() {
 
     fun get(view: View) {
         var t2: TestClass? = null
-//        println()
-//        var obj = TestClass
-//        println("looking for: " + obj.javaClass.fields.get(0).name)
 
 
 
-        val ft = FetchDataFromDB("prasunmondal,42", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var p3 = p1
-            p3 = p3.replace("\"\\\"", "\"")
-            p3 = p3.replace("\\\"\"", "\"")
-
-            // handle lists
-            p3 = p3.replace("\":\"[\\\"", "\":[\"")
-            p3 = p3.replace("\\\",\\\"", "\",\"")
-            p3 = p3.replace("\\\"]\"", "\"]")
-
-            // handle maps
-            p3 = p3.replace("\":\"{\\\"", "\":{\"")
-            p3 = p3.replace("\\\":\\\"", "\":\"")
-            p3 = p3.replace("\\\"}\"", "\"}")
-
-            println("Check -- Response to Parse p1: $p1")
-            println("Check -- Response to Parse p3: $p3")
+        val fetchDataFromDB = FetchDataFromDB("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
                 object : TypeToken<ArrayList<TestClass>>() {}.type,
-                p3
+                    JSONUtils.jsonStringCleanUp(p1)
             )
             println("Check -- Parsed Object: $t2")
-//            println("lookin2: " + TestClass::class.java.getDeclaredField(t2!![0].number::javaClass.get().name))
-//            val fld2: Field = TestClass::class.java.getDeclaredField(t2!![0].name::class.java.name)
-//            for (x in fld2) {
-//                println("Looking for: " + x)
-//            }
-//
-//
-//            val fld: Array<Field> = TestClass::class.java.declaredFields
-//            for (x in fld) {
-//                println("Looking for: " + x)
-//            }
-        }
-        ft.execute()
+        }.execute()
+    }
 
+    fun fetchByConditionOR(view: View) {
+        val fetchByConditionOr = FETCH_BY_CONDITION_OR("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+            var t2 = TestClass.parseJSONObject(
+                    object : TypeToken<ArrayList<TestClass>>() {}.type,
+                    JSONUtils.jsonStringCleanUp(p1)
+            )
+            println("Check -- Parsed Object: $t2")
+        }.execute()
+    }
+
+    fun fetchByConditionAND(view: View) {
+        val fetchByConditionAND = FETCH_BY_CONDITION_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+            var t2 = TestClass.parseJSONObject(
+                    object : TypeToken<ArrayList<TestClass>>() {}.type,
+                    JSONUtils.jsonStringCleanUp(p1)
+            )
+            println("Check -- Parsed Object: $t2")
+        }.execute()
+    }
+
+    fun fetchAll(view: View) {
+        val fetchAll = FETCH_ALL(StringConstants.DB_TAB_APP_OWNER) { p1 ->
+            var t2 = TestClass.parseJSONObject(
+                    object : TypeToken<ArrayList<TestClass>>() {}.type,
+                    JSONUtils.jsonStringCleanUp(p1)
+            )
+            println("Check -- Parsed Object: $t2")
+        }.execute()
+    }
+
+    fun deleteConditionalAnd(view: View) {
+        val deleteConditionalAnd = DELETE_CONDITIONAL_AND("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+            var t2 = TestClass.parseJSONObject(
+                    object : TypeToken<ArrayList<TestClass>>() {}.type,
+                    JSONUtils.jsonStringCleanUp(p1)
+            )
+            println("Check -- Parsed Object: $t2")
+        }.execute()
     }
 
     fun post(view: View) {
             val sd = InsertUniqueDataToDB(
                 "data",
-                StringConstants.DB_TAB_APP_OWNER, "1,2"
+                StringConstants.DB_TAB_APP_OWNER, "name,number"
             ) { }
             sd.execute()
     }

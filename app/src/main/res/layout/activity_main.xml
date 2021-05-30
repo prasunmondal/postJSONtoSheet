@@ -6,29 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:onClick="post"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/IS_PRESENT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:onClick="post"
+        android:text="IS_PRESENT"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.353" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/IS_PRESENT_CONDITIONAL_OR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="post"
+        android:text="IS_PRESENT_CONDITIONAL_OR"
+        app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
+        app:layout_constraintTop_toBottomOf="@+id/IS_PRESENT" />
+
+    <Button
+        android:id="@+id/IS_PRESENT_CONDITIONAL_AND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="post"
+        android:text="IS_PRESENT_CONDITIONAL_AND"
+        app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
+        app:layout_constraintTop_toBottomOf="@+id/IS_PRESENT_CONDITIONAL_OR" />
+
+    <Button
+        android:id="@+id/FETCH_ALL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:onClick="fetchAll"
+        android:text="FETCH_ALL"
+        app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
+        app:layout_constraintTop_toBottomOf="@+id/IS_PRESENT_CONDITIONAL_AND" />
+
+    <Button
+        android:id="@+id/FETCH_BY_CONDITION_OR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="fetchByConditionOR"
+        android:text="FETCH_BY_CONDITION_OR"
+        app:layout_constraintStart_toStartOf="@+id/FETCH_ALL"
+        app:layout_constraintTop_toBottomOf="@+id/FETCH_ALL" />
+
+    <Button
+        android:id="@+id/FETCH_BY_CONDITION_AND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="fetchByConditionAND"
+        android:text="FETCH_BY_CONDITION_AND"
+        app:layout_constraintStart_toStartOf="@+id/FETCH_BY_CONDITION_OR"
+        app:layout_constraintTop_toBottomOf="@+id/FETCH_BY_CONDITION_OR" />
+
+    <Button
+        android:id="@+id/INSERT_OBJECT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:onClick="post"
+        android:text="INSERT_OBJECT"
+        app:layout_constraintStart_toStartOf="@+id/IS_PRESENT"
+        app:layout_constraintTop_toBottomOf="@+id/FETCH_BY_CONDITION_AND" />
+
+    <Button
+        android:id="@+id/INSERT_OBJECT_CONDITIONAL_AND_UNIQUE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="post"
+        android:text="INSERT_OBJECT_CONDITIONAL_AND_UNIQUE"
+        app:layout_constraintStart_toStartOf="@+id/INSERT_OBJECT"
+        app:layout_constraintTop_toBottomOf="@+id/INSERT_OBJECT" />
+
+    <Button
+        android:id="@+id/DELETE_CONDITIONAL_AND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:onClick="deleteConditionalAnd"
+        android:text="DELETE_CONDITIONAL_AND"
+        app:layout_constraintStart_toStartOf="@+id/INSERT_OBJECT"
+        app:layout_constraintTop_toBottomOf="@+id/INSERT_OBJECT_CONDITIONAL_AND_UNIQUE" />
 
     <Button
         android:id="@+id/getData"
