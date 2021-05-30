@@ -15,7 +15,7 @@ class DELETE_CONDITIONAL_OR {
     constructor(keys: String?, tabName: String?, column: String?, onCompletion: Consumer<String>?) {
         this.onCompletion = onCompletion
         scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
-        postDataParams.put("opCode", "DELETE_CONDITIONAL_AND")
+        postDataParams.put("opCode", "DELETE_CONDITIONAL_OR")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)
         postDataParams.put("dataValue", keys)

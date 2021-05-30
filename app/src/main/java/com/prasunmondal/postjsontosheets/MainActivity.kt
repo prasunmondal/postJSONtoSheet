@@ -79,7 +79,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun deleteConditionalAnd(view: View) {
-        val deleteConditionalAnd = DELETE_CONDITIONAL_AND("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+        DELETE_CONDITIONAL_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+            var t2 = TestClass.parseJSONObject(
+                    object : TypeToken<ArrayList<TestClass>>() {}.type,
+                    JSONUtils.jsonStringCleanUp(p1)
+            )
+            println("Check -- Parsed Object: $t2")
+        }.execute()
+    }
+
+    fun deleteConditionalOr(view: View) {
+        DELETE_CONDITIONAL_OR("prasunmondal,9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
                     object : TypeToken<ArrayList<TestClass>>() {}.type,
                     JSONUtils.jsonStringCleanUp(p1)
