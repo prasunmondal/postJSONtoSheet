@@ -3,6 +3,7 @@ package com.prasunmondal.postjsontosheets
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
@@ -17,15 +18,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        testAll()
+    }
 
+    fun testAll() {
+        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
+        deleteAll(view)
+        insertObject(view)
+        insertObject(view)
+        insertObject(view)
+        insertObject(view)
+        insertObjectUnique(view)
+        fetchAll(view)
+        fetchByConditionAND(view)
+        fetchByConditionOR(view)
+        insertRawObject(view)
+        isPresentConditionAND(view)
+        isPresentConditionOR(view)
+        deleteConditionalAnd(view)
+        deleteConditionalOr(view)
     }
 
     fun get(view: View) {
         var t2: TestClass? = null
-
-
-
-        val fetchDataFromDB = FetchDataFromDB("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+        FetchDataFromDB("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
                 object : TypeToken<ArrayList<TestClass>>() {}.type,
                     JSONUtils.jsonStringCleanUp(p1)
@@ -74,6 +90,13 @@ class MainActivity : AppCompatActivity() {
                     object : TypeToken<ArrayList<TestClass>>() {}.type,
                     JSONUtils.jsonStringCleanUp(p1)
             )
+            println("Check -- Parsed Object: $t2")
+        }.execute()
+    }
+
+    fun deleteAll(view: View) {
+        DELETE_ALL(StringConstants.DB_TAB_APP_OWNER) { p1 ->
+            var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
     }

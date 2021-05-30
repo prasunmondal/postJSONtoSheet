@@ -4,8 +4,11 @@ public class StringConstants {
 //      Script ID: 1rm7eBju_fdhGl7faifjtMNrmtl43fOM2SdHly3K7kJ5gOwQIV9ZyCZkY
 //      Script Edit: https://script.google.com/home/projects/1rm7eBju_fdhGl7faifjtMNrmtl43fOM2SdHly3K7kJ5gOwQIV9ZyCZkY/edit
 //    public static String DB_SERVER_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwzBamFrEhCDbH1B31N9yfK7XT91UGxBf7-78kAL63fR7u6FBI/exec";
+    public static String deployment_id =
+        "AKfycbyVDlGEnhBD5XvjA6jREQTQJ-NOF_gvqY0oatzx24-RGKK-92XVYPgIdxpAg4cV-0_gAw"
+        ;
     public static String DB_SERVER_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbzcFobwh7StI-_Tqus7XcXRtYHJj1xrP0CPxIpdZaufsrOiY-so-b-rITa90pi0TNOFYg/exec";
+        "https://script.google.com/macros/s/" + deployment_id + "/exec";
     public static String DB_SHEET_ID = "1uu_VTWuTpLyjyl_X6VbqdkYkKoR-mkMzk-a4AuYpkjc";
     public static String DB_TAB_APP_OWNER = "Sheet2";
     public static String DB_OPERATION = "INSERT_OBJECT";
