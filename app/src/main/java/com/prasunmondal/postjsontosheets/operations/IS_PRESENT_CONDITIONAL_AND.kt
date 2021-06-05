@@ -14,7 +14,7 @@ class IS_PRESENT_CONDITIONAL_AND {
 
     constructor(keys: String?, tabName: String?, column: String?, onCompletion: Consumer<String>?) {
         this.onCompletion = onCompletion
-        scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
+        scriptUrl = URL(StringConstants.getDBServerScriptURL())
         postDataParams.put("opCode", "IS_PRESENT_CONDITIONAL_AND")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)

@@ -13,7 +13,7 @@ public class FetchDataFromDB {
     public FetchDataFromDB(String keys, String tabName, String column, Consumer<String> onCompletion) throws Exception {
         this.onCompletion = onCompletion;
 
-        scriptUrl = new URL(StringConstants.DB_SERVER_SCRIPT_URL);
+        scriptUrl = new URL(StringConstants.getDBServerScriptURL());
 
         postDataParams.put("opCode", "IS_PRESENT_CONDITIONAL_OR");
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID);

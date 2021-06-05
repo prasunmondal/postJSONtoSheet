@@ -14,7 +14,7 @@ class FETCH_BY_CONDITION_AND {
 
     constructor(keys: String?, tabName: String?, column: String?, onCompletion: Consumer<String>?) {
         this.onCompletion = onCompletion
-        scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
+        scriptUrl = URL(StringConstants.getDBServerScriptURL())
         postDataParams.put("opCode", "FETCH_BY_CONDITION_AND")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)

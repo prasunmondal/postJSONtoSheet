@@ -14,7 +14,7 @@ class DELETE_ALL {
 
     constructor(tabName: String?, onCompletion: Consumer<String>?) {
         this.onCompletion = onCompletion
-        scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
+        scriptUrl = URL(StringConstants.getDBServerScriptURL())
         postDataParams.put("opCode", "DELETE_ALL")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)

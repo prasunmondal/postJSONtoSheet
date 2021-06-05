@@ -35,7 +35,7 @@ class INSERT_OBJECT_UNIQUE(
 //        println(numbersMap)
         var y = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
         println("Check -- Sent   Object: $y")
-        scriptUrl = URL(StringConstants.DB_SERVER_SCRIPT_URL)
+        scriptUrl = URL(StringConstants.getDBServerScriptURL())
         postDataParams.put("opCode", "INSERT_OBJECT_UNIQUE")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)

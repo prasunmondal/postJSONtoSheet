@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     fun testAll() {
         val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
         deleteAll(view)
+        insertObjectUnique(view)
         insertObject(view)
         insertObject(view)
         insertObject(view)
@@ -194,9 +195,9 @@ class TestClass {
         }
 
         fun parseBoolean(jsonString: String?): Boolean? {
-            if(jsonString.equals("{\"records\":true}"))
+            if(jsonString!!.contains("\"records\":true"))
                 return true
-            if(jsonString.equals("{\"records\":false}"))
+            if(jsonString!!.contains("\"records\":false"))
                 return false
             return null
         }
