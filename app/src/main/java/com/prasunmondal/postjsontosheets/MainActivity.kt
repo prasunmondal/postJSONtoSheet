@@ -9,9 +9,11 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import com.prasunmondal.postjsontosheets.clients.FetchAll
 import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testAll() {
+
+        FetchAll.builder()
+                .scriptId(StringConstants.getDBServerScriptURL())
+                .sheetId(StringConstants.DB_SHEET_ID)
+                .tabName(StringConstants.DB_TAB_APP_OWNER)
+                .postCompletion(null)
+                .build().execute()
+
+
         val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
         deleteAll(view)
         insertObjectUnique(view)
@@ -44,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         var t2: TestClass? = null
         FetchDataFromDB("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
-                object : TypeToken<ArrayList<TestClass>>() {}.type,
+                    object : TypeToken<ArrayList<TestClass>>() {}.type,
                     JSONUtils.jsonStringCleanUp(p1)
             )
             println("Check -- Parsed Object: $t2")
@@ -124,10 +135,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun insertObject(view: View) {
-            INSERT_OBJECT(
+        INSERT_OBJECT(
                 "data",
                 StringConstants.DB_TAB_APP_OWNER
-            ) { }.execute()
+        ) { }.execute()
     }
 
     fun insertObjectUnique(view: View) {
@@ -146,11 +157,11 @@ class TestClass {
     var map: Map<String, String>
 
     constructor(
-        number: Int,
-        name: String,
-        secondary: Secondary,
-        arrayList: ArrayList<String>,
-        map: Map<String, String>
+            number: Int,
+            name: String,
+            secondary: Secondary,
+            arrayList: ArrayList<String>,
+            map: Map<String, String>
     ) {
         this.number = number
         this.name = name
@@ -169,11 +180,11 @@ class TestClass {
 
     companion object {
         fun parseJSONObject(
-            type: Type,
-            jsonString: String?,
+                type: Type,
+                jsonString: String?,
         ): ArrayList<TestClass>? {
             Log.e("parsing", jsonString!!)
-            if(type == null) {
+            if (type == null) {
                 System.out.println("Null")
             } else {
                 System.out.println(type)
@@ -188,22 +199,22 @@ class TestClass {
                 Log.e("parseJSONObject", "Error while parsing")
             }
             val result: ArrayList<TestClass> = GsonBuilder().create().fromJson(
-                jsonarray.toString(),
-                type
+                    jsonarray.toString(),
+                    type
             )
             return result
         }
 
         fun parseBoolean(jsonString: String?): Boolean? {
-            if(jsonString!!.contains("\"records\":true"))
+            if (jsonString!!.contains("\"records\":true"))
                 return true
-            if(jsonString!!.contains("\"records\":false"))
+            if (jsonString!!.contains("\"records\":false"))
                 return false
             return null
         }
 
         fun parseDeleteResponse(jsonString: String): String? {
-            if(jsonString.contains("SUCCESS:"))
+            if (jsonString.contains("SUCCESS:"))
                 return "SUCCESS"
             throw java.lang.Exception("DELETE FAILED");
         }

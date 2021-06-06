@@ -78,8 +78,9 @@ public class ExecutePostCalls extends AsyncTask<String, Void, String> {
 
     @Override
     public void onPostExecute(String result) {
+        if(onCompletion == null)
+            return;
         Log.e("DBCall::  Inbound", result);
-//        TestClass.
         onCompletion.accept(result);
     }
 
