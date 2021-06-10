@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.clients.FetchAll
+import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAll
 import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
@@ -25,12 +25,15 @@ class MainActivity : AppCompatActivity() {
 
     fun testAll() {
 
-        FetchAll.builder()
+        var t = FetchAll.builder()
                 .scriptId(StringConstants.getDBServerScriptURL())
                 .sheetId(StringConstants.DB_SHEET_ID)
                 .tabName(StringConstants.DB_TAB_APP_OWNER)
                 .postCompletion(null)
                 .build().execute()
+
+//        println("New flow: " + t.getRawData())
+
 
 
         val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
