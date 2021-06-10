@@ -19,15 +19,17 @@ import java.util.function.Consumer;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class FetchAllExecutePostCalls extends AsyncTask<String, Void, String> {
+public class AsyncPostCall extends AsyncTask<String, Void, String> {
     private Consumer<String> onCompletion;
+    private Consumer<String> onCompletion2;
     private JSONObject postDataParams;
     private URL scriptUrl;
 
-    public FetchAllExecutePostCalls(URL scriptUrl, JSONObject postDataParams, Consumer<String> onCompletion) {
-        this.onCompletion = onCompletion;
-        this.postDataParams = postDataParams;
+    public AsyncPostCall(URL scriptUrl, JSONObject postDataParams, Consumer<String> onCompletion2, Consumer<String> onCompletion) {
         this.scriptUrl = scriptUrl;
+        this.postDataParams = postDataParams;
+        this.onCompletion = onCompletion;
+        this.onCompletion2 = onCompletion2;
     }
 
     protected void onPreExecute() {
@@ -67,7 +69,7 @@ public class FetchAllExecutePostCalls extends AsyncTask<String, Void, String> {
                 in.close();
                 return sb.toString();
             } else {
-                return "false : " + responseCode;
+                return "Error in making post call: " + responseCode;
             }
         } catch (Exception e) {
             return "Exception: " + e.getMessage();
@@ -76,10 +78,11 @@ public class FetchAllExecutePostCalls extends AsyncTask<String, Void, String> {
 
     @Override
     public void onPostExecute(String result) {
-        if(onCompletion == null)
-            return;
         Log.e("DBCall::  Inbound", result);
-        onCompletion.accept(result);
+        if(onCompletion != null)
+            onCompletion.accept(result);
+        if(onCompletion2 != null)
+            onCompletion2.accept(result);
     }
 
     private String getPostDataString(JSONObject params) throws Exception {

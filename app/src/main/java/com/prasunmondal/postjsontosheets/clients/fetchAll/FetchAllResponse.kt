@@ -5,18 +5,12 @@ import com.prasunmondal.postjsontosheets.JSONUtils
 import com.prasunmondal.postjsontosheets.TestClass
 import java.lang.reflect.Type
 import java.util.ArrayList
-import java.util.function.Consumer
 
 class FetchAllResponse {
     lateinit var inboundResponse: String
-    var onCompletion: Consumer<String>?
-
-    constructor(onCompletion: Consumer<String>?) {
-        this.onCompletion = onCompletion
-    }
 
     @JvmName("setInboundResponse1")
-    fun executionComplete(inboundResponse: String) {
+    fun setInboundResponse(inboundResponse: String) {
         this.inboundResponse = inboundResponse
     }
 
