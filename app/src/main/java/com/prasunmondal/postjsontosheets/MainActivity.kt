@@ -32,26 +32,24 @@ class MainActivity : AppCompatActivity() {
                 .postCompletion(null)
                 .build().execute()
 
-//        println("New flow: " + t.getRawData())
-
-
+        println("tt: This is a test string." + t.getRawData())
 
         val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
-        deleteAll(view)
-        insertObjectUnique(view)
-        insertObject(view)
-        insertObject(view)
-        insertObject(view)
-        insertObject(view)
-        insertObjectUnique(view)
-        fetchAll(view)
-        fetchByConditionAND(view)
-        fetchByConditionOR(view)
-        insertRawObject(view)
-        isPresentConditionAND(view)
-        isPresentConditionOR(view)
-        deleteConditionalAnd(view)
-        deleteConditionalOr(view)
+//        deleteAll(view)
+//        insertObjectUnique(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObjectUnique(view)
+//        fetchAll(view)
+//        fetchByConditionAND(view)
+//        fetchByConditionOR(view)
+//        insertRawObject(view)
+//        isPresentConditionAND(view)
+//        isPresentConditionOR(view)
+//        deleteConditionalAnd(view)
+//        deleteConditionalOr(view)
     }
 
     fun get(view: View) {
