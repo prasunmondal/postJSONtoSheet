@@ -1,11 +1,10 @@
 package com.prasunmondal.postjsontosheets.clients.fetchAll
 
+import android.util.Log
+import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.JSONUtils
-import com.prasunmondal.postjsontosheets.TestClass
 import com.prasunmondal.postjsontosheets.clients.JsonTags
 import java.lang.reflect.Type
 import java.util.ArrayList
@@ -25,12 +24,17 @@ class FetchAllResponse {
         return this.responsePayload
     }
 
-    fun parseData(type: Type) {
-        var t2 = TestClass.parseJSONObject(
-                object : TypeToken<ArrayList<TestClass>>() {}.type,
-                JSONUtils.jsonStringCleanUp(this.responsePayload)
-        )
-        println("Check -- Parsed Object: $t2")
+    fun parseToObject(jsonString: String?, type: Type): ArrayList<*> {
+        Log.e("parsing to object ", jsonString!!)
+        var arrayLabel = JsonTags.RESPONSE_DATA_CODE
+        var jsonarray: JsonArray? = null
+        try {
+            jsonarray = getJsonObject()!!.getAsJsonArray(arrayLabel)
+        } catch (e: Exception) {
+            Log.e("parseJSONObject", "Error while parsing")
+        }
+        val result: ArrayList<*> = GsonBuilder().create().fromJson(jsonarray.toString(), type)
+        return result
     }
 
     fun getResponseCode(): Int {
