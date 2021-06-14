@@ -36,21 +36,21 @@ class MainActivity : AppCompatActivity() {
         println(t.getResponseCode())
 
         val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
-//        deleteAll(view)
-//        insertObjectUnique(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObjectUnique(view)
-//        fetchAll(view)
-//        fetchByConditionAND(view)
-//        fetchByConditionOR(view)
-//        insertRawObject(view)
-//        isPresentConditionAND(view)
-//        isPresentConditionOR(view)
-//        deleteConditionalAnd(view)
-//        deleteConditionalOr(view)
+        deleteAll(view)
+        insertObjectUnique(view)
+        insertObject(view)
+        insertObject(view)
+        insertObject(view)
+        insertObject(view)
+        insertObjectUnique(view)
+        fetchAll(view)
+        fetchByConditionAND(view)
+        fetchByConditionOR(view)
+        insertRawObject(view)
+        isPresentConditionAND(view)
+        isPresentConditionOR(view)
+        deleteConditionalAnd(view)
+        deleteConditionalOr(view)
     }
 
     fun get(view: View) {
@@ -184,7 +184,7 @@ class TestClass {
         fun parseJSONObject(
                 type: Type,
                 jsonString: String?,
-        ): ArrayList<TestClass>? {
+        ): ArrayList<*> {
             Log.e("parsing", jsonString!!)
             if (type == null) {
                 System.out.println("Null")
@@ -193,14 +193,14 @@ class TestClass {
             }
             var arrayLabel = "records"
             val parser = JsonParser()
-            val jsonObject = parser.parse(jsonString).asJsonObject ?: return null
+            val jsonObject = parser.parse(jsonString).asJsonObject
             var jsonarray: JsonArray? = null
             try {
                 jsonarray = jsonObject.getAsJsonArray(arrayLabel)
             } catch (e: Exception) {
                 Log.e("parseJSONObject", "Error while parsing")
             }
-            val result: ArrayList<TestClass> = GsonBuilder().create().fromJson(
+            val result: ArrayList<*> = GsonBuilder().create().fromJson(
                     jsonarray.toString(),
                     type
             )
