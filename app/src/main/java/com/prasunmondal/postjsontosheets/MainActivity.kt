@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
                 .postCompletion(null)
                 .build().execute()
 
-        println("tt: This is a test string." + t.getRawData())
+        println(t.getRawData())
+        println(t.getResponseCode())
 
         val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
 //        deleteAll(view)
