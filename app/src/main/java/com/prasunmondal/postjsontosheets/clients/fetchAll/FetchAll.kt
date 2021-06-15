@@ -12,7 +12,7 @@ class FetchAll private constructor() : FetchAllFlow, FetchAllFlow.ScriptIdBuilde
     lateinit var scriptURL: String
     lateinit var sheetId: String
     lateinit var tabName: String
-    var onCompletion: Consumer<String>? = null
+    var onCompletion: Consumer<FetchAllResponse>? = null
 
     override fun scriptId(scriptURL: String): FetchAllFlow.SheetIdBuilder {
         this.scriptURL = scriptURL
@@ -29,7 +29,7 @@ class FetchAll private constructor() : FetchAllFlow, FetchAllFlow.ScriptIdBuilde
         return this
     }
 
-    override fun postCompletion(onCompletion: Consumer<String>?): FetchAllFlow.FinalRequestBuilder {
+    override fun postCompletion(onCompletion: Consumer<FetchAllResponse>?): FetchAllFlow.FinalRequestBuilder {
         this.onCompletion = onCompletion
         return this
     }
@@ -49,9 +49,16 @@ class FetchAll private constructor() : FetchAllFlow, FetchAllFlow.ScriptIdBuilde
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
 
-        val c = ExecutePostCalls(scriptUrl, postDataParams, onCompletion)
+        val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
         return FetchAllResponse(response).getObject()
+    }
+
+    private fun postExecute(response: String) {
+        if(onCompletion == null)
+            return
+        var responseObj = FetchAllResponse(response)
+        onCompletion!!.accept(responseObj)
     }
 
     companion object {
