@@ -9,7 +9,6 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -24,11 +23,11 @@ import javax.net.ssl.HttpsURLConnection;
 
 @SuppressWarnings("deprecation")
 public class ExecutePostCalls extends AsyncTask<String, Void, String> {
-    private Consumer<String> onCompletion;
+    private Consumer<FetchAllResponse> onCompletion;
     private JSONObject postDataParams;
     private URL scriptUrl;
 
-    public ExecutePostCalls(URL scriptUrl, JSONObject postDataParams, Consumer<String> onCompletion) {
+    public ExecutePostCalls(URL scriptUrl, JSONObject postDataParams, Consumer<FetchAllResponse> onCompletion) {
         this.onCompletion = onCompletion;
         this.postDataParams = postDataParams;
         this.scriptUrl = scriptUrl;
@@ -78,10 +77,11 @@ public class ExecutePostCalls extends AsyncTask<String, Void, String> {
 
     @Override
     public void onPostExecute(String result) {
+        FetchAllResponse responseObj = new FetchAllResponse(result);
         if(onCompletion == null)
             return;
         Log.e("DBCall::  Inbound", result);
-        onCompletion.accept(result);
+        onCompletion.accept(responseObj);
     }
 
     private String getPostDataString(JSONObject params) throws Exception {

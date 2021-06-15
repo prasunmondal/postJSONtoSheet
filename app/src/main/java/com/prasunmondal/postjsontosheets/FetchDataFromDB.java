@@ -1,16 +1,18 @@
 package com.prasunmondal.postjsontosheets;
 
+import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse;
+
 import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.function.Consumer;
 
 public class FetchDataFromDB {
-    private Consumer<String> onCompletion;
+    private Consumer<FetchAllResponse> onCompletion;
     private JSONObject postDataParams = new JSONObject();
     private URL scriptUrl;
 
-    public FetchDataFromDB(String keys, String tabName, String column, Consumer<String> onCompletion) throws Exception {
+    public FetchDataFromDB(String keys, String tabName, String column, Consumer<FetchAllResponse> onCompletion) throws Exception {
         this.onCompletion = onCompletion;
 
         scriptUrl = new URL(StringConstants.getDBServerScriptURL());

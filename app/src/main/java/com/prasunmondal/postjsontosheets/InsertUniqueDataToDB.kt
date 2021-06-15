@@ -3,6 +3,7 @@ package com.prasunmondal.postjsontosheets
 import com.google.gson.Gson
 import org.json.JSONObject
 import com.google.gson.GsonBuilder
+import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse
 import java.net.URL
 import java.util.function.Consumer
 
@@ -10,7 +11,7 @@ class InsertUniqueDataToDB(
     data: String?,
     tabName: String?,
     uniqueCol: String?,
-    private val onCompletion: Consumer<String>
+    private val onCompletion: Consumer<FetchAllResponse>
 ) {
     private val postDataParams = JSONObject()
     private val scriptUrl: URL

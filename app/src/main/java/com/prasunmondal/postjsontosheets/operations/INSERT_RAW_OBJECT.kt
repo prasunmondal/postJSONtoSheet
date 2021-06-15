@@ -7,13 +7,14 @@ import com.prasunmondal.postjsontosheets.ExecutePostCalls
 import com.prasunmondal.postjsontosheets.Secondary
 import com.prasunmondal.postjsontosheets.StringConstants
 import com.prasunmondal.postjsontosheets.TestClass
+import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse
 import java.net.URL
 import java.util.function.Consumer
 
 class INSERT_RAW_OBJECT(
     data: String?,
     tabName: String?,
-    private val onCompletion: Consumer<String>
+    private val onCompletion: Consumer<FetchAllResponse>
 ) {
     private val postDataParams = JSONObject()
     private val scriptUrl: URL
