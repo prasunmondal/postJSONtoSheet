@@ -19,7 +19,7 @@ interface IsPresentConditionalAndFlow {
     interface FinalRequestBuilder {
         // All optional parameters goes here
         fun build(): IsPresentConditionalAnd
-        fun postCompletion(onCompletion: Consumer<String>?): FinalRequestBuilder
+        fun postCompletion(onCompletion: Consumer<IsPresentConditionalAndResponse>?): FinalRequestBuilder
     }
 
     fun execute(): IsPresentConditionalAndResponse

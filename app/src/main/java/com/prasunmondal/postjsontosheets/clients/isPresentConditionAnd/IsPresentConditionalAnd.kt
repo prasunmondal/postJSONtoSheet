@@ -12,7 +12,7 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
     lateinit var scriptURL: String
     lateinit var sheetId: String
     lateinit var tabName: String
-    var onCompletion: Consumer<String>? = null
+    var onCompletion: Consumer<IsPresentConditionalAndResponse>? = null
 
     override fun scriptId(scriptURL: String): IsPresentConditionalAndFlow.SheetIdBuilder {
         this.scriptURL = scriptURL
@@ -29,7 +29,7 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
         return this
     }
 
-    override fun postCompletion(onCompletion: Consumer<String>?): IsPresentConditionalAndFlow.FinalRequestBuilder {
+    override fun postCompletion(onCompletion: Consumer<IsPresentConditionalAndResponse>?): IsPresentConditionalAndFlow.FinalRequestBuilder {
         this.onCompletion = onCompletion
         return this
     }
@@ -49,9 +49,16 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
 
-        val c = ExecutePostCalls(scriptUrl, postDataParams, onCompletion)
+        val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
         return IsPresentConditionalAndResponse(response).getObject()
+    }
+
+    private fun postExecute(response: String) {
+        if(onCompletion == null)
+            return
+        var responseObj = IsPresentConditionalAndResponse(response)
+        onCompletion!!.accept(responseObj)
     }
 
     companion object {
