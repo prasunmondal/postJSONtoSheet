@@ -3,6 +3,8 @@ package com.prasunmondal.postjsontosheets;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -60,12 +62,10 @@ public class ExecutePostCalls extends AsyncTask<String, Void, String> {
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 StringBuilder sb = new StringBuilder();
                 String line;
-
                 while ((line = in.readLine()) != null) {
                     sb.append(line);
                     break;
                 }
-
                 in.close();
                 return sb.toString();
             } else {

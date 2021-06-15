@@ -185,12 +185,7 @@ class TestClass {
                 type: Type,
                 jsonString: String?,
         ): ArrayList<*> {
-            Log.e("parsing bhook ", jsonString!!)
-//            if (type == null) {
-//                System.out.println("Null")
-//            } else {
-//                System.out.println(type)
-//            }
+            Log.e("parsing: ", jsonString!!)
             var arrayLabel = "records"
             val parser = JsonParser()
             val jsonObject = parser.parse(jsonString).asJsonObject

@@ -49,17 +49,9 @@ class FetchAll private constructor() : FetchAllFlow, FetchAllFlow.ScriptIdBuilde
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
 
-
-            val c = ExecutePostCalls(scriptUrl, postDataParams, onCompletion)
-            var tp = c.execute().get()
-
-        var response = FetchAllResponse(tp).getObject()
-
-        println(tp)
-        println("Done!")
-        var t = FetchAllResponse(tp)
-        t.responsePayload = tp
-        return response
+        val c = ExecutePostCalls(scriptUrl, postDataParams, onCompletion)
+        var response = c.execute().get()
+        return FetchAllResponse(response).getObject()
     }
 
     companion object {
