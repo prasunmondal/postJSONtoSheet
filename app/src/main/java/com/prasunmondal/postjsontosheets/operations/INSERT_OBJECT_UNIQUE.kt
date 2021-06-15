@@ -15,7 +15,7 @@ class INSERT_OBJECT_UNIQUE(
     data: String?,
     tabName: String?,
     uniqueCol: String?,
-    private val onCompletion: Consumer<FetchAllResponse>
+    private val onCompletion: Consumer<String>
 ) {
     private val postDataParams = JSONObject()
     private val scriptUrl: URL
@@ -36,7 +36,7 @@ class INSERT_OBJECT_UNIQUE(
 //        println(numbersMap)
         var y = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
         println("Check -- Sent   Object: $y")
-        scriptUrl = URL(StringConstants.getDBServerScriptURL())
+        scriptUrl = URL(StringConstants.dBServerScriptURL)
         postDataParams.put("opCode", "INSERT_OBJECT_UNIQUE")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)

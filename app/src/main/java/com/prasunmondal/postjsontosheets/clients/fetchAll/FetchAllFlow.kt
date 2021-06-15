@@ -19,7 +19,7 @@ interface FetchAllFlow {
     interface FinalRequestBuilder {
         // All optional parameters goes here
         fun build(): FetchAll
-        fun postCompletion(onCompletion: Consumer<FetchAllResponse>?): FinalRequestBuilder
+        fun postCompletion(onCompletion: Consumer<String>?): FinalRequestBuilder
     }
 
     fun execute(): FetchAllResponse

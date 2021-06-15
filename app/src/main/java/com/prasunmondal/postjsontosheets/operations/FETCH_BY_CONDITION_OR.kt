@@ -9,13 +9,13 @@ import java.util.function.Consumer
 
 @Suppress("ClassName")
 class FETCH_BY_CONDITION_OR {
-    private var onCompletion: Consumer<FetchAllResponse>? = null
+    private var onCompletion: Consumer<String>? = null
     private val postDataParams = JSONObject()
     private var scriptUrl: URL? = null
 
-    constructor(keys: String?, tabName: String?, column: String?, onCompletion: Consumer<FetchAllResponse>?) {
+    constructor(keys: String?, tabName: String?, column: String?, onCompletion: Consumer<String>?) {
         this.onCompletion = onCompletion
-        scriptUrl = URL(StringConstants.getDBServerScriptURL())
+        scriptUrl = URL(StringConstants.dBServerScriptURL)
         postDataParams.put("opCode", "FETCH_BY_CONDITION_OR")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)
@@ -24,7 +24,7 @@ class FETCH_BY_CONDITION_OR {
     }
 
     fun execute() {
-        val c = ExecutePostCalls(scriptUrl, postDataParams, onCompletion)
+        val c = ExecutePostCalls(scriptUrl!!, postDataParams, onCompletion)
         c.execute()
     }
 }

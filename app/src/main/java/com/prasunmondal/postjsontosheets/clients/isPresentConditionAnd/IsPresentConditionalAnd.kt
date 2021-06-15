@@ -12,7 +12,7 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
     lateinit var scriptURL: String
     lateinit var sheetId: String
     lateinit var tabName: String
-    var onCompletion: Consumer<IsPresentConditionalAndResponse>? = null
+    var onCompletion: Consumer<String>? = null
 
     override fun scriptId(scriptURL: String): IsPresentConditionalAndFlow.SheetIdBuilder {
         this.scriptURL = scriptURL
@@ -29,7 +29,7 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
         return this
     }
 
-    override fun postCompletion(onCompletion: Consumer<IsPresentConditionalAndResponse>?): IsPresentConditionalAndFlow.FinalRequestBuilder {
+    override fun postCompletion(onCompletion: Consumer<String>?): IsPresentConditionalAndFlow.FinalRequestBuilder {
         this.onCompletion = onCompletion
         return this
     }

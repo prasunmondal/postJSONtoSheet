@@ -9,13 +9,13 @@ import java.util.function.Consumer
 
 @Suppress("ClassName")
 class DELETE_ALL {
-    private var onCompletion: Consumer<FetchAllResponse>? = null
+    private var onCompletion: Consumer<String>? = null
     private val postDataParams = JSONObject()
-    private var scriptUrl: URL? = null
+    private var scriptUrl: URL
 
-    constructor(tabName: String?, onCompletion: Consumer<FetchAllResponse>?) {
+    constructor(tabName: String?, onCompletion: Consumer<String>?) {
         this.onCompletion = onCompletion
-        scriptUrl = URL(StringConstants.getDBServerScriptURL())
+        scriptUrl = URL(StringConstants.dBServerScriptURL)
         postDataParams.put("opCode", "DELETE_ALL")
         postDataParams.put("sheetId", StringConstants.DB_SHEET_ID)
         postDataParams.put("tabName", tabName)

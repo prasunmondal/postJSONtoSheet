@@ -12,7 +12,7 @@ class FetchAll private constructor() : FetchAllFlow, FetchAllFlow.ScriptIdBuilde
     lateinit var scriptURL: String
     lateinit var sheetId: String
     lateinit var tabName: String
-    var onCompletion: Consumer<FetchAllResponse>? = null
+    var onCompletion: Consumer<String>? = null
 
     override fun scriptId(scriptURL: String): FetchAllFlow.SheetIdBuilder {
         this.scriptURL = scriptURL
@@ -29,7 +29,7 @@ class FetchAll private constructor() : FetchAllFlow, FetchAllFlow.ScriptIdBuilde
         return this
     }
 
-    override fun postCompletion(onCompletion: Consumer<FetchAllResponse>?): FetchAllFlow.FinalRequestBuilder {
+    override fun postCompletion(onCompletion: Consumer<String>?): FetchAllFlow.FinalRequestBuilder {
         this.onCompletion = onCompletion
         return this
     }

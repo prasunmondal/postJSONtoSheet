@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     fun testAll() {
 
         var t = FetchAll.builder()
-                .scriptId(StringConstants.getDBServerScriptURL())
+                .scriptId(StringConstants.dBServerScriptURL)
                 .sheetId(StringConstants.DB_SHEET_ID)
                 .tabName(StringConstants.DB_TAB_APP_OWNER)
                 .postCompletion(null)
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         FetchDataFromDB("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
                     object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1.getRawData())
+                    JSONUtils.jsonStringCleanUp(p1)
             )
             println("Check -- Parsed Object: $t2")
         }.execute()
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val fetchByConditionOr = FETCH_BY_CONDITION_OR("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
                     object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1.getRawData())
+                    JSONUtils.jsonStringCleanUp(p1)
             )
             println("Check -- Parsed Object: $t2")
         }.execute()
@@ -76,14 +76,14 @@ class MainActivity : AppCompatActivity() {
 
     fun isPresentConditionOR(view: View) {
         IS_PRESENT_CONDITIONAL_OR("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseBoolean(p1.getRawData())
+            var t2 = TestClass.parseBoolean(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
     }
 
     fun isPresentConditionAND(view: View) {
         IS_PRESENT_CONDITIONAL_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseBoolean(p1.getRawData())
+            var t2 = TestClass.parseBoolean(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
     }
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         val fetchByConditionAND = FETCH_BY_CONDITION_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseJSONObject(
                     object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1.getRawData())
+                    JSONUtils.jsonStringCleanUp(p1)
             )
             println("Check -- Parsed Object: $t2")
         }.execute()
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
         val fetchAll = FETCH_ALL(StringConstants.DB_TAB_APP_OWNER) { p1 ->
             var t2 = TestClass.parseJSONObject(
                     object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1.getRawData())
+                    JSONUtils.jsonStringCleanUp(p1)
             )
             println("Check -- Parsed Object: $t2")
         }.execute()
@@ -110,21 +110,21 @@ class MainActivity : AppCompatActivity() {
 
     fun deleteAll(view: View) {
         DELETE_ALL(StringConstants.DB_TAB_APP_OWNER) { p1 ->
-            var t2 = TestClass.parseDeleteResponse(p1.getRawData())
+            var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
     }
 
     fun deleteConditionalAnd(view: View) {
         DELETE_CONDITIONAL_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseDeleteResponse(p1.getRawData())
+            var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
     }
 
     fun deleteConditionalOr(view: View) {
         DELETE_CONDITIONAL_OR("prasunmondal,9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseDeleteResponse(p1.getRawData())
+            var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
     }
