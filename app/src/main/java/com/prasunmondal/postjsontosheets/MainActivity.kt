@@ -48,17 +48,44 @@ class MainActivity : AppCompatActivity() {
         map.put("two","two")
         map.put("three","3")
         var v = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
-        var insertObject = InsertObject.builder()
+
+        var io0 = InsertObject.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(v as Object)
+            .uniqueColumn("name")
+            .uniqueColumn("number")
+            .build().execute()
+
+        println("bound: " + io0.getResponseCode())
+
+        var io1 = InsertObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .dataObject(v as Object).build().execute()
 
-        InsertObject.builder()
+        println("bound: " + io1.getResponseCode())
+
+        var io2 = InsertObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .dataObject(v as Object).build().execute()
+
+        println("bound: " + io2.getResponseCode())
+
+        var io3 = InsertObject.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(v as Object)
+            .uniqueColumn("name")
+            .uniqueColumn("number")
+            .build().execute()
+
+        println("bound: " + io3.getResponseCode())
 
         println(t.getRawData())
         println(t.getResponseCode())

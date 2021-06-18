@@ -25,6 +25,7 @@ interface InsertObjectFlow {
         // All optional parameters goes here
         fun build(): InsertObject
         fun postCompletion(onCompletion: Consumer<InsertObjectResponse>?): FinalRequestBuilder
+        fun uniqueColumn(uniqueColumn: String): FinalRequestBuilder
     }
 
     fun execute(): InsertObjectResponse

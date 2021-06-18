@@ -15,6 +15,8 @@ class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
     private lateinit var sheetId: String
     private lateinit var tabName: String
     private lateinit var dataObject: Object
+    private var uniqueColumn = "";
+
     var onCompletion: Consumer<InsertObjectResponse>? = null
 
     override fun scriptId(scriptURL: String): InsertObjectFlow.SheetIdBuilder {
@@ -42,6 +44,15 @@ class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
         return this
     }
 
+    override fun uniqueColumn(uniqueColumn: String): InsertObjectFlow.FinalRequestBuilder {
+        if(uniqueColumn == "")
+            return this
+        if(this.uniqueColumn != "")
+            this.uniqueColumn += ","
+        this.uniqueColumn += uniqueColumn
+        return this
+    }
+
     override fun build(): InsertObject {
         this.scriptURL = scriptURL
         this.sheetId = sheetId
@@ -51,12 +62,32 @@ class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
     }
 
     override fun execute(): InsertObjectResponse {
+        if(this.uniqueColumn == "")
+            return insertData()
+        return insertUniqueData()
+    }
+
+    private fun insertData(): InsertObjectResponse  {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "INSERT_OBJECT")
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
         postDataParams.put("objectData", Gson().toJson(this.dataObject))
+
+        val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
+        var response = c.execute().get()
+        return InsertObjectResponse(response).getObject()
+    }
+
+    private fun insertUniqueData(): InsertObjectResponse  {
+        val scriptUrl = URL(this.scriptURL)
+        val postDataParams = JSONObject()
+        postDataParams.put("opCode", "INSERT_OBJECT_UNIQUE")
+        postDataParams.put("sheetId", this.sheetId)
+        postDataParams.put("tabName", this.tabName)
+        postDataParams.put("objectData", Gson().toJson(this.dataObject))
+        postDataParams.put("uniqueCol", this.uniqueColumn)
 
         val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
