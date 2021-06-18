@@ -1,7 +1,5 @@
 package com.prasunmondal.postjsontosheets;
 
-import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse;
-
 import org.json.JSONObject;
 
 import java.net.URL;

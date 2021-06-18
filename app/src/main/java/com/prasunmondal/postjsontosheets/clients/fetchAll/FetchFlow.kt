@@ -2,7 +2,7 @@ package com.prasunmondal.postjsontosheets.clients.fetchAll
 
 import java.util.function.Consumer
 
-interface FetchAllFlow {
+interface FetchFlow {
 
     interface ScriptIdBuilder {
         fun scriptId(scriptId: String): SheetIdBuilder
@@ -18,9 +18,9 @@ interface FetchAllFlow {
 
     interface FinalRequestBuilder {
         // All optional parameters goes here
-        fun build(): FetchAll
-        fun postCompletion(onCompletion: Consumer<FetchAllResponse>?): FinalRequestBuilder
+        fun build(): Fetch
+        fun postCompletion(onCompletion: Consumer<FetchResponse>?): FinalRequestBuilder
     }
 
-    fun execute(): FetchAllResponse
+    fun execute(): FetchResponse
 }

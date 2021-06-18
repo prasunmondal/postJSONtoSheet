@@ -3,13 +3,12 @@ package com.prasunmondal.postjsontosheets
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAll
+import com.prasunmondal.postjsontosheets.clients.fetchAll.Fetch
 import com.prasunmondal.postjsontosheets.clients.fetchAll.IsPresentConditionalAnd
 import com.prasunmondal.postjsontosheets.insertObject.InsertObject
 import com.prasunmondal.postjsontosheets.operations.*
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     fun testAll() {
 
-        var t = FetchAll.builder()
+        var t = Fetch.builder()
                 .scriptId(StringConstants.dBServerScriptURL)
                 .sheetId(StringConstants.DB_SHEET_ID)
                 .tabName(StringConstants.DB_TAB_APP_OWNER)
@@ -90,24 +89,24 @@ class MainActivity : AppCompatActivity() {
         println(t.getRawData())
         println(t.getResponseCode())
 
-//        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
-//        deleteAll(view)
-//        insertObjectUnique(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObjectUnique(view)
-//        fetchAll(view)
-//        fetchByConditionAND(view)
-//        fetchByConditionOR(view)
-//        insertRawObject(view)
-//        isPresentConditionAND(view)
+        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
+        deleteAll(view)
+        insertObjectUnique(view)
+        insertObject(view)
+        insertObject(view)
+        insertObject(view)
+        insertObject(view)
+        insertObjectUnique(view)
+        fetchAll(view)
+        fetchByConditionAND(view)
+        fetchByConditionOR(view)
+        insertRawObject(view)
+        isPresentConditionAND(view)
 
-//
-//        isPresentConditionOR(view)
-//        deleteConditionalAnd(view)
-//        deleteConditionalOr(view)
+
+        isPresentConditionOR(view)
+        deleteConditionalAnd(view)
+        deleteConditionalOr(view)
     }
 
     fun get(view: View) {

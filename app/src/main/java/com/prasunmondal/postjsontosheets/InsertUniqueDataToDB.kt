@@ -2,8 +2,6 @@ package com.prasunmondal.postjsontosheets
 
 import com.google.gson.Gson
 import org.json.JSONObject
-import com.google.gson.GsonBuilder
-import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse
 import java.net.URL
 import java.util.function.Consumer
 

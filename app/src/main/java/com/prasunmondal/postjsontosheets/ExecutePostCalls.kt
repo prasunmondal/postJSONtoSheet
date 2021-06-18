@@ -2,8 +2,6 @@ package com.prasunmondal.postjsontosheets
 
 import android.os.AsyncTask
 import android.util.Log
-import com.prasunmondal.postjsontosheets.clients.APIResponse
-import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.BufferedWriter

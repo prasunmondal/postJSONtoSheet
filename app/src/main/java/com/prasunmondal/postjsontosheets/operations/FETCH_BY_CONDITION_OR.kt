@@ -2,7 +2,6 @@ package com.prasunmondal.postjsontosheets.operations
 
 import com.prasunmondal.postjsontosheets.ExecutePostCalls
 import com.prasunmondal.postjsontosheets.StringConstants
-import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAllResponse
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
