@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
                 .postCompletion(null)
                 .build().execute()
         println("bound: " + t.getResponseCode())
+        println("bound: " + t.getRawResponse())
 
         var t2 = Fetch.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             .build().execute()
 
         println("bound: " + t2.getResponseCode())
+        println("bound: " + t2.getRawResponse())
 
 
         var tOr = Fetch.builder()
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             .build().execute()
 
         println("bound: " + tOr.getResponseCode())
+        println("bound: " + tOr.getRawResponse())
 
         var ipca = IsPresentConditionalAnd()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -108,7 +111,7 @@ class MainActivity : AppCompatActivity() {
 
         println("bound: " + io3.getResponseCode())
 
-        println(t.getRawData())
+        println(t.getRawResponse())
         println(t.getResponseCode())
 
 //        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)

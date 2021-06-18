@@ -11,7 +11,7 @@ import java.util.ArrayList
 open class APIResponse {
     var responsePayload: String = ""
 
-    fun getRawData(): String {
+    fun getRawResponse(): String {
         return this.responsePayload
     }
 
