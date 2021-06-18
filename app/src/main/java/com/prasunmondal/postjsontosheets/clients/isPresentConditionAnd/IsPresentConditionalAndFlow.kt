@@ -12,8 +12,16 @@ interface IsPresentConditionalAndFlow {
         fun sheetId(sheetId: String): TabNameBuilder
     }
 
+    interface KeysBuilder {
+        fun keys(sheetId: String): ValuesBuilder
+    }
+
+    interface ValuesBuilder {
+        fun values(sheetId: String): FinalRequestBuilder
+    }
+
     interface TabNameBuilder {
-        fun tabName(tabName: String): FinalRequestBuilder
+        fun tabName(tabName: String): KeysBuilder
     }
 
     interface FinalRequestBuilder {

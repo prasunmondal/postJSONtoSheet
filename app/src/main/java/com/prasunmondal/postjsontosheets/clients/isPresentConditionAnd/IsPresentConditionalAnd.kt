@@ -5,13 +5,18 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlow, IsPresentConditionalAndFlow.ScriptIdBuilder,
+class IsPresentConditionalAnd() : IsPresentConditionalAndFlow, IsPresentConditionalAndFlow.ScriptIdBuilder,
         IsPresentConditionalAndFlow.SheetIdBuilder,
         IsPresentConditionalAndFlow.TabNameBuilder,
-        IsPresentConditionalAndFlow.FinalRequestBuilder {
-    lateinit var scriptURL: String
-    lateinit var sheetId: String
-    lateinit var tabName: String
+        IsPresentConditionalAndFlow.FinalRequestBuilder,
+        IsPresentConditionalAndFlow.KeysBuilder,
+        IsPresentConditionalAndFlow.ValuesBuilder {
+    private lateinit var scriptURL: String
+    private lateinit var sheetId: String
+    private lateinit var tabName: String
+    private lateinit var keys: String
+    private lateinit var values: String
+
     var onCompletion: Consumer<IsPresentConditionalAndResponse>? = null
 
     override fun scriptId(scriptURL: String): IsPresentConditionalAndFlow.SheetIdBuilder {
@@ -24,8 +29,18 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
         return this
     }
 
-    override fun tabName(tabName: String): IsPresentConditionalAndFlow.FinalRequestBuilder {
+    override fun tabName(tabName: String): IsPresentConditionalAndFlow.KeysBuilder {
         this.tabName = tabName
+        return this
+    }
+
+    override fun keys(keys: String): IsPresentConditionalAndFlow.ValuesBuilder {
+        this.keys = keys
+        return this
+    }
+
+    override fun values(values: String): IsPresentConditionalAndFlow.FinalRequestBuilder {
+        this.values = values
         return this
     }
 
@@ -45,9 +60,11 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
     override fun execute(): IsPresentConditionalAndResponse {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
-        postDataParams.put("opCode", "FETCH_ALL")
+        postDataParams.put("opCode", "IS_PRESENT_CONDITIONAL_AND")
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
+        postDataParams.put("dataValue", keys)
+        postDataParams.put("dataColumn", values)
 
         val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
@@ -55,7 +72,7 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
     }
 
     private fun postExecute(response: String) {
-        if(onCompletion == null)
+        if (onCompletion == null)
             return
         var responseObj = IsPresentConditionalAndResponse(response)
         onCompletion!!.accept(responseObj)
@@ -66,4 +83,6 @@ class IsPresentConditionalAnd private constructor() : IsPresentConditionalAndFlo
             return IsPresentConditionalAnd()
         }
     }
+
+
 }

@@ -10,6 +10,7 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAll
+import com.prasunmondal.postjsontosheets.clients.fetchAll.IsPresentConditionalAnd
 import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
@@ -32,6 +33,15 @@ class MainActivity : AppCompatActivity() {
                 .postCompletion(null)
                 .build().execute()
 
+        var ipca = IsPresentConditionalAnd()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .keys("\"prasunmondal\",9")
+            .values("name,number")
+            .build().execute()
+
+
         println(t.getRawData())
         println(t.getResponseCode())
 
@@ -48,6 +58,8 @@ class MainActivity : AppCompatActivity() {
         fetchByConditionOR(view)
         insertRawObject(view)
         isPresentConditionAND(view)
+
+
         isPresentConditionOR(view)
         deleteConditionalAnd(view)
         deleteConditionalOr(view)
