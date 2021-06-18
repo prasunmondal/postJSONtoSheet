@@ -11,6 +11,7 @@ import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import com.prasunmondal.postjsontosheets.clients.fetchAll.FetchAll
 import com.prasunmondal.postjsontosheets.clients.fetchAll.IsPresentConditionalAnd
+import com.prasunmondal.postjsontosheets.insertObject.InsertObject
 import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
@@ -41,28 +42,45 @@ class MainActivity : AppCompatActivity() {
             .values("name,number")
             .build().execute()
 
+        var sp: ArrayList<String> = mutableListOf("Prasun", "Dona") as ArrayList<String>
+        val map = mutableMapOf<String, String>()
+        map["one"] = "1"
+        map.put("two","two")
+        map.put("three","3")
+        var v = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
+        var insertObject = InsertObject.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(v as Object).build().execute()
+
+        InsertObject.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(v as Object).build().execute()
 
         println(t.getRawData())
         println(t.getResponseCode())
 
-        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
-        deleteAll(view)
-        insertObjectUnique(view)
-        insertObject(view)
-        insertObject(view)
-        insertObject(view)
-        insertObject(view)
-        insertObjectUnique(view)
-        fetchAll(view)
-        fetchByConditionAND(view)
-        fetchByConditionOR(view)
-        insertRawObject(view)
-        isPresentConditionAND(view)
+//        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
+//        deleteAll(view)
+//        insertObjectUnique(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObjectUnique(view)
+//        fetchAll(view)
+//        fetchByConditionAND(view)
+//        fetchByConditionOR(view)
+//        insertRawObject(view)
+//        isPresentConditionAND(view)
 
-
-        isPresentConditionOR(view)
-        deleteConditionalAnd(view)
-        deleteConditionalOr(view)
+//
+//        isPresentConditionOR(view)
+//        deleteConditionalAnd(view)
+//        deleteConditionalOr(view)
     }
 
     fun get(view: View) {
