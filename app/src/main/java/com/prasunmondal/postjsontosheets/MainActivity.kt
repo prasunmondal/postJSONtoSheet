@@ -32,6 +32,28 @@ class MainActivity : AppCompatActivity() {
                 .tabName(StringConstants.DB_TAB_APP_OWNER)
                 .postCompletion(null)
                 .build().execute()
+        println("bound: " + t.getResponseCode())
+
+        var t2 = Fetch.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .postCompletion(null)
+            .conditionAnd("name,number","\"prasunmondal\",9")
+            .build().execute()
+
+        println("bound: " + t2.getResponseCode())
+
+
+        var tOr = Fetch.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .postCompletion(null)
+            .conditionOr("name,number","\"prasunmondal\",9")
+            .build().execute()
+
+        println("bound: " + tOr.getResponseCode())
 
         var ipca = IsPresentConditionalAnd()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -89,24 +111,24 @@ class MainActivity : AppCompatActivity() {
         println(t.getRawData())
         println(t.getResponseCode())
 
-        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
-        deleteAll(view)
-        insertObjectUnique(view)
-        insertObject(view)
-        insertObject(view)
-        insertObject(view)
-        insertObject(view)
-        insertObjectUnique(view)
-        fetchAll(view)
-        fetchByConditionAND(view)
-        fetchByConditionOR(view)
-        insertRawObject(view)
-        isPresentConditionAND(view)
-
-
-        isPresentConditionOR(view)
-        deleteConditionalAnd(view)
-        deleteConditionalOr(view)
+//        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
+//        deleteAll(view)
+//        insertObjectUnique(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObject(view)
+//        insertObjectUnique(view)
+//        fetchAll(view)
+//        fetchByConditionAND(view)
+//        fetchByConditionOR(view)
+//        insertRawObject(view)
+//        isPresentConditionAND(view)
+//
+//
+//        isPresentConditionOR(view)
+//        deleteConditionalAnd(view)
+//        deleteConditionalOr(view)
     }
 
     fun get(view: View) {

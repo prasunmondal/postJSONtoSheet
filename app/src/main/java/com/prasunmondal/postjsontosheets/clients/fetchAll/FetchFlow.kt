@@ -20,6 +20,8 @@ interface FetchFlow {
         // All optional parameters goes here
         fun build(): Fetch
         fun postCompletion(onCompletion: Consumer<FetchResponse>?): FinalRequestBuilder
+        fun conditionAnd(conditionKey: String, conditionValue: String): FinalRequestBuilder
+        fun conditionOr(conditionKey: String, conditionValue: String): FinalRequestBuilder
     }
 
     fun execute(): FetchResponse
