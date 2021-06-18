@@ -40,7 +40,8 @@ class MainActivity : AppCompatActivity() {
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .postCompletion(null)
-            .conditionAnd("name,number","\"prasunmondal\",9")
+            .conditionAnd("name","\"prasunmondal\"")
+            .conditionAnd("number","9")
             .build().execute()
 
         println("bound: " + t2.getResponseCode())
@@ -52,7 +53,8 @@ class MainActivity : AppCompatActivity() {
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .postCompletion(null)
-            .conditionOr("name,number","\"prasunmondal\",9")
+            .conditionOr("name","\"prasunmondal\"")
+            .conditionOr("number","9")
             .build().execute()
 
         println("bound: " + tOr.getResponseCode())
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .keys("\"prasunmondal\",9")
+            .keys("\"prasunmondal,9")
             .values("name,number")
             .build().execute()
 
