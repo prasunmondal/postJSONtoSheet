@@ -3,6 +3,7 @@ package com.prasunmondal.postjsontosheets
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
@@ -74,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         map.put("two","two")
         map.put("three","3")
         var v = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
+        var v2 = TestClass(9, "\"prasunmondal\"", Secondary("ding-ding-ding"), sp, map)
 
         var io0 = InsertObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -82,25 +84,22 @@ class MainActivity : AppCompatActivity() {
             .dataObject(v as Object)
             .uniqueColumn("name")
             .uniqueColumn("number")
-            .build().execute()
+            .build()
 
-        println("bound: " + io0.getResponseCode())
 
         var io1 = InsertObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .dataObject(v as Object).build().execute()
+            .dataObject(v2 as Object).build()
 
-        println("bound: " + io1.getResponseCode())
 
         var io2 = InsertObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .dataObject(v as Object).build().execute()
+            .dataObject(v as Object).build()
 
-        println("bound: " + io2.getResponseCode())
 
         var io3 = InsertObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -109,14 +108,21 @@ class MainActivity : AppCompatActivity() {
             .dataObject(v as Object)
             .uniqueColumn("name")
             .uniqueColumn("number")
-            .build().execute()
+            .build()
 
-        println("bound: " + io3.getResponseCode())
 
-        println(t.getRawResponse())
-        println(t.getResponseCode())
+//        var io0response = io0.execute()
+//        println("bound: " + io0response.getResponseCode())
+//        var io1response = io1.execute()
+//        println("bound: " + io1response.getResponseCode())
+//        var io2response = io2.execute()
+//        println("bound: " + io2response.getResponseCode())
+//        var io3response = io3.execute()
+//        println("bound: " + io3response.getResponseCode())
+//        println(t.getRawResponse())
+//        println(t.getResponseCode())
 
-//        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
+        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
 //        deleteAll(view)
 //        insertObjectUnique(view)
 //        insertObject(view)
@@ -132,7 +138,7 @@ class MainActivity : AppCompatActivity() {
 //
 //
 //        isPresentConditionOR(view)
-//        deleteConditionalAnd(view)
+        deleteConditionalAnd(view)
 //        deleteConditionalOr(view)
     }
 
@@ -199,7 +205,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun deleteConditionalAnd(view: View) {
-        DELETE_CONDITIONAL_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
+        DELETE_CONDITIONAL_AND("prasunmondal,9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
