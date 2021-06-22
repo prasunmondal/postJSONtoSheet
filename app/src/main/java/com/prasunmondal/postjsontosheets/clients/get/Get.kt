@@ -5,7 +5,7 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class Get private constructor() : GetFlow, GetFlow.ScriptIdBuilder,
+class Get() : GetFlow, GetFlow.ScriptIdBuilder,
         GetFlow.SheetIdBuilder,
         GetFlow.TabNameBuilder,
         GetFlow.FinalRequestBuilder {

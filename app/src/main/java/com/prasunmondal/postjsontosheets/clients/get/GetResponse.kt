@@ -4,6 +4,8 @@ import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
+import com.google.gson.reflect.TypeToken
+import com.prasunmondal.postjsontosheets.TestClass
 import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 import com.prasunmondal.postjsontosheets.clients.commons.JSONUtils
 import java.lang.reflect.Type
@@ -19,7 +21,7 @@ class GetResponse: APIResponse {
         return this
     }
 
-    fun getParsedList(type: Type): ArrayList<*> {
+    fun <T> getParsedList(): ArrayList<*> {
         var jsonString = JSONUtils.jsonStringCleanUp(this.getRawResponse())
         Log.e("parsing: ", jsonString!!)
         var arrayLabel = "records"
@@ -33,7 +35,7 @@ class GetResponse: APIResponse {
         }
         val result: ArrayList<*> = GsonBuilder().create().fromJson(
             jsonarray.toString(),
-            type
+            object : TypeToken<ArrayList<T>>() {}.type
         )
         return result
     }

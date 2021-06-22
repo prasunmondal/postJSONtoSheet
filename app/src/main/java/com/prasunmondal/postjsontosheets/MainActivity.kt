@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         println("bound: " + tOr.getResponseCode())
         println("bound: " + tOr.getRawResponse())
 
-        var t23 = tOr.getParsedList(object : TypeToken<ArrayList<TestClass>>() {}.type)
+        var t23 = tOr.getParsedList<TestClass>()
         println(t23)
 
         var ipca = IsPresentConditionalAnd()
