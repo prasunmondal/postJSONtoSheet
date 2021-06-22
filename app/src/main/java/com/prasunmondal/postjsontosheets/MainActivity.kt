@@ -125,6 +125,22 @@ class MainActivity : AppCompatActivity() {
             .deleteAll()
             .build()
 
+        var deleteAnd = Delete.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .conditionAnd("name","prasunmondal")
+            .build()
+
+        var deleteOr = Delete.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .conditionOr("name","prasunmondal")
+            .conditionOr("number","9")
+            .conditionOr("number","")
+            .build()
+
 
         var io0response = io0.execute()
         println("bound: " + io0response.getResponseCode())
@@ -138,25 +154,12 @@ class MainActivity : AppCompatActivity() {
         println(t.getResponseCode())
         var io4response = io4.execute()
         println("bound: " + io4response.getResponseCode())
-        var deleteResponse = deleteAll.execute()
-        println("bound: " + deleteResponse.getResponseCode())
-
-//        deleteConditionalAnd(view)
-//        deleteConditionalOr(view)
-    }
-
-    fun deleteConditionalAnd(view: View) {
-        DELETE_CONDITIONAL_AND("prasunmondal,9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseDeleteResponse(p1)
-            println("Check -- Parsed Object: $t2")
-        }.execute()
-    }
-
-    fun deleteConditionalOr(view: View) {
-        DELETE_CONDITIONAL_OR("prasunmondal,9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseDeleteResponse(p1)
-            println("Check -- Parsed Object: $t2")
-        }.execute()
+//        var deleteConditionalAndResponse = deleteAnd.execute()
+//        println("bound: " + deleteConditionalAndResponse.getResponseCode())
+        var deleteConditionalOrResponse = deleteOr.execute()
+        println("bound: " + deleteConditionalOrResponse.getResponseCode())
+//        var deleteResponse = deleteAll.execute()
+//        println("bound: " + deleteResponse.getResponseCode())
     }
 }
 

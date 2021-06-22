@@ -108,7 +108,7 @@ class Delete private constructor() : DeleteFlow, DeleteFlow.ScriptIdBuilder,
     private fun deleteConditionAnd(): DeleteResponse {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
-        postDataParams.put("opCode", "FETCH_BY_CONDITION_AND")
+        postDataParams.put("opCode", "DELETE_CONDITIONAL_AND")
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
         postDataParams.put("dataColumn", this.conditionAndColumn)
@@ -122,7 +122,7 @@ class Delete private constructor() : DeleteFlow, DeleteFlow.ScriptIdBuilder,
     private fun deleteConditionOr(): DeleteResponse {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
-        postDataParams.put("opCode", "FETCH_BY_CONDITION_OR")
+        postDataParams.put("opCode", "DELETE_CONDITIONAL_OR")
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
         postDataParams.put("dataColumn", this.conditionOrColumn)
