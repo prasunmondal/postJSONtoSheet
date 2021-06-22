@@ -111,84 +111,26 @@ class MainActivity : AppCompatActivity() {
             .build()
 
 
-//        var io0response = io0.execute()
-//        println("bound: " + io0response.getResponseCode())
-//        var io1response = io1.execute()
-//        println("bound: " + io1response.getResponseCode())
-//        var io2response = io2.execute()
-//        println("bound: " + io2response.getResponseCode())
-//        var io3response = io3.execute()
-//        println("bound: " + io3response.getResponseCode())
-//        println(t.getRawResponse())
-//        println(t.getResponseCode())
+        var io0response = io0.execute()
+        println("bound: " + io0response.getResponseCode())
+        var io1response = io1.execute()
+        println("bound: " + io1response.getResponseCode())
+        var io2response = io2.execute()
+        println("bound: " + io2response.getResponseCode())
+        var io3response = io3.execute()
+        println("bound: " + io3response.getResponseCode())
+        println(t.getRawResponse())
+        println(t.getResponseCode())
 
-        val view = findViewById<Button>(R.id.DELETE_CONDITIONAL_AND)
 //        deleteAll(view)
-//        insertObjectUnique(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObject(view)
-//        insertObjectUnique(view)
-//        fetchAll(view)
-//        fetchByConditionAND(view)
-//        fetchByConditionOR(view)
 //        insertRawObject(view)
-//        isPresentConditionAND(view)
-//
-//
-//        isPresentConditionOR(view)
-        deleteConditionalAnd(view)
+//        deleteConditionalAnd(view)
 //        deleteConditionalOr(view)
     }
 
     fun get(view: View) {
         var t2: TestClass? = null
         FetchDataFromDB("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseJSONObject(
-                    object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1)
-            )
-            println("Check -- Parsed Object: $t2")
-        }.execute()
-    }
-
-    fun fetchByConditionOR(view: View) {
-        val fetchByConditionOr = FETCH_BY_CONDITION_OR("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseJSONObject(
-                    object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1)
-            )
-            println("Check -- Parsed Object: $t2")
-        }.execute()
-    }
-
-    fun isPresentConditionOR(view: View) {
-        IS_PRESENT_CONDITIONAL_OR("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseBoolean(p1)
-            println("Check -- Parsed Object: $t2")
-        }.execute()
-    }
-
-    fun isPresentConditionAND(view: View) {
-        IS_PRESENT_CONDITIONAL_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseBoolean(p1)
-            println("Check -- Parsed Object: $t2")
-        }.execute()
-    }
-
-    fun fetchByConditionAND(view: View) {
-        val fetchByConditionAND = FETCH_BY_CONDITION_AND("\"prasunmondal\",9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseJSONObject(
-                    object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1)
-            )
-            println("Check -- Parsed Object: $t2")
-        }.execute()
-    }
-
-    fun fetchAll(view: View) {
-        val fetchAll = FETCH_ALL(StringConstants.DB_TAB_APP_OWNER) { p1 ->
             var t2 = TestClass.parseJSONObject(
                     object : TypeToken<ArrayList<TestClass>>() {}.type,
                     JSONUtils.jsonStringCleanUp(p1)
@@ -222,20 +164,6 @@ class MainActivity : AppCompatActivity() {
         INSERT_RAW_OBJECT(
                 "data",
                 StringConstants.DB_TAB_APP_OWNER
-        ) { }.execute()
-    }
-
-    fun insertObject(view: View) {
-        INSERT_OBJECT(
-                "data",
-                StringConstants.DB_TAB_APP_OWNER
-        ) { }.execute()
-    }
-
-    fun insertObjectUnique(view: View) {
-        INSERT_OBJECT_UNIQUE(
-                "data",
-                StringConstants.DB_TAB_APP_OWNER, "name,number"
         ) { }.execute()
     }
 }
