@@ -1,14 +1,14 @@
-package com.prasunmondal.postjsontosheets.clients.fetchAll
+package com.prasunmondal.postjsontosheets.clients.insert
 
 import com.prasunmondal.postjsontosheets.clients.APIResponse
 
-class FetchResponse: APIResponse {
+class InsertObjectResponse: APIResponse {
 
     constructor(responsePayload: String) {
         this.responsePayload = responsePayload
     }
 
-    fun getObject(): FetchResponse {
+    fun getObject(): InsertObjectResponse {
         return this
     }
 }

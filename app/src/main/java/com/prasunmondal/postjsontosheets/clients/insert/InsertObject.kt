@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.insertObject
+package com.prasunmondal.postjsontosheets.clients.insert
 
 import com.google.gson.Gson
 import com.prasunmondal.postjsontosheets.ExecutePostCalls

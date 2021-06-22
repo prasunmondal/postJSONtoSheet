@@ -1,6 +1,5 @@
-package com.prasunmondal.postjsontosheets.insertObject
+package com.prasunmondal.postjsontosheets.clients.insert
 
-import java.util.*
 import java.util.function.Consumer
 
 interface InsertObjectFlow {

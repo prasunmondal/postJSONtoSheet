@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients.fetchAll
+package com.prasunmondal.postjsontosheets.clients.fetch
 
 import com.prasunmondal.postjsontosheets.ExecutePostCalls
 import org.json.JSONObject

@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients.fetchAll
+package com.prasunmondal.postjsontosheets.clients.fetch
 
 import java.util.function.Consumer
 

@@ -9,9 +9,9 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.clients.fetchAll.Fetch
-import com.prasunmondal.postjsontosheets.clients.fetchAll.IsPresentConditionalAnd
-import com.prasunmondal.postjsontosheets.insertObject.InsertObject
+import com.prasunmondal.postjsontosheets.clients.fetch.Fetch
+import com.prasunmondal.postjsontosheets.clients.fetch.IsPresentConditionalAnd
+import com.prasunmondal.postjsontosheets.clients.insert.InsertObject
 import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
