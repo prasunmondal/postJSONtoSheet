@@ -219,14 +219,6 @@ class TestClass {
             return result
         }
 
-        fun parseBoolean(jsonString: String?): Boolean? {
-            if (jsonString!!.contains("\"records\":true"))
-                return true
-            if (jsonString!!.contains("\"records\":false"))
-                return false
-            return null
-        }
-
         fun parseDeleteResponse(jsonString: String): String? {
             if (jsonString.contains("SUCCESS:"))
                 return "SUCCESS"
