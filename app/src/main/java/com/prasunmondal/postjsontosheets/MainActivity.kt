@@ -3,15 +3,14 @@ package com.prasunmondal.postjsontosheets
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.clients.fetch.Fetch
-import com.prasunmondal.postjsontosheets.clients.fetch.IsPresentConditionalAnd
-import com.prasunmondal.postjsontosheets.clients.insert.InsertObject
+import com.prasunmondal.postjsontosheets.clients.get.Get
+import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
+import com.prasunmondal.postjsontosheets.clients.post.`object`.PostObject
 import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     fun testAll() {
 
-        var t = Fetch.builder()
+        var t = Get.builder()
                 .scriptId(StringConstants.dBServerScriptURL)
                 .sheetId(StringConstants.DB_SHEET_ID)
                 .tabName(StringConstants.DB_TAB_APP_OWNER)
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         println("bound: " + t.getResponseCode())
         println("bound: " + t.getRawResponse())
 
-        var t2 = Fetch.builder()
+        var t2 = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         println("bound: " + t2.getRawResponse())
 
 
-        var tOr = Fetch.builder()
+        var tOr = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
@@ -77,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         var v = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
         var v2 = TestClass(9, "\"prasunmondal\"", Secondary("ding-ding-ding"), sp, map)
 
-        var io0 = InsertObject.builder()
+        var io0 = PostObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
@@ -87,21 +86,21 @@ class MainActivity : AppCompatActivity() {
             .build()
 
 
-        var io1 = InsertObject.builder()
+        var io1 = PostObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .dataObject(v2 as Object).build()
 
 
-        var io2 = InsertObject.builder()
+        var io2 = PostObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .dataObject(v as Object).build()
 
 
-        var io3 = InsertObject.builder()
+        var io3 = PostObject.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)

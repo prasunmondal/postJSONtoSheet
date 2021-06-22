@@ -1,8 +1,8 @@
-package com.prasunmondal.postjsontosheets.clients.insert
+package com.prasunmondal.postjsontosheets.clients.post.`object`
 
 import java.util.function.Consumer
 
-interface InsertObjectFlow {
+interface PostObjectFlow {
 
     interface ScriptIdBuilder {
         fun scriptId(scriptId: String): SheetIdBuilder
@@ -22,10 +22,10 @@ interface InsertObjectFlow {
 
     interface FinalRequestBuilder {
         // All optional parameters goes here
-        fun build(): InsertObject
-        fun postCompletion(onCompletion: Consumer<InsertObjectResponse>?): FinalRequestBuilder
+        fun build(): PostObject
+        fun postCompletion(onCompletion: Consumer<PostObjectResponse>?): FinalRequestBuilder
         fun uniqueColumn(uniqueColumn: String): FinalRequestBuilder
     }
 
-    fun execute(): InsertObjectResponse
+    fun execute(): PostObjectResponse
 }

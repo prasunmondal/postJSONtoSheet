@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients.insert
+package com.prasunmondal.postjsontosheets.clients.post.`object`
 
 import com.google.gson.Gson
 import com.prasunmondal.postjsontosheets.ExecutePostCalls
@@ -6,45 +6,45 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
-        InsertObjectFlow.SheetIdBuilder,
-        InsertObjectFlow.TabNameBuilder,
-        InsertObjectFlow.DataObjectBuilder,
-        InsertObjectFlow.FinalRequestBuilder {
+class PostObject() : PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
+    PostObjectFlow.SheetIdBuilder,
+    PostObjectFlow.TabNameBuilder,
+    PostObjectFlow.DataObjectBuilder,
+    PostObjectFlow.FinalRequestBuilder {
     private lateinit var scriptURL: String
     private lateinit var sheetId: String
     private lateinit var tabName: String
     private lateinit var dataObject: Object
     private var uniqueColumn = "";
 
-    var onCompletion: Consumer<InsertObjectResponse>? = null
+    var onCompletion: Consumer<PostObjectResponse>? = null
 
-    override fun scriptId(scriptURL: String): InsertObjectFlow.SheetIdBuilder {
+    override fun scriptId(scriptURL: String): PostObjectFlow.SheetIdBuilder {
         this.scriptURL = scriptURL
         return this
     }
 
-    override fun sheetId(sheetId: String): InsertObjectFlow.TabNameBuilder {
+    override fun sheetId(sheetId: String): PostObjectFlow.TabNameBuilder {
         this.sheetId = sheetId
         return this
     }
 
-    override fun tabName(tabName: String): InsertObjectFlow.DataObjectBuilder {
+    override fun tabName(tabName: String): PostObjectFlow.DataObjectBuilder {
         this.tabName = tabName
         return this
     }
 
-    override fun dataObject(dataObject: Object): InsertObjectFlow.FinalRequestBuilder {
+    override fun dataObject(dataObject: Object): PostObjectFlow.FinalRequestBuilder {
         this.dataObject = dataObject
         return this
     }
 
-    override fun postCompletion(onCompletion: Consumer<InsertObjectResponse>?): InsertObjectFlow.FinalRequestBuilder {
+    override fun postCompletion(onCompletion: Consumer<PostObjectResponse>?): PostObjectFlow.FinalRequestBuilder {
         this.onCompletion = onCompletion
         return this
     }
 
-    override fun uniqueColumn(uniqueColumn: String): InsertObjectFlow.FinalRequestBuilder {
+    override fun uniqueColumn(uniqueColumn: String): PostObjectFlow.FinalRequestBuilder {
         if(uniqueColumn == "")
             return this
         if(this.uniqueColumn != "")
@@ -53,7 +53,7 @@ class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
         return this
     }
 
-    override fun build(): InsertObject {
+    override fun build(): PostObject {
         this.scriptURL = scriptURL
         this.sheetId = sheetId
         this.tabName = tabName
@@ -61,13 +61,13 @@ class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
         return this
     }
 
-    override fun execute(): InsertObjectResponse {
+    override fun execute(): PostObjectResponse {
         if(this.uniqueColumn == "")
             return insertData()
         return insertUniqueData()
     }
 
-    private fun insertData(): InsertObjectResponse  {
+    private fun insertData(): PostObjectResponse {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "INSERT_OBJECT")
@@ -77,10 +77,10 @@ class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
 
         val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
-        return InsertObjectResponse(response).getObject()
+        return PostObjectResponse(response).getObject()
     }
 
-    private fun insertUniqueData(): InsertObjectResponse  {
+    private fun insertUniqueData(): PostObjectResponse {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "INSERT_OBJECT_UNIQUE")
@@ -91,19 +91,19 @@ class InsertObject() : InsertObjectFlow, InsertObjectFlow.ScriptIdBuilder,
 
         val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
-        return InsertObjectResponse(response).getObject()
+        return PostObjectResponse(response).getObject()
     }
 
     private fun postExecute(response: String) {
         if(onCompletion == null)
             return
-        var responseObj = InsertObjectResponse(response)
+        var responseObj = PostObjectResponse(response)
         onCompletion!!.accept(responseObj)
     }
 
     companion object {
-        fun builder(): InsertObjectFlow.ScriptIdBuilder {
-            return InsertObject()
+        fun builder(): PostObjectFlow.ScriptIdBuilder {
+            return PostObject()
         }
     }
 }

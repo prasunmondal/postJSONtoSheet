@@ -1,8 +1,8 @@
-package com.prasunmondal.postjsontosheets.clients.fetch
+package com.prasunmondal.postjsontosheets.clients.get
 
 import java.util.function.Consumer
 
-interface FetchFlow {
+interface GetFlow {
 
     interface ScriptIdBuilder {
         fun scriptId(scriptId: String): SheetIdBuilder
@@ -18,11 +18,11 @@ interface FetchFlow {
 
     interface FinalRequestBuilder {
         // All optional parameters goes here
-        fun build(): Fetch
-        fun postCompletion(onCompletion: Consumer<FetchResponse>?): FinalRequestBuilder
+        fun build(): Get
+        fun postCompletion(onCompletion: Consumer<GetResponse>?): FinalRequestBuilder
         fun conditionAnd(conditionKey: String, conditionValue: String): FinalRequestBuilder
         fun conditionOr(conditionKey: String, conditionValue: String): FinalRequestBuilder
     }
 
-    fun execute(): FetchResponse
+    fun execute(): GetResponse
 }

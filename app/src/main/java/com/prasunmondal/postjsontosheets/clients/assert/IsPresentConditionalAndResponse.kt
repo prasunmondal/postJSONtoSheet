@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients.fetch
+package com.prasunmondal.postjsontosheets.clients.get
 
 import com.prasunmondal.postjsontosheets.clients.APIResponse
 
