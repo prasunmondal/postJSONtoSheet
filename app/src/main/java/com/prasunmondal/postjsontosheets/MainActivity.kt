@@ -145,13 +145,6 @@ class MainActivity : AppCompatActivity() {
 //        deleteConditionalOr(view)
     }
 
-    fun deleteAll(view: View) {
-        DELETE_ALL(StringConstants.DB_TAB_APP_OWNER) { p1 ->
-            var t2 = TestClass.parseDeleteResponse(p1)
-            println("Check -- Parsed Object: $t2")
-        }.execute()
-    }
-
     fun deleteConditionalAnd(view: View) {
         DELETE_CONDITIONAL_AND("prasunmondal,9", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
             var t2 = TestClass.parseDeleteResponse(p1)
