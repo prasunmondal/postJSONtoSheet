@@ -1,6 +1,6 @@
 package com.prasunmondal.postjsontosheets.clients.delete
 
-import com.prasunmondal.postjsontosheets.ExecutePostCalls
+import com.prasunmondal.postjsontosheets.clients.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
