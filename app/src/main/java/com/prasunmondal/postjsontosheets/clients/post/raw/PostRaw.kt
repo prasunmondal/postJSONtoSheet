@@ -1,7 +1,7 @@
 package com.prasunmondal.postjsontosheets.clients.post.raw
 
 import com.google.gson.Gson
-import com.prasunmondal.postjsontosheets.clients.ExecutePostCalls
+import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer

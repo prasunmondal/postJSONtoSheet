@@ -1,6 +1,6 @@
 package com.prasunmondal.postjsontosheets.clients.post.raw
 
-import com.prasunmondal.postjsontosheets.clients.APIResponse
+import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 
 class PostRawResponse: APIResponse {
 

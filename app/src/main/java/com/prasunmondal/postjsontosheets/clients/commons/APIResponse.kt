@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients
+package com.prasunmondal.postjsontosheets.clients.commons
 
 import android.util.Log
 import com.google.gson.GsonBuilder

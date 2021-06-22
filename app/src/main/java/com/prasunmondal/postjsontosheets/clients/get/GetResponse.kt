@@ -1,6 +1,12 @@
 package com.prasunmondal.postjsontosheets.clients.get
 
-import com.prasunmondal.postjsontosheets.clients.APIResponse
+import android.util.Log
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
+import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
+import java.lang.reflect.Type
+import java.util.ArrayList
 
 class GetResponse: APIResponse {
 
@@ -10,5 +16,26 @@ class GetResponse: APIResponse {
 
     fun getObject(): GetResponse {
         return this
+    }
+
+    fun parseJSONObject(
+        type: Type,
+        jsonString: String?,
+    ): ArrayList<*> {
+        Log.e("parsing: ", jsonString!!)
+        var arrayLabel = "records"
+        val parser = JsonParser()
+        val jsonObject = parser.parse(jsonString).asJsonObject
+        var jsonarray: JsonArray? = null
+        try {
+            jsonarray = jsonObject.getAsJsonArray(arrayLabel)
+        } catch (e: Exception) {
+            Log.e("parseJSONObject", "Error while parsing")
+        }
+        val result: ArrayList<*> = GsonBuilder().create().fromJson(
+            jsonarray.toString(),
+            type
+        )
+        return result
     }
 }

@@ -1,6 +1,6 @@
 package com.prasunmondal.postjsontosheets.clients.get
 
-import com.prasunmondal.postjsontosheets.clients.APIResponse
+import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 
 class IsPresentConditionalAndResponse: APIResponse {
 

@@ -1,6 +1,6 @@
 package com.prasunmondal.postjsontosheets.clients.delete
 
-import com.prasunmondal.postjsontosheets.clients.APIResponse
+import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 
 class DeleteResponse: APIResponse {
 

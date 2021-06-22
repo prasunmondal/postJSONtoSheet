@@ -2,18 +2,17 @@ package com.prasunmondal.postjsontosheets
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import com.prasunmondal.postjsontosheets.clients.commons.JSONUtils
 import com.prasunmondal.postjsontosheets.clients.delete.Delete
 import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
 import com.prasunmondal.postjsontosheets.clients.post.`object`.PostObject
 import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
-import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
 
@@ -61,6 +60,12 @@ class MainActivity : AppCompatActivity() {
 
         println("bound: " + tOr.getResponseCode())
         println("bound: " + tOr.getRawResponse())
+
+        var t23 = tOr.parseJSONObject(
+            object : TypeToken<ArrayList<TestClass>>() {}.type,
+            JSONUtils.jsonStringCleanUp(tOr.getRawResponse())
+        )
+        println(t23)
 
         var ipca = IsPresentConditionalAnd()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -156,8 +161,8 @@ class MainActivity : AppCompatActivity() {
         println("bound: " + io4response.getResponseCode())
 //        var deleteConditionalAndResponse = deleteAnd.execute()
 //        println("bound: " + deleteConditionalAndResponse.getResponseCode())
-        var deleteConditionalOrResponse = deleteOr.execute()
-        println("bound: " + deleteConditionalOrResponse.getResponseCode())
+//        var deleteConditionalOrResponse = deleteOr.execute()
+//        println("bound: " + deleteConditionalOrResponse.getResponseCode())
 //        var deleteResponse = deleteAll.execute()
 //        println("bound: " + deleteResponse.getResponseCode())
     }
@@ -193,26 +198,6 @@ class TestClass {
     }
 
     companion object {
-        fun parseJSONObject(
-                type: Type,
-                jsonString: String?,
-        ): ArrayList<*> {
-            Log.e("parsing: ", jsonString!!)
-            var arrayLabel = "records"
-            val parser = JsonParser()
-            val jsonObject = parser.parse(jsonString).asJsonObject
-            var jsonarray: JsonArray? = null
-            try {
-                jsonarray = jsonObject.getAsJsonArray(arrayLabel)
-            } catch (e: Exception) {
-                Log.e("parseJSONObject", "Error while parsing")
-            }
-            val result: ArrayList<*> = GsonBuilder().create().fromJson(
-                    jsonarray.toString(),
-                    type
-            )
-            return result
-        }
 
         fun parseDeleteResponse(jsonString: String): String? {
             if (jsonString.contains("SUCCESS:"))

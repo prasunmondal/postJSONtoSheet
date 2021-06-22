@@ -1,6 +1,6 @@
 package com.prasunmondal.postjsontosheets.clients.get
 
-import com.prasunmondal.postjsontosheets.clients.ExecutePostCalls
+import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
