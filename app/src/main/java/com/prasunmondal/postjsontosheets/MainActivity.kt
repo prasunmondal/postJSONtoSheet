@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken
 import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
 import com.prasunmondal.postjsontosheets.clients.post.`object`.PostObject
+import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
 import com.prasunmondal.postjsontosheets.operations.*
 import java.lang.reflect.Type
 import java.util.*
@@ -109,6 +110,12 @@ class MainActivity : AppCompatActivity() {
             .uniqueColumn("number")
             .build()
 
+        var io4 = PostRaw.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(v as Object)
+            .build()
 
         var io0response = io0.execute()
         println("bound: " + io0response.getResponseCode())
@@ -120,9 +127,10 @@ class MainActivity : AppCompatActivity() {
         println("bound: " + io3response.getResponseCode())
         println(t.getRawResponse())
         println(t.getResponseCode())
+        var io4response = io4.execute()
+        println("bound: " + io4response.getResponseCode())
 
 //        deleteAll(view)
-//        insertRawObject(view)
 //        deleteConditionalAnd(view)
 //        deleteConditionalOr(view)
     }
@@ -157,13 +165,6 @@ class MainActivity : AppCompatActivity() {
             var t2 = TestClass.parseDeleteResponse(p1)
             println("Check -- Parsed Object: $t2")
         }.execute()
-    }
-
-    fun insertRawObject(view: View) {
-        INSERT_RAW_OBJECT(
-                "data",
-                StringConstants.DB_TAB_APP_OWNER
-        ) { }.execute()
     }
 }
 
