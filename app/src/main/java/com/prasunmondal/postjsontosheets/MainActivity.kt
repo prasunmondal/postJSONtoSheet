@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import com.prasunmondal.postjsontosheets.clients.delete.Delete
 import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
 import com.prasunmondal.postjsontosheets.clients.post.`object`.PostObject
@@ -117,6 +118,14 @@ class MainActivity : AppCompatActivity() {
             .dataObject(v as Object)
             .build()
 
+        var deleteAll = Delete.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .deleteAll()
+            .build()
+
+
         var io0response = io0.execute()
         println("bound: " + io0response.getResponseCode())
         var io1response = io1.execute()
@@ -129,21 +138,11 @@ class MainActivity : AppCompatActivity() {
         println(t.getResponseCode())
         var io4response = io4.execute()
         println("bound: " + io4response.getResponseCode())
+        var deleteResponse = deleteAll.execute()
+        println("bound: " + deleteResponse.getResponseCode())
 
-//        deleteAll(view)
 //        deleteConditionalAnd(view)
 //        deleteConditionalOr(view)
-    }
-
-    fun get(view: View) {
-        var t2: TestClass? = null
-        FetchDataFromDB("\"prasunmondal3\",deew", StringConstants.DB_TAB_APP_OWNER, "name,number") { p1 ->
-            var t2 = TestClass.parseJSONObject(
-                    object : TypeToken<ArrayList<TestClass>>() {}.type,
-                    JSONUtils.jsonStringCleanUp(p1)
-            )
-            println("Check -- Parsed Object: $t2")
-        }.execute()
     }
 
     fun deleteAll(view: View) {
