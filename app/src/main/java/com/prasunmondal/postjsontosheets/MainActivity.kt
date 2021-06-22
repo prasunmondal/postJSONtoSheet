@@ -1,11 +1,7 @@
 package com.prasunmondal.postjsontosheets
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import com.prasunmondal.postjsontosheets.clients.commons.JSONUtils
 import com.prasunmondal.postjsontosheets.clients.delete.Delete
@@ -13,7 +9,6 @@ import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
 import com.prasunmondal.postjsontosheets.clients.post.`object`.PostObject
 import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
-import java.lang.reflect.Type
 import java.util.*
 
 
@@ -61,10 +56,7 @@ class MainActivity : AppCompatActivity() {
         println("bound: " + tOr.getResponseCode())
         println("bound: " + tOr.getRawResponse())
 
-        var t23 = tOr.parseJSONObject(
-            object : TypeToken<ArrayList<TestClass>>() {}.type,
-            JSONUtils.jsonStringCleanUp(tOr.getRawResponse())
-        )
+        var t23 = tOr.getParsedList(object : TypeToken<ArrayList<TestClass>>() {}.type)
         println(t23)
 
         var ipca = IsPresentConditionalAnd()

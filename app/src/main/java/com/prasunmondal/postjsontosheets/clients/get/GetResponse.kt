@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
+import com.prasunmondal.postjsontosheets.clients.commons.JSONUtils
 import java.lang.reflect.Type
 import java.util.ArrayList
 
@@ -18,10 +19,8 @@ class GetResponse: APIResponse {
         return this
     }
 
-    fun parseJSONObject(
-        type: Type,
-        jsonString: String?,
-    ): ArrayList<*> {
+    fun getParsedList(type: Type): ArrayList<*> {
+        var jsonString = JSONUtils.jsonStringCleanUp(this.getRawResponse())
         Log.e("parsing: ", jsonString!!)
         var arrayLabel = "records"
         val parser = JsonParser()
