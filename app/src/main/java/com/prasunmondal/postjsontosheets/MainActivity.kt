@@ -7,6 +7,7 @@ import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
 import com.prasunmondal.postjsontosheets.clients.post.serializable.PostObject
 import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
+import com.prasunmondal.postjsontosheets.clients.post.raw.PostSequence
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -135,6 +136,12 @@ class MainActivity : AppCompatActivity() {
             .conditionOr("number","")
             .build()
 
+        var insertDataSequence = PostSequence.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(listOf("prasun", "mondal"))
+            .build()
 
         var io0response = io0.execute()
         println("bound: " + io0response.getResponseCode())
@@ -148,12 +155,14 @@ class MainActivity : AppCompatActivity() {
         println(t.getResponseCode())
         var io4response = io4.execute()
         println("bound: " + io4response.getResponseCode())
-//        var deleteConditionalAndResponse = deleteAnd.execute()
-//        println("bound: " + deleteConditionalAndResponse.getResponseCode())
-//        var deleteConditionalOrResponse = deleteOr.execute()
-//        println("bound: " + deleteConditionalOrResponse.getResponseCode())
-//        var deleteResponse = deleteAll.execute()
-//        println("bound: " + deleteResponse.getResponseCode())
+        var insertDataSequenceResponse =  insertDataSequence.execute()
+        println("bound: " + insertDataSequenceResponse.getResponseCode())
+        var deleteConditionalAndResponse = deleteAnd.execute()
+        println("bound: " + deleteConditionalAndResponse.getResponseCode())
+        var deleteConditionalOrResponse = deleteOr.execute()
+        println("bound: " + deleteConditionalOrResponse.getResponseCode())
+        var deleteResponse = deleteAll.execute()
+        println("bound: " + deleteResponse.getResponseCode())
     }
 }
 
