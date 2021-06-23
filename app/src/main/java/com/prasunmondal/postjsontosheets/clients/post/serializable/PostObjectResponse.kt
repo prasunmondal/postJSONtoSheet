@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients.post.`object`
+package com.prasunmondal.postjsontosheets.clients.post.serializable
 
 import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 

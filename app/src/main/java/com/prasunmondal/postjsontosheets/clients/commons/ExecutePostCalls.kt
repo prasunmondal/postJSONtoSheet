@@ -34,14 +34,14 @@ class ExecutePostCalls(private val scriptUrl: URL, private val postDataParams: J
             os.close()
             val responseCode = conn.responseCode
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                val `in` = BufferedReader(InputStreamReader(conn.inputStream))
+                val bufferedReader = BufferedReader(InputStreamReader(conn.inputStream))
                 val sb = StringBuilder()
                 var line: String?
-                while (`in`.readLine().also { line = it } != null) {
+                while (bufferedReader.readLine().also { line = it } != null) {
                     sb.append(line)
                     break
                 }
-                `in`.close()
+                bufferedReader.close()
                 sb.toString()
             } else {
                 "false : $responseCode"

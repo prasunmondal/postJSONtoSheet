@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients.post.`object`
+package com.prasunmondal.postjsontosheets.clients.post.serializable
 
 import java.util.function.Consumer
 

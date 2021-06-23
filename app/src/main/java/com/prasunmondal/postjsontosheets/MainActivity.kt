@@ -2,15 +2,12 @@ package com.prasunmondal.postjsontosheets
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.clients.commons.JSONUtils
 import com.prasunmondal.postjsontosheets.clients.delete.Delete
 import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
-import com.prasunmondal.postjsontosheets.clients.post.`object`.PostObject
+import com.prasunmondal.postjsontosheets.clients.post.serializable.PostObject
 import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
 import java.util.*
-
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
