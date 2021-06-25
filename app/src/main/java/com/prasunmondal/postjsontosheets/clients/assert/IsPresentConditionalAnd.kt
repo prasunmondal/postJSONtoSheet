@@ -84,6 +84,4 @@ class IsPresentConditionalAnd() : APICalls, IsPresentConditionalAndFlow, IsPrese
             return IsPresentConditionalAnd()
         }
     }
-
-
 }

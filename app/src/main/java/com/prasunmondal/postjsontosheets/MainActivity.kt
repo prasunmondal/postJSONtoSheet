@@ -26,9 +26,7 @@ class MainActivity : AppCompatActivity() {
                 .sheetId(StringConstants.DB_SHEET_ID)
                 .tabName(StringConstants.DB_TAB_APP_OWNER)
                 .postCompletion(null)
-                .build().execute()
-//        println("DB-Call: " + t.getRawResponse())
-//        println("DB-Call: " + t.getResponseCode())
+                .build()
 
         var t2 = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -37,11 +35,7 @@ class MainActivity : AppCompatActivity() {
             .postCompletion(null)
             .conditionAnd("name","\"prasunmondal\"")
             .conditionAnd("number","9")
-            .build().execute()
-
-//        println("DB-Call: " + t2.getResponseCode())
-//        println("DB-Call: " + t2.getRawResponse())
-
+            .build()
 
         var tOr = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -50,13 +44,8 @@ class MainActivity : AppCompatActivity() {
             .postCompletion(null)
             .conditionOr("name","\"prasunmondal\"")
             .conditionOr("number","9")
-            .build().execute()
+            .build()
 
-//        println("DB-Call: " + tOr.getResponseCode())
-//        println("DB-Call: " + tOr.getRawResponse())
-
-        var t23 = tOr.getParsedList<TestClass>()
-        println(t23)
 
         var ipca = IsPresentConditionalAnd()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -64,7 +53,18 @@ class MainActivity : AppCompatActivity() {
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .keys("\"prasunmondal,9")
             .values("name,number")
-            .build().execute()
+            .build()
+
+
+        var ipca = IsPresentConditionalOr()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .keys("\"prasunmondal,9")
+            .values("name,number")
+            .build()
+
+
 
         var sp: ArrayList<String> = mutableListOf("Prasun", "Dona") as ArrayList<String>
         val map = mutableMapOf<String, String>()
@@ -144,6 +144,10 @@ class MainActivity : AppCompatActivity() {
             .dataObject(listOf("prasun", "mondal"))
             .build()
 
+        executor(t)
+        executor(t2)
+        executor(tOr)
+        executor(ipca)
         executor(io0)
         executor(io1)
         executor(io2)
