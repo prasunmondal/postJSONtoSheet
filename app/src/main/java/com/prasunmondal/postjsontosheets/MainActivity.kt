@@ -55,17 +55,6 @@ class MainActivity : AppCompatActivity() {
             .values("name,number")
             .build()
 
-
-        var ipca = IsPresentConditionalOr()
-            .scriptId(StringConstants.dBServerScriptURL)
-            .sheetId(StringConstants.DB_SHEET_ID)
-            .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .keys("\"prasunmondal,9")
-            .values("name,number")
-            .build()
-
-
-
         var sp: ArrayList<String> = mutableListOf("Prasun", "Dona") as ArrayList<String>
         val map = mutableMapOf<String, String>()
         map["one"] = "1"
