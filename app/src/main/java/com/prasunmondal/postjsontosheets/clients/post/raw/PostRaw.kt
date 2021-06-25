@@ -1,12 +1,13 @@
 package com.prasunmondal.postjsontosheets.clients.post.raw
 
 import com.google.gson.Gson
+import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class PostRaw() : PostRawFlow, PostRawFlow.ScriptIdBuilder,
+class PostRaw() : APICalls, PostRawFlow, PostRawFlow.ScriptIdBuilder,
     PostRawFlow.SheetIdBuilder,
     PostRawFlow.TabNameBuilder,
     PostRawFlow.DataObjectBuilder,

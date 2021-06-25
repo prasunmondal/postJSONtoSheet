@@ -1,11 +1,12 @@
 package com.prasunmondal.postjsontosheets.clients.get
 
+import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class Get() : GetFlow, GetFlow.ScriptIdBuilder,
+class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
         GetFlow.SheetIdBuilder,
         GetFlow.TabNameBuilder,
         GetFlow.FinalRequestBuilder {

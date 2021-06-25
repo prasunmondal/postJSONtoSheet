@@ -42,19 +42,21 @@ class ExecutePostCalls(private val scriptUrl: URL, private val postDataParams: J
                     break
                 }
                 bufferedReader.close()
+                println("prasunNoNetCheck: 1")
                 sb.toString()
             } else {
+                println("prasunNoNetCheck: 2")
                 "false : $responseCode"
             }
         } catch (e: Exception) {
+            println("prasunNoNetCheck: 3")
             "Exception: " + e.message
+            throw e
         }
     }
 
     public override fun onPostExecute(result: String) {
-//        val responseObj = APIResponse(result)
         if (onCompletion == null) return
-        Log.e("DBCall::  Inbound", result)
         onCompletion.accept(result)
     }
 

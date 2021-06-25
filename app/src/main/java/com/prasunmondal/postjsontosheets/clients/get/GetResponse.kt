@@ -5,10 +5,9 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
-import com.prasunmondal.postjsontosheets.TestClass
 import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 import com.prasunmondal.postjsontosheets.clients.commons.JSONUtils
-import java.lang.reflect.Type
+import com.prasunmondal.postjsontosheets.clients.commons.JsonTags
 import java.util.ArrayList
 
 class GetResponse: APIResponse {
@@ -38,5 +37,9 @@ class GetResponse: APIResponse {
             object : TypeToken<ArrayList<T>>() {}.type
         )
         return result
+    }
+
+    fun numberOfRecordsDeleted(): Int {
+        return getJsonObject()!!.get(JsonTags.RESPONSE_ROWS_AFFECTED).asInt
     }
 }

@@ -1,12 +1,13 @@
 package com.prasunmondal.postjsontosheets.clients.post.serializable
 
 import com.google.gson.Gson
+import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class PostObject() : PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
+class PostObject() : APICalls, PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
     PostObjectFlow.SheetIdBuilder,
     PostObjectFlow.TabNameBuilder,
     PostObjectFlow.DataObjectBuilder,

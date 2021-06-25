@@ -2,6 +2,7 @@ package com.prasunmondal.postjsontosheets
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.delete.Delete
 import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
                 .tabName(StringConstants.DB_TAB_APP_OWNER)
                 .postCompletion(null)
                 .build().execute()
-        println("bound: " + t.getResponseCode())
-        println("bound: " + t.getRawResponse())
+//        println("DB-Call: " + t.getRawResponse())
+//        println("DB-Call: " + t.getResponseCode())
 
         var t2 = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -38,8 +39,8 @@ class MainActivity : AppCompatActivity() {
             .conditionAnd("number","9")
             .build().execute()
 
-        println("bound: " + t2.getResponseCode())
-        println("bound: " + t2.getRawResponse())
+//        println("DB-Call: " + t2.getResponseCode())
+//        println("DB-Call: " + t2.getRawResponse())
 
 
         var tOr = Get.builder()
@@ -51,8 +52,8 @@ class MainActivity : AppCompatActivity() {
             .conditionOr("number","9")
             .build().execute()
 
-        println("bound: " + tOr.getResponseCode())
-        println("bound: " + tOr.getRawResponse())
+//        println("DB-Call: " + tOr.getResponseCode())
+//        println("DB-Call: " + tOr.getRawResponse())
 
         var t23 = tOr.getParsedList<TestClass>()
         println(t23)
@@ -143,26 +144,22 @@ class MainActivity : AppCompatActivity() {
             .dataObject(listOf("prasun", "mondal"))
             .build()
 
-        var io0response = io0.execute()
-        println("bound: " + io0response.getResponseCode())
-        var io1response = io1.execute()
-        println("bound: " + io1response.getResponseCode())
-        var io2response = io2.execute()
-        println("bound: " + io2response.getResponseCode())
-        var io3response = io3.execute()
-        println("bound: " + io3response.getResponseCode())
-        println(t.getRawResponse())
-        println(t.getResponseCode())
-        var io4response = io4.execute()
-        println("bound: " + io4response.getResponseCode())
-        var insertDataSequenceResponse =  insertDataSequence.execute()
-        println("bound: " + insertDataSequenceResponse.getResponseCode())
-        var deleteConditionalAndResponse = deleteAnd.execute()
-        println("bound: " + deleteConditionalAndResponse.getResponseCode())
-        var deleteConditionalOrResponse = deleteOr.execute()
-        println("bound: " + deleteConditionalOrResponse.getResponseCode())
-        var deleteResponse = deleteAll.execute()
-        println("bound: " + deleteResponse.getResponseCode())
+        executor(io0)
+        executor(io1)
+        executor(io2)
+        executor(io3)
+        executor(io4)
+        executor(insertDataSequence)
+        executor(deleteAnd)
+        executor(deleteOr)
+        executor(deleteAll)
+
+    }
+
+    fun executor(call: APICalls) {
+        val result = call.execute()
+        println("DB-Call: Raw Response:" + result.getRawResponse())
+        println("DB-Call: Response Code:" + result.getResponseCode())
     }
 }
 

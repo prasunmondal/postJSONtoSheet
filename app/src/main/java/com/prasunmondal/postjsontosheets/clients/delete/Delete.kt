@@ -1,11 +1,13 @@
 package com.prasunmondal.postjsontosheets.clients.delete
 
+import com.prasunmondal.postjsontosheets.clients.commons.APICalls
+import com.prasunmondal.postjsontosheets.clients.commons.ConnectionErrorException
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class Delete private constructor() : DeleteFlow, DeleteFlow.ScriptIdBuilder,
+class Delete private constructor() : APICalls, DeleteFlow, DeleteFlow.ScriptIdBuilder,
         DeleteFlow.SheetIdBuilder,
         DeleteFlow.TabNameBuilder,
         DeleteFlow.FinalRequestBuilder {
