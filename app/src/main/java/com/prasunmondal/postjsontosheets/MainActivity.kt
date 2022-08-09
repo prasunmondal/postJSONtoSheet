@@ -28,6 +28,13 @@ class MainActivity : AppCompatActivity() {
                 .postCompletion(null)
                 .build()
 
+        var t3 = Get.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .postCompletion(null)
+            .build()
+
         var t2 = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
@@ -142,6 +149,7 @@ class MainActivity : AppCompatActivity() {
         executor(io2)
         executor(io3)
         executor(io4)
+        executor(t3)
         executor(insertDataSequence)
         executor(deleteAnd)
         executor(deleteOr)

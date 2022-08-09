@@ -1,6 +1,7 @@
 package com.prasunmondal.postjsontosheets.clients.post.raw
 
 import com.google.gson.Gson
+import com.prasunmondal.postjsontosheets.clients.ListUtils
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
@@ -67,7 +68,7 @@ class PostSequence() : APICalls, PostSequenceFlow, PostSequenceFlow.ScriptIdBuil
         postDataParams.put("opCode", "INSERT_DATA_SEQUENCE")
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
-        postDataParams.put("dataValue", this.dataSequence)
+        postDataParams.put("dataValue", "[$ListUtils.getCSV(this.dataSequence)]")
 
         val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
