@@ -3,7 +3,7 @@ package com.prasunmondal.postjsontosheets.clients
 class ListUtils {
 
     companion object {
-        fun getCSV(list: ArrayList<String>): String {
+        fun getCSV(list: MutableList<String>): String {
             var s = ""
             for (data in list) {
                 if (list.get(0) != data)

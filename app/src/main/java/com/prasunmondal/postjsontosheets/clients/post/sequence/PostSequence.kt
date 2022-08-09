@@ -68,7 +68,7 @@ class PostSequence() : APICalls, PostSequenceFlow, PostSequenceFlow.ScriptIdBuil
         postDataParams.put("opCode", "INSERT_DATA_SEQUENCE")
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
-        postDataParams.put("dataValue", "[$ListUtils.getCSV(this.dataSequence)]")
+        postDataParams.put("dataValue", "[${ListUtils.getCSV(this.dataSequence)}]")
 
         val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
         var response = c.execute().get()
