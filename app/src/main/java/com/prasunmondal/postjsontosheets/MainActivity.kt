@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity() {
     fun executor(call: APICalls) {
         val result = call.execute()
         println("DB-Call: Raw Response:" + result.getRawResponse())
-        println("DB-Call: Response Code:" + result.getResponseCode())
+//        println("DB-Call: Response Code:" + result.getResponseCode())
     }
 }
 
