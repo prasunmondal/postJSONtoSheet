@@ -15,7 +15,7 @@ class PostObject() : APICalls, PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
     private lateinit var scriptURL: String
     private lateinit var sheetId: String
     private lateinit var tabName: String
-    private lateinit var dataObject: Object
+    private lateinit var dataObject: Any
     private var uniqueColumn = "";
 
     var onCompletion: Consumer<PostObjectResponse>? = null
@@ -35,7 +35,7 @@ class PostObject() : APICalls, PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
         return this
     }
 
-    override fun dataObject(dataObject: Object): PostObjectFlow.FinalRequestBuilder {
+    override fun dataObject(dataObject: Any): PostObjectFlow.FinalRequestBuilder {
         this.dataObject = dataObject
         return this
     }
@@ -46,9 +46,9 @@ class PostObject() : APICalls, PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
     }
 
     override fun uniqueColumn(uniqueColumn: String): PostObjectFlow.FinalRequestBuilder {
-        if(uniqueColumn == "")
+        if (uniqueColumn == "")
             return this
-        if(this.uniqueColumn != "")
+        if (this.uniqueColumn != "")
             this.uniqueColumn += ","
         this.uniqueColumn += uniqueColumn
         return this
@@ -63,7 +63,7 @@ class PostObject() : APICalls, PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
     }
 
     override fun execute(): PostObjectResponse {
-        if(this.uniqueColumn == "")
+        if (this.uniqueColumn == "")
             return insertData()
         return insertUniqueData()
     }
@@ -96,7 +96,7 @@ class PostObject() : APICalls, PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
     }
 
     private fun postExecute(response: String) {
-        if(onCompletion == null)
+        if (onCompletion == null)
             return
         var responseObj = PostObjectResponse(response)
         onCompletion!!.accept(responseObj)

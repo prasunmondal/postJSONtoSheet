@@ -1,10 +1,9 @@
 package com.prasunmondal.postjsontosheets.clients.delete
 
 import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
-import com.prasunmondal.postjsontosheets.clients.commons.ConnectionErrorException
 import com.prasunmondal.postjsontosheets.clients.commons.JsonTags
 
-class DeleteResponse: APIResponse {
+class DeleteResponse : APIResponse {
 
     constructor(responsePayload: String) {
 //        if(responsePayload.contains("Unable to resolve host \"script.google.com\": No address associated with hostname")) {

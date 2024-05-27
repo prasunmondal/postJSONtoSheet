@@ -2,17 +2,20 @@ package com.prasunmondal.postjsontosheets.clients.get
 
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
+import com.tech4bytes.mbrosv3.Utils.DB.clients.get.ByQuery.GetByQuery
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
 class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
-        GetFlow.SheetIdBuilder,
-        GetFlow.TabNameBuilder,
-        GetFlow.FinalRequestBuilder {
+    GetFlow.SheetIdBuilder,
+    GetFlow.TabNameBuilder,
+    GetFlow.FinalRequestBuilder,
+    GetFlow.ReadyToRun {
     private lateinit var scriptURL: String
     private lateinit var sheetId: String
     private lateinit var tabName: String
+    private var query: String? = null
     private var onCompletion: Consumer<GetResponse>? = null
     private var conditionAndColumn = ""
     private var conditionAndValue = ""
@@ -39,12 +42,19 @@ class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
         return this
     }
 
-    override fun conditionAnd(conditionColumn: String, conditionValue: String): GetFlow.FinalRequestBuilder {
-        if(conditionColumn.isEmpty() || conditionValue.isEmpty())
+    fun query(query: String) {
+        this.query = query
+    }
+
+    override fun conditionAnd(
+        conditionColumn: String,
+        conditionValue: String,
+    ): GetFlow.FinalRequestBuilder {
+        if (conditionColumn.isEmpty() || conditionValue.isEmpty())
             return this
         this.conditionOrColumn = ""
         this.conditionOrValue = ""
-        if(this.conditionAndColumn.isNotEmpty()) {
+        if (this.conditionAndColumn.isNotEmpty()) {
             this.conditionAndColumn += ","
             this.conditionAndValue += ","
         }
@@ -53,12 +63,15 @@ class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
         return this
     }
 
-    override fun conditionOr(conditionColumn: String, conditionValue: String): GetFlow.FinalRequestBuilder {
-        if(conditionColumn.isEmpty() || conditionValue.isEmpty())
+    override fun conditionOr(
+        conditionColumn: String,
+        conditionValue: String,
+    ): GetFlow.FinalRequestBuilder {
+        if (conditionColumn.isEmpty() || conditionValue.isEmpty())
             return this
         this.conditionAndColumn = ""
         this.conditionAndValue = ""
-        if(this.conditionOrColumn.isNotEmpty()) {
+        if (this.conditionOrColumn.isNotEmpty()) {
             this.conditionOrColumn += ","
             this.conditionOrValue += ","
         }
@@ -76,12 +89,18 @@ class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
     }
 
     override fun execute(): GetResponse {
-        if(conditionOrColumn.isEmpty() && conditionAndColumn.isEmpty())
-            return fetchAll()
-        else if(conditionAndColumn.isNotEmpty())
-            return fetchConditionAnd()
+        return if (query != null && query!!.isNotEmpty()) {
+            GetByQuery.builder().scriptId(scriptURL)
+                .sheetId(sheetId)
+                .tabName(tabName)
+                .query(query!!)
+                .build().execute()
+        } else if (conditionOrColumn.isEmpty() && conditionAndColumn.isEmpty())
+            fetchAll()
+        else if (conditionAndColumn.isNotEmpty())
+            fetchConditionAnd()
         else
-            return fetchConditionOr()
+            fetchConditionOr()
     }
 
     private fun fetchAll(): GetResponse {
@@ -125,7 +144,7 @@ class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
     }
 
     private fun postExecute(response: String) {
-        if(onCompletion == null)
+        if (onCompletion == null)
             return
         var responseObj = GetResponse(response)
         onCompletion!!.accept(responseObj)

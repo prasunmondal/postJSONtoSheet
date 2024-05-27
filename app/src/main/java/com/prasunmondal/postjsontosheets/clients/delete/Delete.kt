@@ -1,16 +1,15 @@
 package com.prasunmondal.postjsontosheets.clients.delete
 
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
-import com.prasunmondal.postjsontosheets.clients.commons.ConnectionErrorException
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
 class Delete private constructor() : APICalls, DeleteFlow, DeleteFlow.ScriptIdBuilder,
-        DeleteFlow.SheetIdBuilder,
-        DeleteFlow.TabNameBuilder,
-        DeleteFlow.FinalRequestBuilder {
+    DeleteFlow.SheetIdBuilder,
+    DeleteFlow.TabNameBuilder,
+    DeleteFlow.FinalRequestBuilder {
     private lateinit var scriptURL: String
     private lateinit var sheetId: String
     private lateinit var tabName: String
@@ -41,12 +40,15 @@ class Delete private constructor() : APICalls, DeleteFlow, DeleteFlow.ScriptIdBu
         return this
     }
 
-    override fun conditionAnd(conditionColumn: String, conditionValue: String): DeleteFlow.FinalRequestBuilder {
-        if(conditionColumn.isEmpty() || conditionValue.isEmpty())
+    override fun conditionAnd(
+        conditionColumn: String,
+        conditionValue: String,
+    ): DeleteFlow.FinalRequestBuilder {
+        if (conditionColumn.isEmpty() || conditionValue.isEmpty())
             return this
         this.conditionOrColumn = ""
         this.conditionOrValue = ""
-        if(this.conditionAndColumn.isNotEmpty()) {
+        if (this.conditionAndColumn.isNotEmpty()) {
             this.conditionAndColumn += ","
             this.conditionAndValue += ","
         }
@@ -55,12 +57,15 @@ class Delete private constructor() : APICalls, DeleteFlow, DeleteFlow.ScriptIdBu
         return this
     }
 
-    override fun conditionOr(conditionColumn: String, conditionValue: String): DeleteFlow.FinalRequestBuilder {
-        if(conditionColumn.isEmpty() || conditionValue.isEmpty())
+    override fun conditionOr(
+        conditionColumn: String,
+        conditionValue: String,
+    ): DeleteFlow.FinalRequestBuilder {
+        if (conditionColumn.isEmpty() || conditionValue.isEmpty())
             return this
         this.conditionAndColumn = ""
         this.conditionAndValue = ""
-        if(this.conditionOrColumn.isNotEmpty()) {
+        if (this.conditionOrColumn.isNotEmpty()) {
             this.conditionOrColumn += ","
             this.conditionOrValue += ","
         }
@@ -83,13 +88,12 @@ class Delete private constructor() : APICalls, DeleteFlow, DeleteFlow.ScriptIdBu
     }
 
     override fun execute(): DeleteResponse {
-        if(isDeleteAllOp)
+        if (isDeleteAllOp)
             return deleteAllExecute()
-        if(conditionOrColumn.isEmpty() && conditionAndColumn.isEmpty()) {
+        if (conditionOrColumn.isEmpty() && conditionAndColumn.isEmpty()) {
             return deleteAllExecute()
             TODO("throw error if nothing is specified")
-        }
-        else if(conditionAndColumn.isNotEmpty())
+        } else if (conditionAndColumn.isNotEmpty())
             return deleteConditionAnd()
         else
             return deleteConditionOr()
@@ -136,7 +140,7 @@ class Delete private constructor() : APICalls, DeleteFlow, DeleteFlow.ScriptIdBu
     }
 
     private fun postExecute(response: String) {
-        if(onCompletion == null)
+        if (onCompletion == null)
             return
         var responseObj = DeleteResponse(response)
         onCompletion!!.accept(responseObj)

@@ -70,7 +70,7 @@ class PostRaw() : APICalls, PostRawFlow, PostRawFlow.ScriptIdBuilder,
     }
 
     private fun postExecute(response: String) {
-        if(onCompletion == null)
+        if (onCompletion == null)
             return
         var responseObj = PostRawResponse(response)
         onCompletion!!.accept(responseObj)

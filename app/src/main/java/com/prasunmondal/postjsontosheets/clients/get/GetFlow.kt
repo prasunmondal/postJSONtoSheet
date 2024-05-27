@@ -22,7 +22,11 @@ interface GetFlow {
         fun postCompletion(onCompletion: Consumer<GetResponse>?): FinalRequestBuilder
         fun conditionAnd(conditionKey: String, conditionValue: String): FinalRequestBuilder
         fun conditionOr(conditionKey: String, conditionValue: String): FinalRequestBuilder
+        fun execute(): GetResponse
     }
 
-    fun execute(): GetResponse
+    interface ReadyToRun {
+        fun build(): Get
+        fun execute(): GetResponse
+    }
 }

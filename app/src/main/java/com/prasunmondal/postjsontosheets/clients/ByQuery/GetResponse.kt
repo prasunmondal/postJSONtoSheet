@@ -1,4 +1,4 @@
-package com.prasunmondal.postjsontosheets.clients.get
+package com.tech4bytes.mbrosv3.Utils.DB.clients.get.ByQuery
 
 import android.util.Log
 import com.google.gson.GsonBuilder
@@ -9,13 +9,13 @@ import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 import com.prasunmondal.postjsontosheets.clients.commons.JSONUtils
 import com.prasunmondal.postjsontosheets.clients.commons.JsonTags
 
-class GetResponse : APIResponse {
+class GetByQueryResponse : APIResponse {
 
     constructor(responsePayload: String) {
         this.responsePayload = responsePayload
     }
 
-    fun getObject(): GetResponse {
+    fun getObject(): GetByQueryResponse {
         return this
     }
 

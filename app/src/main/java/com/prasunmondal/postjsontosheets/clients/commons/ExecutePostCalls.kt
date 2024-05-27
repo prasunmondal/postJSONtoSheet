@@ -14,11 +14,15 @@ import java.nio.charset.StandardCharsets
 import java.util.function.Consumer
 import javax.net.ssl.HttpsURLConnection
 
-class ExecutePostCalls(private val scriptUrl: URL, private val postDataParams: JSONObject, private val onCompletion: Consumer<String>?) : AsyncTask<String?, Void?, String>() {
+class ExecutePostCalls(
+    private val scriptUrl: URL,
+    private val postDataParams: JSONObject,
+    private val onCompletion: Consumer<String>?,
+) : AsyncTask<String?, Void?, String>() {
     override fun onPreExecute() {}
     override fun doInBackground(vararg p0: String?): String {
         return try {
-            Log.e("DBCall:: Outbound", postDataParams.toString())
+            Log.e("DBCall:: Outbound", "scriptURL: $scriptUrl - $postDataParams")
             val conn = scriptUrl.openConnection() as HttpURLConnection
             conn.readTimeout = 150000
             conn.connectTimeout = 150000
@@ -27,7 +31,8 @@ class ExecutePostCalls(private val scriptUrl: URL, private val postDataParams: J
             conn.doOutput = true
             val os = conn.outputStream
             val writer = BufferedWriter(
-                    OutputStreamWriter(os, StandardCharsets.UTF_8))
+                OutputStreamWriter(os, StandardCharsets.UTF_8)
+            )
             writer.write(getPostDataString(postDataParams))
             writer.flush()
             writer.close()
@@ -42,20 +47,18 @@ class ExecutePostCalls(private val scriptUrl: URL, private val postDataParams: J
                     break
                 }
                 bufferedReader.close()
-                println("prasunNoNetCheck: 1")
                 sb.toString()
             } else {
-                println("prasunNoNetCheck: 2")
                 "false : $responseCode"
             }
         } catch (e: Exception) {
-            println("prasunNoNetCheck: 3")
             "Exception: " + e.message
             throw e
         }
     }
 
     public override fun onPostExecute(result: String) {
+        Log.e("DBCall:: Inbound", result)
         if (onCompletion == null) return
         onCompletion.accept(result)
     }

@@ -17,7 +17,7 @@ interface PostObjectFlow {
     }
 
     interface DataObjectBuilder {
-        fun dataObject(dataObject: Object): FinalRequestBuilder
+        fun dataObject(dataObject: Any): FinalRequestBuilder
     }
 
     interface FinalRequestBuilder {

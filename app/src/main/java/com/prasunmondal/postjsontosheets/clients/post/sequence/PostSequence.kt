@@ -1,9 +1,8 @@
 package com.prasunmondal.postjsontosheets.clients.post.raw
 
-import com.google.gson.Gson
-import com.prasunmondal.postjsontosheets.clients.ListUtils
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
+import com.tech4bytes.extrack.DB.clients.ListUtils
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
@@ -76,7 +75,7 @@ class PostSequence() : APICalls, PostSequenceFlow, PostSequenceFlow.ScriptIdBuil
     }
 
     private fun postExecute(response: String) {
-        if(onCompletion == null)
+        if (onCompletion == null)
             return
         var responseObj = PostSequenceResponse(response)
         onCompletion!!.accept(responseObj)

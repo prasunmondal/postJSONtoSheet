@@ -6,12 +6,13 @@ import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class IsPresentConditionalAnd() : APICalls, IsPresentConditionalAndFlow, IsPresentConditionalAndFlow.ScriptIdBuilder,
-        IsPresentConditionalAndFlow.SheetIdBuilder,
-        IsPresentConditionalAndFlow.TabNameBuilder,
-        IsPresentConditionalAndFlow.FinalRequestBuilder,
-        IsPresentConditionalAndFlow.KeysBuilder,
-        IsPresentConditionalAndFlow.ValuesBuilder {
+class IsPresentConditionalAnd() : APICalls, IsPresentConditionalAndFlow,
+    IsPresentConditionalAndFlow.ScriptIdBuilder,
+    IsPresentConditionalAndFlow.SheetIdBuilder,
+    IsPresentConditionalAndFlow.TabNameBuilder,
+    IsPresentConditionalAndFlow.FinalRequestBuilder,
+    IsPresentConditionalAndFlow.KeysBuilder,
+    IsPresentConditionalAndFlow.ValuesBuilder {
     private lateinit var scriptURL: String
     private lateinit var sheetId: String
     private lateinit var tabName: String
