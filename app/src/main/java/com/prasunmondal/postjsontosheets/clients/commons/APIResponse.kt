@@ -63,8 +63,12 @@ open class APIResponse {
         return getJsonObject()!!.get(JsonTags.RESPONSE_IS_LOCKED_OPERATION).asBoolean
     }
 
+    override fun toString(): String {
+        return "APIResponse(content='$content', statusCode=$statusCode, affectedRows=$affectedRows, opId='$opId', logs='$logs')"
+    }
+
     companion object {
-        open fun convertJsonArrayStringToList(jsonArrayString: String?): List<JSONObject>? {
+        open fun convertJsonArrayStringToList(jsonArrayString: String?): List<JSONObject> {
             val jsonObjectList: MutableList<JSONObject> = ArrayList()
             try {
                 val jsonArray = JSONArray(jsonArrayString)
@@ -75,6 +79,17 @@ open class APIResponse {
                 e.printStackTrace()
             }
             return jsonObjectList
+        }
+
+        fun parseToAPIResponse(jsonString: JSONObject): APIResponse {
+            Log.e("parsing to object ", jsonString.toString())
+            var result = APIResponse()
+            result.opId = jsonString.getString("opId")
+            result.affectedRows = try {(jsonString.getString("affectedRows")).toInt()} catch (e: Exception) {0}
+            result.statusCode = try {(jsonString.getString("statusCode")).toInt()} catch (e: Exception) {0}
+            result.content = jsonString.getString("content")
+            result.logs = jsonString.getString("logs")
+            return result
         }
     }
 //    companion object {
