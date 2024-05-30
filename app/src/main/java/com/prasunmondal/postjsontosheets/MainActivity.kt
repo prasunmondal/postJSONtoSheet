@@ -6,9 +6,10 @@ import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.delete.Delete
 import com.prasunmondal.postjsontosheets.clients.get.Get
 import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
-import com.prasunmondal.postjsontosheets.clients.post.serializable.PostObject
 import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
 import com.prasunmondal.postjsontosheets.clients.post.raw.PostSequence
+import com.prasunmondal.postjsontosheets.clients.post.serializable.PostObject
+import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -140,20 +141,42 @@ class MainActivity : AppCompatActivity() {
             .dataObject(listOf("prasun", "mondal"))
             .build()
 
-        executor(t)
-        executor(t2)
-        executor(tOr)
-        executor(ipca)
-        executor(io0)
-        executor(io1)
-        executor(io2)
-        executor(io3)
-        executor(io4)
-        executor(t3)
-        executor(insertDataSequence)
-        executor(deleteAnd)
-        executor(deleteOr)
-        executor(deleteAll)
+//        executor(t)
+//        executor(t2)
+//        executor(tOr)
+//        executor(ipca)
+//        executor(io0)
+//        executor(io1)
+//        executor(io2)
+//        executor(io3)
+//        executor(io4)
+//        executor(t3)
+//        executor(insertDataSequence)
+//        executor(deleteAnd)
+//        executor(deleteOr)
+//        executor(deleteAll)
+
+
+        var insertDataSequence2 = PostSequence.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(listOf("prasun", "mondal"))
+            .build()
+
+        var insertDataSequence3 = PostSequence.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(listOf("prasun", "mondal"))
+            .build()
+
+        GScript.add(t3)
+        GScript.add(t3)
+        GScript.execute("https://script.google.com/macros/s/AKfycbx_pmnvkXCc3Zve9oX6HR3Phu4YKeG8FtSgx2PxluEHe_9M8wk7zDbXe-wQmTWEaxRffQ/exec")
+
+
+
 
     }
 
