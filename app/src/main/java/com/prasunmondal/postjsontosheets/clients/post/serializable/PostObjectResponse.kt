@@ -5,7 +5,7 @@ import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 class PostObjectResponse : APIResponse {
 
     constructor(responsePayload: String) {
-        this.responsePayload = responsePayload
+        this.content = responsePayload
     }
 
     fun getObject(): PostObjectResponse {

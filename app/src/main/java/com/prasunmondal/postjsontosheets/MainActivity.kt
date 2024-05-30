@@ -12,6 +12,7 @@ import com.prasunmondal.postjsontosheets.clients.post.serializable.PostObject
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,38 +72,37 @@ class MainActivity : AppCompatActivity() {
         var v = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
         var v2 = TestClass(9, "\"prasunmondal\"", Secondary("ding-ding-ding"), sp, map)
 
-        var io0 = PostObject.builder()
-            .scriptId(StringConstants.dBServerScriptURL)
-            .sheetId(StringConstants.DB_SHEET_ID)
-            .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .dataObject(v as Object)
-            .uniqueColumn("name")
-            .uniqueColumn("number")
-            .build()
-
-
-        var io1 = PostObject.builder()
-            .scriptId(StringConstants.dBServerScriptURL)
-            .sheetId(StringConstants.DB_SHEET_ID)
-            .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .dataObject(v2 as Object).build()
-
-
-        var io2 = PostObject.builder()
-            .scriptId(StringConstants.dBServerScriptURL)
-            .sheetId(StringConstants.DB_SHEET_ID)
-            .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .dataObject(v as Object).build()
-
-
-        var io3 = PostObject.builder()
-            .scriptId(StringConstants.dBServerScriptURL)
-            .sheetId(StringConstants.DB_SHEET_ID)
-            .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .dataObject(v as Object)
-            .uniqueColumn("name")
-            .uniqueColumn("number")
-            .build()
+//        var io0 = PostObject.builder()
+//            .sheetId(StringConstants.DB_SHEET_ID)
+//            .tabName(StringConstants.DB_TAB_APP_OWNER)
+//            .dataObject(v as Object)
+//            .uniqueColumn("name")
+//            .uniqueColumn("number")
+//            .build()
+//
+//
+//        var io1 = PostObject.builder()
+////            .scriptId(StringConstants.dBServerScriptURL)
+//            .sheetId(StringConstants.DB_SHEET_ID)
+//            .tabName(StringConstants.DB_TAB_APP_OWNER)
+//            .dataObject(v2 as Object).build()
+//
+//
+//        var io2 = PostObject.builder()
+////            .scriptId(StringConstants.dBServerScriptURL)
+//            .sheetId(StringConstants.DB_SHEET_ID)
+//            .tabName(StringConstants.DB_TAB_APP_OWNER)
+//            .dataObject(v as Object).build()
+//
+//
+//        var io3 = PostObject.builder()
+////            .scriptId(StringConstants.dBServerScriptURL)
+//            .sheetId(StringConstants.DB_SHEET_ID)
+//            .tabName(StringConstants.DB_TAB_APP_OWNER)
+//            .dataObject(v as Object)
+//            .uniqueColumn("name")
+//            .uniqueColumn("number")
+//            .build()
 
         var io4 = PostRaw.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -171,18 +171,32 @@ class MainActivity : AppCompatActivity() {
             .dataObject(listOf("prasun", "mondal"))
             .build()
 
-        GScript.add(t3)
-        GScript.add(t3)
-        GScript.execute("https://script.google.com/macros/s/AKfycbx_pmnvkXCc3Zve9oX6HR3Phu4YKeG8FtSgx2PxluEHe_9M8wk7zDbXe-wQmTWEaxRffQ/exec")
 
 
+        val t4 = Get.builder()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .postCompletion(null)
+            .build()
 
+        val test_insert_java_obj = PostObject.builder()
+            .scriptId("")
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(Test("Dona", "Mondal") as Object)
+            .build()
 
+        GScript.add(t4)
+        GScript.add(t4)
+        GScript.execute(StringConstants.dBServerScriptURL)
+        GScript.add(test_insert_java_obj)
+        GScript.execute(StringConstants.dBServerScriptURL)
     }
 
     fun executor(call: APICalls) {
         val result = call.execute()
-        println("DB-Call: Raw Response:" + result.getRawResponse())
+        println("DB-Call: Raw Response:" + result.content)
 //        println("DB-Call: Response Code:" + result.getResponseCode())
     }
 }
@@ -237,5 +251,15 @@ class Secondary {
 
     override fun toString(): String {
         return seconday
+    }
+}
+
+class Test {
+    var name = ""
+    var title = ""
+
+    constructor(name: String, title: String) {
+        this.name = name
+        this.title = title
     }
 }

@@ -1,6 +1,7 @@
 package com.tech4bytes.mbrosv3.Utils.DB.clients.get.ByQuery
 
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
+import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import com.prasunmondal.postjsontosheets.clients.get.GetResponse
 import org.json.JSONObject
@@ -16,7 +17,7 @@ class GetByQuery : APICalls, GetByQueryFlow, GetByQueryFlow.ScriptIdBuilder,
     private lateinit var scriptURL: String
     private lateinit var sheetId: String
     private lateinit var tabName: String
-    private var onCompletion: Consumer<GetByQueryResponse>? = null
+    private var onCompletion: Consumer<APIResponse>? = null
     private var query = ""
 
     override fun scriptId(scriptId: String): GetByQueryFlow.SheetIdBuilder {
@@ -39,7 +40,7 @@ class GetByQuery : APICalls, GetByQueryFlow, GetByQueryFlow.ScriptIdBuilder,
         return this
     }
 
-    override fun postCompletion(onCompletion: Consumer<GetByQueryResponse>?): GetByQueryFlow.FinalRequestBuilder {
+    override fun postCompletion(onCompletion: Consumer<APIResponse>?): GetByQueryFlow.FinalRequestBuilder {
         this.onCompletion = onCompletion
         return this
     }
@@ -78,7 +79,8 @@ class GetByQuery : APICalls, GetByQueryFlow, GetByQueryFlow.ScriptIdBuilder,
     private fun postExecute(response: String) {
         if (onCompletion == null)
             return
-        val responseObj = GetByQueryResponse(response)
+        val responseObj = APIResponse()
+        responseObj
         onCompletion!!.accept(responseObj)
     }
 

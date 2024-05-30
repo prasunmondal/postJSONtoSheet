@@ -63,7 +63,7 @@ class PostObject() : APICalls, PostObjectFlow, PostObjectFlow.ScriptIdBuilder,
     }
 
     override fun getJSON(): JSONObject {
-        val scriptUrl = URL(this.scriptURL)
+//        val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "INSERT_OBJECT")
         postDataParams.put("sheetId", this.sheetId)

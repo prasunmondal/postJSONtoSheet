@@ -8,23 +8,27 @@ import com.google.gson.JsonParser
 import java.lang.reflect.Type
 
 open class APIResponse {
-    var responsePayload: String = ""
+    var content: String = ""
+    var statusCode: Int = 0
+    var affectedRows = 0
+    var opId = ""
+    var logs = ""
 
-    fun getRawResponse(): String {
-        return this.responsePayload
-    }
+//    fun getContent(): String {
+//        return this.content
+//    }
 
-    fun getResponseCode(): Int {
-        return getJsonObject()!!.get(JsonTags.RESPONSE_RESPONSE_CODE).asInt
-    }
+//    fun getStatusCode(): Int {
+//        return statusCode
+//    }
 
-    fun getOpCode(): Int {
+    fun getUID(): Int {
         return getJsonObject()!!.get(JsonTags.RESPONSE_OP_CODE).asInt
     }
 
     fun getJsonObject(): JsonObject? {
         val parser = JsonParser()
-        return parser.parse(responsePayload).asJsonObject
+        return parser.parse(content).asJsonObject
     }
 
     fun <T> parseToObject(jsonString: String?, type: Type): ArrayList<T> {

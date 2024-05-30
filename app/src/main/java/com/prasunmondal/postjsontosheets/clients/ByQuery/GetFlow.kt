@@ -1,5 +1,6 @@
 package com.tech4bytes.mbrosv3.Utils.DB.clients.get.ByQuery
 
+import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 import com.prasunmondal.postjsontosheets.clients.get.GetResponse
 import java.util.function.Consumer
 
@@ -24,7 +25,7 @@ interface GetByQueryFlow {
     interface FinalRequestBuilder {
         // All optional parameters goes here
         fun build(): GetByQuery
-        fun postCompletion(onCompletion: Consumer<GetByQueryResponse>?): FinalRequestBuilder
+        fun postCompletion(onCompletion: Consumer<APIResponse>?): FinalRequestBuilder
     }
 
     fun execute(): GetResponse
