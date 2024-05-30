@@ -50,27 +50,14 @@ class GScript {
             val finalJSON = "operations=" + jsonArray.toString()
             System.out.println("finalJSON: $finalJSON")
 
-//            val jsonTree = Gson().toJsonTree(finalJSON).asJsonObject
-//            val jsonObjectWithOp = JSONObject()
-//            jsonObjectWithOp.put("operations", jsonTree)
-
-
-//            val jsonObject = JSONObject(finalJSON)
             val d = ExecutePostCallsString(
                 scriptUrl,
                 finalJSON
             ) { }//response -> postExecute(response) }
             val response2 = d.execute().get()
             System.out.println(response2.toString())
+            calls.clear()
             return APIResponse()
-//            return PostSequenceResponse(response).getObject()
-//            postDataParams.put("operations", )
-//            postDataParams.put("tabName", this.tabName)
-//            postDataParams.put("objectData", Gson().toJson(this.dataObject))
-
-//            val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
-//            var response = c.execute().get()
-//            return PostObjectResponse(response).getObject()
         }
 
         fun generateUniqueString(): String {
