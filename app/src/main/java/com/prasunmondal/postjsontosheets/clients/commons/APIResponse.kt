@@ -5,7 +5,10 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import org.json.JSONArray
+import org.json.JSONObject
 import java.lang.reflect.Type
+
 
 open class APIResponse {
     var content: String = ""
@@ -31,22 +34,22 @@ open class APIResponse {
         return parser.parse(content).asJsonObject
     }
 
-    fun <T> parseToObject(jsonString: String?, type: Type): ArrayList<T> {
-        Log.e("parsing to object ", jsonString!!)
-        var arrayLabel = JsonTags.RESPONSE_DATA_CODE
-        var jsonarray: JsonArray? = null
-        var result = arrayListOf<T>()
-        try {
-            jsonarray = getJsonObject()!!.getAsJsonArray(arrayLabel)
-            result = GsonBuilder().create().fromJson(jsonarray.toString(), type)
-        } catch (e: NullPointerException) {
-            Log.e("parseJSONObject", "No value fetched")
-        } catch (e: Exception) {
-            Log.e("parseJSONObject", "Error while parsing")
-        }
+        fun <T> parseToObject(jsonString: String?, type: Type): ArrayList<T> {
+            Log.e("parsing to object ", jsonString!!)
+            var arrayLabel = JsonTags.RESPONSE_DATA_CODE
+            var jsonarray: JsonArray? = null
+            var result = arrayListOf<T>()
+            try {
+                jsonarray = getJsonObject()!!.getAsJsonArray(arrayLabel)
+                result = GsonBuilder().create().fromJson(jsonarray.toString(), type)
+            } catch (e: NullPointerException) {
+                Log.e("parseJSONObject", "No value fetched")
+            } catch (e: Exception) {
+                Log.e("parseJSONObject", "Error while parsing")
+            }
 
-        return result
-    }
+            return result
+        }
 
     fun getExceptionMessage(): String {
         return ""
@@ -59,4 +62,37 @@ open class APIResponse {
     fun isOperationLocked(): Boolean {
         return getJsonObject()!!.get(JsonTags.RESPONSE_IS_LOCKED_OPERATION).asBoolean
     }
+
+    companion object {
+        open fun convertJsonArrayStringToList(jsonArrayString: String?): List<JSONObject>? {
+            val jsonObjectList: MutableList<JSONObject> = ArrayList()
+            try {
+                val jsonArray = JSONArray(jsonArrayString)
+                for (i in 0 until jsonArray.length()) {
+                    jsonObjectList.add(jsonArray.getJSONObject(i))
+                }
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+            }
+            return jsonObjectList
+        }
+    }
+//    companion object {
+//        fun <T> parseToObject(jsonString: String?, type: Type): ArrayList<T> {
+//            Log.e("parsing to object ", jsonString!!)
+//            var arrayLabel = JsonTags.RESPONSE_DATA_CODE
+//            var jsonarray: JsonArray? = null
+//            var result = arrayListOf<T>()
+//            try {
+//                jsonarray = getJsonObject()!!.getAsJsonArray(arrayLabel)
+//                result = GsonBuilder().create().fromJson(jsonarray.toString(), type)
+//            } catch (e: NullPointerException) {
+//                Log.e("parseJSONObject", "No value fetched")
+//            } catch (e: Exception) {
+//                Log.e("parseJSONObject", "Error while parsing")
+//            }
+//
+//            return result
+//        }
+//    }
 }

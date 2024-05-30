@@ -1,5 +1,7 @@
 package com.tech4bytes.mbrosv3.Utils.DB.clients
 
+import com.google.gson.Gson
+import com.google.gson.JsonParser
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCallsString
@@ -55,8 +57,21 @@ class GScript {
                 finalJSON
             ) { }//response -> postExecute(response) }
             val response2 = d.execute().get()
-            System.out.println(response2.toString())
+            System.out.println("response2: $response2")
             calls.clear()
+
+
+            var responsesList = APIResponse.convertJsonArrayStringToList(response2)
+//            var parsedResponse = response2.parseToObject<T>(response2, cacheObjectType)
+
+//            val parser = JsonParser()
+//            val t = parser.parse(response2).asJsonObject//Gson().toJsonTree(response2)
+            val map: MutableMap<String, APIResponse> = mutableMapOf()
+            if (responsesList != null) {
+                for(y in responsesList) {
+                    System.out.println("wohoo! " + y)
+                }
+            }
             return APIResponse()
         }
 
