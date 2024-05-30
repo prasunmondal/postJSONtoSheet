@@ -3,9 +3,6 @@ package com.tech4bytes.mbrosv3.Utils.DB.clients
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import java.util.UUID
 
-
-
-
 class GScriptDuplicateCallKey: Exception()
 class GScript {
     companion object {

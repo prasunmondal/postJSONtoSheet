@@ -59,6 +59,17 @@ class IsPresentConditionalAnd() : APICalls, IsPresentConditionalAndFlow,
         return this
     }
 
+    override fun getJSON(): JSONObject {
+        val scriptUrl = URL(this.scriptURL)
+        val postDataParams = JSONObject()
+        postDataParams.put("opCode", "IS_PRESENT_CONDITIONAL_AND")
+        postDataParams.put("sheetId", this.sheetId)
+        postDataParams.put("tabName", this.tabName)
+        postDataParams.put("dataValue", keys)
+        postDataParams.put("dataColumn", values)
+        return postDataParams
+    }
+
     override fun execute(): IsPresentConditionalAndResponse {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()

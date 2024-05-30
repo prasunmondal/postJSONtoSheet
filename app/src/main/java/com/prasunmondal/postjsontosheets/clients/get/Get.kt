@@ -88,6 +88,15 @@ class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
         return this
     }
 
+    override fun getJSON(): JSONObject {
+        val scriptUrl = URL(this.scriptURL)
+        val postDataParams = JSONObject()
+        postDataParams.put("opCode", "FETCH_ALL")
+        postDataParams.put("sheetId", this.sheetId)
+        postDataParams.put("tabName", this.tabName)
+        return postDataParams
+    }
+
     override fun execute(): GetResponse {
         return if (query != null && query!!.isNotEmpty()) {
             GetByQuery.builder().scriptId(scriptURL)

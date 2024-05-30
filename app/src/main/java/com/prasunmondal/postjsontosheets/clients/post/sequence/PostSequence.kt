@@ -61,6 +61,15 @@ class PostSequence() : APICalls, PostSequenceFlow, PostSequenceFlow.ScriptIdBuil
         return insertObjectRaw()
     }
 
+    override fun getJSON(): JSONObject {
+        val postDataParams = JSONObject()
+        postDataParams.put("opCode", "INSERT_DATA_SEQUENCE")
+        postDataParams.put("sheetId", this.sheetId)
+        postDataParams.put("tabName", this.tabName)
+        postDataParams.put("dataValue", "[${ListUtils.getCSV(this.dataSequence)}]")
+        return postDataParams
+    }
+
     private fun insertObjectRaw(): PostSequenceResponse {
         val scriptUrl = URL(this.scriptURL)
         val postDataParams = JSONObject()
