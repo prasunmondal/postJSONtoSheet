@@ -10,7 +10,6 @@ import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
 import com.prasunmondal.postjsontosheets.clients.post.raw.PostSequence
 import com.prasunmondal.postjsontosheets.clients.post.serializable.PostObject
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,11 +23,11 @@ class MainActivity : AppCompatActivity() {
     fun testAll() {
 
         var t = Get.builder()
-                .scriptId(StringConstants.dBServerScriptURL)
-                .sheetId(StringConstants.DB_SHEET_ID)
-                .tabName(StringConstants.DB_TAB_APP_OWNER)
-                .postCompletion(null)
-                .build()
+            .scriptId(StringConstants.dBServerScriptURL)
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .postCompletion(null)
+            .build()
 
         var t3 = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
@@ -42,8 +41,8 @@ class MainActivity : AppCompatActivity() {
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .postCompletion(null)
-            .conditionAnd("name","\"prasunmondal\"")
-            .conditionAnd("number","9")
+            .conditionAnd("name", "\"prasunmondal\"")
+            .conditionAnd("number", "9")
             .build()
 
         var tOr = Get.builder()
@@ -51,8 +50,8 @@ class MainActivity : AppCompatActivity() {
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
             .postCompletion(null)
-            .conditionOr("name","\"prasunmondal\"")
-            .conditionOr("number","9")
+            .conditionOr("name", "\"prasunmondal\"")
+            .conditionOr("number", "9")
             .build()
 
 
@@ -67,8 +66,8 @@ class MainActivity : AppCompatActivity() {
         var sp: ArrayList<String> = mutableListOf("Prasun", "Dona") as ArrayList<String>
         val map = mutableMapOf<String, String>()
         map["one"] = "1"
-        map.put("two","two")
-        map.put("three","3")
+        map.put("two", "two")
+        map.put("three", "3")
         var v = TestClass(9, "prasunmondal", Secondary("ding-ding-ding"), sp, map)
         var v2 = TestClass(9, "\"prasunmondal\"", Secondary("ding-ding-ding"), sp, map)
 
@@ -122,16 +121,16 @@ class MainActivity : AppCompatActivity() {
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .conditionAnd("name","prasunmondal")
+            .conditionAnd("name", "prasunmondal")
             .build()
 
         var deleteOr = Delete.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
             .tabName(StringConstants.DB_TAB_APP_OWNER)
-            .conditionOr("name","prasunmondal")
-            .conditionOr("number","9")
-            .conditionOr("number","")
+            .conditionOr("name", "prasunmondal")
+            .conditionOr("number", "9")
+            .conditionOr("number", "")
             .build()
 
         var insertDataSequence = PostSequence.builder()
@@ -172,7 +171,6 @@ class MainActivity : AppCompatActivity() {
             .build()
 
 
-
         val t4 = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
@@ -209,11 +207,11 @@ class TestClass {
     var map: Map<String, String>
 
     constructor(
-            number: Int,
-            name: String,
-            secondary: Secondary,
-            arrayList: ArrayList<String>,
-            map: Map<String, String>
+        number: Int,
+        name: String,
+        secondary: Secondary,
+        arrayList: ArrayList<String>,
+        map: Map<String, String>
     ) {
         this.number = number
         this.name = name

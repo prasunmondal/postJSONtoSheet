@@ -1,10 +1,7 @@
 package com.tech4bytes.mbrosv3.Utils.DB.clients
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.commons.APIResponse
-import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCalls
 import com.prasunmondal.postjsontosheets.clients.commons.ExecutePostCallsString
 import org.json.JSONArray
 import org.json.JSONObject
@@ -12,7 +9,7 @@ import java.net.URL
 import java.util.UUID
 
 
-class GScriptDuplicateCallKey: Exception()
+class GScriptDuplicateCallKey : Exception()
 class GScript {
     companion object {
         var calls = mutableMapOf<String, APICalls>()
@@ -50,7 +47,7 @@ class GScript {
                 jsonArray.put(jsonObject)
             }
 
-            val finalJSON = "operations="+jsonArray.toString()
+            val finalJSON = "operations=" + jsonArray.toString()
             System.out.println("finalJSON: $finalJSON")
 
 //            val jsonTree = Gson().toJsonTree(finalJSON).asJsonObject
@@ -59,7 +56,10 @@ class GScript {
 
 
 //            val jsonObject = JSONObject(finalJSON)
-            val d = ExecutePostCallsString(scriptUrl, finalJSON) { }//response -> postExecute(response) }
+            val d = ExecutePostCallsString(
+                scriptUrl,
+                finalJSON
+            ) { }//response -> postExecute(response) }
             val response2 = d.execute().get()
             System.out.println(response2.toString())
             return APIResponse()
