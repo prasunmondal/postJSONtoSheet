@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.postjsontosheets.clients.commons.APICalls
 import com.prasunmondal.postjsontosheets.clients.delete.Delete
 import com.prasunmondal.postjsontosheets.clients.get.Get
-import com.prasunmondal.postjsontosheets.clients.get.IsPresentConditionalAnd
-import com.prasunmondal.postjsontosheets.clients.post.raw.PostRaw
-import com.prasunmondal.postjsontosheets.clients.post.raw.PostSequence
 import com.prasunmondal.postjsontosheets.clients.post.serializable.PostObject
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 
@@ -21,8 +18,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun testAll() {
-//        testDeleteAll()
-        testGet()
+        testGetAll()
+        testDeleteAll()
+        testInsertObj()
+
 
 //        var t = Get.builder()
 //            .scriptId(StringConstants.dBServerScriptURL)
@@ -180,18 +179,7 @@ class MainActivity : AppCompatActivity() {
 //            .postCompletion(null)
 //            .build()
 //
-//        val test_insert_java_obj = PostObject.builder()
-//            .scriptId("")
-//            .sheetId(StringConstants.DB_SHEET_ID)
-//            .tabName(StringConstants.DB_TAB_APP_OWNER)
-//            .dataObject(Test("Dona", "Mondal") as Object)
-//            .build()
-//
-//        GScript.add(t4)
-//        GScript.add(t4)
-//        GScript.execute(StringConstants.dBServerScriptURL)
-//        GScript.add(test_insert_java_obj)
-//        GScript.execute(StringConstants.dBServerScriptURL)
+
     }
 
     private fun testDeleteAll() {
@@ -204,7 +192,7 @@ class MainActivity : AppCompatActivity() {
         GScript.add(request)
         GScript.execute(StringConstants.dBServerScriptURL)
     }
-    private fun testGet() {
+    private fun testGetAll() {
         val t4 = Get.builder()
             .scriptId(StringConstants.dBServerScriptURL)
             .sheetId(StringConstants.DB_SHEET_ID)
@@ -229,6 +217,34 @@ class MainActivity : AppCompatActivity() {
 //        GScript.execute(StringConstants.dBServerScriptURL)
 //        GScript.add(test_insert_java_obj)
 //        GScript.execute(StringConstants.dBServerScriptURL)
+    }
+
+    fun testInsertObj() {
+        val test_insert_java_obj = PostObject.builder()
+            .scriptId("")
+            .sheetId(StringConstants.DB_SHEET_ID)
+            .tabName(StringConstants.DB_TAB_APP_OWNER)
+            .dataObject(Test("Dona", "Mondal") as Object)
+            .build()
+
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.add(test_insert_java_obj)
+        GScript.execute(StringConstants.dBServerScriptURL)
+        GScript.add(test_insert_java_obj)
+        GScript.execute(StringConstants.dBServerScriptURL)
     }
 
     fun executor(call: APICalls) {
