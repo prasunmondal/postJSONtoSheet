@@ -1,6 +1,6 @@
 package com.tech4bytes.mbrosv3.Utils.DB.clients.get.ByQuery
 
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.APIResponse
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import com.prasunmondal.GSheet.Clients.get.GetResponse
@@ -9,7 +9,7 @@ import java.net.URL
 import java.util.function.Consumer
 
 @Suppress("DEPRECATION")
-class GetByQuery : APICalls, GetByQueryFlow, GetByQueryFlow.ScriptIdBuilder,
+class GetByQuery : APIRequests, GetByQueryFlow, GetByQueryFlow.ScriptIdBuilder,
     GetByQueryFlow.SheetIdBuilder,
     GetByQueryFlow.TabNameBuilder,
     GetByQueryFlow.AddQueryBuilder,

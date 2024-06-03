@@ -1,12 +1,12 @@
 package com.prasunmondal.GSheet.Clients.get
 
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class IsPresentConditionalAnd() : APICalls, IsPresentConditionalAndFlow,
+class IsPresentConditionalAnd() : APIRequests, IsPresentConditionalAndFlow,
     IsPresentConditionalAndFlow.ScriptIdBuilder,
     IsPresentConditionalAndFlow.SheetIdBuilder,
     IsPresentConditionalAndFlow.TabNameBuilder,

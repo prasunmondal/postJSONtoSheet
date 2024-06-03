@@ -2,7 +2,14 @@ package com.prasunmondal.GSheet.Clients.commons
 
 import org.json.JSONObject
 
-interface APICalls {
+interface APIRequests {
+    var uId: String
+    var opCode: String
+    var sheetId: String
+    var tabName: String
+    var data: String
+
+
     fun getJSON(): JSONObject
     fun execute(): APIResponse
 }

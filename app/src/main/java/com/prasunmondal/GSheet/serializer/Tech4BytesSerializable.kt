@@ -1,17 +1,16 @@
 package com.prasunmondal.GSheet.serializer
 
 import com.prasunmondal.GSheet.AppContexts.AppContexts
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.APIResponse
 import com.prasunmondal.GSheet.Clients.delete.Delete
 import com.prasunmondal.GSheet.Clients.get.Get
-import com.prasunmondal.GSheet.Clients.get.GetResponse
 import com.prasunmondal.GSheet.Clients.post.serializable.PostObject
 import com.prasunmondal.GSheet.Logs.LogMe
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.tech4bytes.extrack.centralCache.CentralCache
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 import com.tech4bytes.mbrosv3.Utils.DB.clients.get.ByQuery.GetByQuery
-import java.lang.reflect.Type
 
 abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
 
@@ -26,9 +25,6 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
 
     @Transient
     var query: String?
-
-    @Transient
-    var cacheObjectType: Type
 
     @Transient
     var appendInServer: Boolean
@@ -47,7 +43,6 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         sheetURL: String,
         tabname: String,
         query: String? = null,
-        cacheObjectType: Type,
         appendInServer: Boolean,
         appendInLocal: Boolean,
         getEmptyListIfNoResultsFoundInServer: Boolean = false,
@@ -56,7 +51,6 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         this.sheetURL = sheetURL
         this.tabname = tabname
         this.query = query
-        this.cacheObjectType = cacheObjectType
         this.appendInServer = appendInServer
         this.appendInLocal = appendInLocal
         this.getEmptyListIfEmpty = getEmptyListIfNoResultsFoundInServer
@@ -85,22 +79,30 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
                 println("Synchronized function called with key: $cacheKey")
 
                 val r = getFromServer()
-//                if(r.size == 1) {
-
-//                    parseAndSaveToCache(r.get(0).content, cacheKey)
-//                }
+                var list: List<T> = listOf()
                 r.forEach { k,v ->
                     LogMe.log(v.content)
-                    parseAndSaveToCache2(v.content, cacheKey).forEach {
+                    list = parseAndSaveToCache2(v.content, cacheKey)
+                    list.forEach {
                         LogMe.log(it.toString())
                     }
                 }
-
-                // TODO
-
-                listOf()
+                return list
+                if(r.size == 1) {
+                    return parseAndSaveToCache2(r.get(0)!!.content, cacheKey)
+                } else {
+                    listOf()
+                }
             }
         }
+    }
+
+    private fun getFromServer(): MutableMap<String, APIResponse> {
+        LogMe.log("Expensive Operation - get data from server: $sheetURL - $tabname")
+        val requestObj = getGetRequest()
+        GScript.addRequest(requestObj)
+        val response = GScript.execute(ProjectConfig.dBServerScriptURL)
+        return response
     }
 
     private fun parseNGetResponse2(rawResponse: String): List<T> {
@@ -114,21 +116,14 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         return parsedResponse
     }
 
-    fun isDataAvailable(cacheTag: String = "default"): Boolean {
-        val useCache = true
-        val cacheKey = getFilterName(cacheTag)
-        LogMe.log("Getting records: " + cacheKey)
-        val cacheResults = try {
-            CentralCache.get<T>(AppContexts.get(), cacheKey, useCache)
-        } catch (ex: ClassCastException) {
-            arrayListOf(CentralCache.get<T>(AppContexts.get(), cacheKey, useCache))
-        }
-        return cacheResults != null
+    fun getGetRequest(useCache: Boolean = true, cacheTag: String = this.cacheTag): APIRequests? {
+        return if(useCache && isDataAvailable(cacheTag))
+            null
+        else
+            getGetRequest()
     }
-
-    private fun getFromServer(): MutableMap<String, APIResponse> {
-        LogMe.log("Expensive Operation - get data from server: $sheetURL - $tabname")
-        val requestObj = if(query == null || query!!.isEmpty()) {
+    private fun getGetRequest(): APIRequests {
+        return if(query == null || query!!.isEmpty()) {
             Get.builder()
                 .scriptId(scriptURL)
                 .sheetId(sheetURL)
@@ -142,9 +137,17 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
                 .query(query!!)
                 .build()
         }
-        GScript.add(requestObj)
-        val response = GScript.execute(ProjectConfig.dBServerScriptURL)
-        return response
+    }
+    fun isDataAvailable(cacheTag: String = "default"): Boolean {
+        val useCache = true
+        val cacheKey = getFilterName(cacheTag)
+        LogMe.log("Getting records: " + cacheKey)
+        val cacheResults = try {
+            CentralCache.get<T>(AppContexts.get(), cacheKey, useCache)
+        } catch (ex: ClassCastException) {
+            arrayListOf(CentralCache.get<T>(AppContexts.get(), cacheKey, useCache))
+        }
+        return cacheResults != null
     }
 
     fun parseAndSaveToCache2(response: String, cacheKey: String? = null): List<T> {
@@ -237,15 +240,19 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
             deleteDataFromServer()
         }
 
-        val requestObj = PostObject.builder()
+        val requestObj = getSaveRequest(obj)
+
+        GScript.addRequest(requestObj)
+        GScript.execute(ProjectConfig.dBServerScriptURL)
+    }
+
+    fun <T> getSaveRequest(obj: T): PostObject {
+        return PostObject.builder()
             .scriptId(scriptURL)
             .sheetId(sheetURL)
             .tabName(tabname)
             .dataObject(obj as Any)
             .build()
-
-        GScript.add(requestObj)
-        GScript.execute(ProjectConfig.dBServerScriptURL)
     }
 
 
@@ -270,13 +277,17 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     }
 
     fun deleteDataFromServer() {
-        val requestObj = Delete.builder()
+        val requestObj = getDeleteRequest()
+
+        GScript.addRequest(requestObj)
+        GScript.execute(ProjectConfig.dBServerScriptURL)
+    }
+
+    fun getDeleteRequest(): Delete {
+        return Delete.builder()
             .scriptId(scriptURL)
             .sheetId(sheetURL)
             .tabName(tabname)
             .build()
-
-        GScript.add(requestObj)
-        GScript.execute(ProjectConfig.dBServerScriptURL)
     }
 }

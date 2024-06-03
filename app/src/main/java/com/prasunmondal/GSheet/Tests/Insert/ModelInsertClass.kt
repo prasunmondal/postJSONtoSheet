@@ -1,6 +1,5 @@
 package com.prasunmondal.GSheet.Tests.Insert
 
-import com.google.gson.reflect.TypeToken
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.prasunmondal.GSheet.serializer.Tech4BytesSerializable
 
@@ -17,12 +16,10 @@ class ModelInsertObject {
         return "ModelInsertObject(name='$name', title='$title')"
     }
 }
-object ModelInsertClass : Tech4BytesSerializable<ModelInsertClass>(
+object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
     ProjectConfig.dBServerScriptURL,
     ProjectConfig.DB_SHEET_ID,
     "Sheet2",
     query = null,
-    object : TypeToken<ArrayList<ModelInsertClass>?>() {}.type,
     appendInServer = true,
-    appendInLocal = true) {
-}
+    appendInLocal = true)

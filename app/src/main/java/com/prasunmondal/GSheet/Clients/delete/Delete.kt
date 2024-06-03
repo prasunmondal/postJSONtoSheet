@@ -1,12 +1,12 @@
 package com.prasunmondal.GSheet.Clients.delete
 
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class Delete private constructor() : APICalls, DeleteFlow, DeleteFlow.ScriptIdBuilder,
+class Delete private constructor() : APIRequests, DeleteFlow, DeleteFlow.ScriptIdBuilder,
     DeleteFlow.SheetIdBuilder,
     DeleteFlow.TabNameBuilder,
     DeleteFlow.FinalRequestBuilder {

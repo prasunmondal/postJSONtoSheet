@@ -1,6 +1,6 @@
 package com.tech4bytes.mbrosv3.Utils.DB.clients
 
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.APIResponse
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCallsString
 import org.json.JSONArray
@@ -9,18 +9,23 @@ import java.net.URL
 import java.util.UUID
 
 
+// Flow Diagram: https://drive.google.com/file/d/1fS0Iq7-l1lafTe8KqeomlByoshZ_qmYt/view?usp=sharing
+
 class GScriptDuplicateCallKey : Exception()
 class GScript {
     companion object {
-        var calls = mutableMapOf<String, APICalls>()
+        var calls = mutableMapOf<String, APIRequests>()
 
-        fun add(apiCall: APICalls): String {
+        fun addRequest(apiCall: APIRequests?): String? {
+            if(apiCall == null)
+                return null
+
             val uid = generateUniqueString()
-            add(uid, apiCall)
+            addRequest(uid, apiCall)
             return uid
         }
 
-        fun add(uid: String, apiCall: APICalls) {
+        fun addRequest(uid: String, apiCall: APIRequests) {
             if (calls.containsKey(uid)) {
                 throw GScriptDuplicateCallKey()
             }
@@ -56,6 +61,11 @@ class GScript {
             for(apiResponse in apiResponsesList) {
                 map[apiResponse.get("opId").toString()] = APIResponse.parseToAPIResponse(apiResponse)
             }
+
+//            calls.forEach { t, u ->
+//                u.
+//            }
+
             calls.clear()
             return map
         }

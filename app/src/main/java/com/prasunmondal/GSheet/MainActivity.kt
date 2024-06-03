@@ -3,7 +3,7 @@ package com.prasunmondal.GSheet
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.GSheet.AppContexts.AppContexts
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.delete.Delete
 import com.prasunmondal.GSheet.Clients.get.Get
 import com.prasunmondal.GSheet.Clients.post.serializable.PostObject
@@ -22,9 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     fun testAll() {
 
-        Test.testClearObjects()
-        Test.testInsertObject()
-        Test.testGetObjects()
+        Test.start()
+
 //        testGetAll()
 //        testDeleteAll()
 //        testInsertObj()
@@ -196,7 +195,7 @@ class MainActivity : AppCompatActivity() {
             .tabName(ProjectConfig.DB_TAB_APP_OWNER)
             .build()
 
-        GScript.add(request)
+        GScript.addRequest(request)
         GScript.execute(ProjectConfig.dBServerScriptURL)
     }
     private fun testGetAll() {
@@ -207,9 +206,9 @@ class MainActivity : AppCompatActivity() {
             .postCompletion(null)
             .build()
 
-        GScript.add(t4)
-        GScript.add(t4)
-        GScript.add(t4)
+        GScript.addRequest(t4)
+        GScript.addRequest(t4)
+        GScript.addRequest(t4)
         GScript.execute(ProjectConfig.dBServerScriptURL)
 
 //        val test_insert_java_obj = PostObject.builder()
@@ -234,27 +233,27 @@ class MainActivity : AppCompatActivity() {
             .dataObject(Test("Dona", "Mondal") as Object)
             .build()
 
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
-        GScript.add(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
         GScript.execute(ProjectConfig.dBServerScriptURL)
-        GScript.add(test_insert_java_obj)
+        GScript.addRequest(test_insert_java_obj)
         GScript.execute(ProjectConfig.dBServerScriptURL)
     }
 
-    fun executor(call: APICalls) {
+    fun executor(call: APIRequests) {
         val result = call.execute()
         println("DB-Call: Raw Response:" + result.content)
 //        println("DB-Call: Response Code:" + result.getResponseCode())

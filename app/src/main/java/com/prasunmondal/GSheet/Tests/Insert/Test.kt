@@ -1,16 +1,21 @@
 package com.prasunmondal.GSheet.Tests.Insert
 
-import com.prasunmondal.GSheet.Clients.post.serializable.PostObject
 import com.prasunmondal.GSheet.Logs.LogMe
-import com.prasunmondal.GSheet.Test
 import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 
 class Test {
 
     companion object {
+
+        fun start() {
+//            testClearObjects()
+//            testInsertObject()
+//            testGetObjects()
+            testMultiple()
+        }
         fun testInsertObject() {
             ModelInsertClass.saveToServer(ModelInsertObject("Prasun", "Mondal"))
-
         }
 
         fun testClearObjects() {
@@ -20,8 +25,13 @@ class Test {
         fun testGetObjects() {
             val list = ModelInsertClass.get(false)
             list.forEach {
-                LogMe.log(list.toString())
+                LogMe.log(it.toString())
             }
+        }
+
+        fun testMultiple() {
+            GScript.addRequest(ModelInsertClass.getGetRequest(false))
+            GScript.execute(ProjectConfig.dBServerScriptURL)
         }
     }
 }

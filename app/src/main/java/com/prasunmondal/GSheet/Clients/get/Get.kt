@@ -1,20 +1,18 @@
 package com.prasunmondal.GSheet.Clients.get
 
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import com.tech4bytes.mbrosv3.Utils.DB.clients.get.ByQuery.GetByQuery
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class Get() : APICalls, GetFlow, GetFlow.ScriptIdBuilder,
+class Get() : APIRequests, GetFlow, GetFlow.ScriptIdBuilder,
     GetFlow.SheetIdBuilder,
     GetFlow.TabNameBuilder,
     GetFlow.FinalRequestBuilder,
     GetFlow.ReadyToRun {
     private lateinit var scriptURL: String
-    private lateinit var sheetId: String
-    private lateinit var tabName: String
     private var query: String? = null
     private var onCompletion: Consumer<GetResponse>? = null
     private var conditionAndColumn = ""

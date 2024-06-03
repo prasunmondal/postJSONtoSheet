@@ -1,13 +1,13 @@
 package com.prasunmondal.GSheet.Clients.post.raw
 
 import com.google.gson.Gson
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class PostRaw() : APICalls, PostRawFlow, PostRawFlow.ScriptIdBuilder,
+class PostRaw() : APIRequests, PostRawFlow, PostRawFlow.ScriptIdBuilder,
     PostRawFlow.SheetIdBuilder,
     PostRawFlow.TabNameBuilder,
     PostRawFlow.DataObjectBuilder,

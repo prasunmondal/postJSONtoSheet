@@ -1,13 +1,13 @@
 package com.prasunmondal.GSheet.Clients.post.raw
 
-import com.prasunmondal.GSheet.Clients.commons.APICalls
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import com.tech4bytes.extrack.DB.clients.ListUtils
 import org.json.JSONObject
 import java.net.URL
 import java.util.function.Consumer
 
-class PostSequence() : APICalls, PostSequenceFlow, PostSequenceFlow.ScriptIdBuilder,
+class PostSequence() : APIRequests, PostSequenceFlow, PostSequenceFlow.ScriptIdBuilder,
     PostSequenceFlow.SheetIdBuilder,
     PostSequenceFlow.TabNameBuilder,
     PostSequenceFlow.DataObjectBuilder,
