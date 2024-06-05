@@ -5,6 +5,7 @@ import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.Ins
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Logs.LogMe
 import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchAllTest
 
 class Test {
 
@@ -19,7 +20,8 @@ class Test {
 
             testNewObjectInsert()
 //            InsertUniqueObjectTest()
-            InsertStringArrayTest()
+//            InsertStringArrayTest()
+            FetchAllTest()
         }
 
         private fun testNewObjectInsert() {
