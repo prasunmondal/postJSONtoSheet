@@ -1,6 +1,5 @@
-package com.prasunmondal.GSheet.Tests.Insert
+package com.prasunmondal.GSheet.Tests
 
-import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.prasunmondal.GSheet.serializer.Tech4BytesSerializable
 
 class ModelInsertObject {

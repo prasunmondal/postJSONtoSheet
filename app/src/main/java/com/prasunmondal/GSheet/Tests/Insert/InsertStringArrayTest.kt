@@ -2,16 +2,15 @@ package com.prasunmondal.GSheet.Tests.Insert
 
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertStringArray
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertUniqueObject
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 
 class InsertStringArrayTest {
 
     constructor() {
-        testNewObjectInsert()
+        test()
     }
-    fun testNewObjectInsert() {
+    fun test() {
         val t = InsertStringArray()
         t.setUId("test-ti735058")
         t.sheetId(ProjectConfig.DB_SHEET_ID)

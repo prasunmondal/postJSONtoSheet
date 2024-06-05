@@ -6,8 +6,7 @@ import com.prasunmondal.GSheet.AppContexts.AppContexts
 import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.delete.Delete
 import com.prasunmondal.GSheet.Clients.get.Get
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
-import com.prasunmondal.GSheet.Tests.Insert.Test
+import com.prasunmondal.GSheet.Tests.Test
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 
