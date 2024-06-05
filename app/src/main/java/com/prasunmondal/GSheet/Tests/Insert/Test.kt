@@ -1,8 +1,11 @@
 package com.prasunmondal.GSheet.Tests.Insert
 
+import com.prasunmondal.GSheet.Clients.commons.APIRequests
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
+import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Logs.LogMe
 import com.prasunmondal.GSheet.Tests.ProjectConfig
-import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 
 class Test {
 
@@ -12,8 +15,27 @@ class Test {
 //            testClearObjects()
 //            testInsertObject()
 //            testGetObjects()
-            testMultiple()
+//            testMultiple()
+
+
+            testNewObjectInsert()
         }
+
+        private fun testNewObjectInsert() {
+//            InsertObject().setDataObject(ModelInsertObject("Prasun", "Mondal"))
+//                .setSheetId(ProjectConfig.DB_SHEET_ID)
+//                .setTabName("Sheet2")
+//                .execute(ProjectConfig.dBServerScriptURL)
+
+            val t = InsertObject()
+            t.settSheetId(ProjectConfig.DB_SHEET_ID)
+            t.settTabName("Sheet2")
+            t.setDataObject(ModelInsertObject("Prasun", "Mondal"))
+
+            GScript.addRequest(t as APIRequests2)
+            GScript.execute(ProjectConfig.dBServerScriptURL)
+        }
+
         fun testInsertObject() {
             ModelInsertClass.saveToServer(ModelInsertObject("Prasun", "Mondal"))
         }
@@ -29,9 +51,9 @@ class Test {
             }
         }
 
-        fun testMultiple() {
-            GScript.addRequest(ModelInsertClass.getGetRequest(false))
-            GScript.execute(ProjectConfig.dBServerScriptURL)
-        }
+//        fun testMultiple() {
+//            GScript.addRequest(ModelInsertClass.getGetRequest(false))
+//            GScript.execute(ProjectConfig.dBServerScriptURL)
+//        }
     }
 }

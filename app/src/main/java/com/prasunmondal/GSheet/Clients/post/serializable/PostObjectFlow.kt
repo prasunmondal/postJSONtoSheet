@@ -1,5 +1,6 @@
 package com.prasunmondal.GSheet.Clients.post.serializable
 
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
 import java.util.function.Consumer
 
 interface PostObjectFlow {
@@ -22,7 +23,7 @@ interface PostObjectFlow {
 
     interface FinalRequestBuilder {
         // All optional parameters goes here
-        fun build(): PostObject
+        fun build(): InsertObject
         fun postCompletion(onCompletion: Consumer<PostObjectResponse>?): FinalRequestBuilder
         fun uniqueColumn(uniqueColumn: String): FinalRequestBuilder
     }

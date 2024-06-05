@@ -6,7 +6,7 @@ import com.prasunmondal.GSheet.AppContexts.AppContexts
 import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.delete.Delete
 import com.prasunmondal.GSheet.Clients.get.Get
-import com.prasunmondal.GSheet.Clients.post.serializable.PostObject
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
 import com.prasunmondal.GSheet.Tests.Insert.Test
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
@@ -225,33 +225,33 @@ class MainActivity : AppCompatActivity() {
 //        GScript.execute(StringConstants.dBServerScriptURL)
     }
 
-    fun testInsertObj() {
-        val test_insert_java_obj = PostObject.builder()
-            .scriptId("")
-            .sheetId(ProjectConfig.DB_SHEET_ID)
-            .tabName(ProjectConfig.DB_TAB_APP_OWNER)
-            .dataObject(Test("Dona", "Mondal") as Object)
-            .build()
-
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.execute(ProjectConfig.dBServerScriptURL)
-        GScript.addRequest(test_insert_java_obj)
-        GScript.execute(ProjectConfig.dBServerScriptURL)
-    }
+//    fun testInsertObj() {
+//        val test_insert_java_obj = InsertObject.builder()
+//            .scriptId("")
+//            .sheetId(ProjectConfig.DB_SHEET_ID)
+//            .tabName(ProjectConfig.DB_TAB_APP_OWNER)
+//            .dataObject(Test("Dona", "Mondal") as Object)
+//            .build()
+//
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.execute(ProjectConfig.dBServerScriptURL)
+//        GScript.addRequest(test_insert_java_obj)
+//        GScript.execute(ProjectConfig.dBServerScriptURL)
+//    }
 
     fun executor(call: APIRequests) {
         val result = call.execute()

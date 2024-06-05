@@ -5,7 +5,7 @@ import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.APIResponse
 import com.prasunmondal.GSheet.Clients.delete.Delete
 import com.prasunmondal.GSheet.Clients.get.Get
-import com.prasunmondal.GSheet.Clients.post.serializable.PostObject
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
 import com.prasunmondal.GSheet.Logs.LogMe
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.tech4bytes.extrack.centralCache.CentralCache
@@ -242,17 +242,20 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
 
         val requestObj = getSaveRequest(obj)
 
-        GScript.addRequest(requestObj)
+        // TODO - Remove below commented part
+//        GScript.addRequest(requestObj)
         GScript.execute(ProjectConfig.dBServerScriptURL)
     }
 
-    fun <T> getSaveRequest(obj: T): PostObject {
-        return PostObject.builder()
-            .scriptId(scriptURL)
-            .sheetId(sheetURL)
-            .tabName(tabname)
-            .dataObject(obj as Any)
-            .build()
+    fun <T> getSaveRequest(obj: T): InsertObject {
+        // TODO - Remove below commented part
+//        return InsertObject.builder()
+//            .scriptId(scriptURL)
+//            .sheetId(sheetURL)
+//            .tabName(tabname)
+//            .dataObject(obj as Any)
+//            .build()
+        return InsertObject()
     }
 
 

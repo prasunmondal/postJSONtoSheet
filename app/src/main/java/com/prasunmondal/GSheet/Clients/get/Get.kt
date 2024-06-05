@@ -15,6 +15,8 @@ class Get() : APIRequests, GetFlow, GetFlow.ScriptIdBuilder,
     private lateinit var scriptURL: String
     private var query: String? = null
     private var onCompletion: Consumer<GetResponse>? = null
+    private lateinit var sheetId: String
+    private lateinit var tabName: String
     private var conditionAndColumn = ""
     private var conditionAndValue = ""
     private var conditionOrColumn = ""
