@@ -9,8 +9,12 @@ import java.net.URL
 import java.util.function.Consumer
 
 abstract class APIRequests2: GScript() {
-    var uId: String = setUId()
+    private var uId: String = setUId()
     var opCode: String = ""
+
+    fun getUId(): String {
+        return uId
+    }
     fun setUId(uId: String = ""): String {
         if(uId.isBlank()) {
             this.uId = StringUtils.generateUniqueString()

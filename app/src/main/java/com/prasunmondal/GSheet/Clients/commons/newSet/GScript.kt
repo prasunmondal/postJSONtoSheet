@@ -54,7 +54,7 @@ abstract class GScript {
             if(apiCall == null)
                 return null
 
-            val uid = generateUniqueString()
+            val uid = apiCall.getUId()
             addRequest(uid, apiCall)
             return uid
         }
