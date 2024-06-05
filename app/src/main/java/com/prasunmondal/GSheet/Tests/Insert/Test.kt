@@ -18,14 +18,10 @@ class Test {
 
 
             testNewObjectInsert()
+//            InsertUniqueObjectTest()
         }
 
         private fun testNewObjectInsert() {
-//            InsertObject().setDataObject(ModelInsertObject("Prasun", "Mondal"))
-//                .setSheetId(ProjectConfig.DB_SHEET_ID)
-//                .setTabName("Sheet2")
-//                .execute(ProjectConfig.dBServerScriptURL)
-
             val t = InsertObject()
             t.setUId("test-t218625")
             t.sheetId(ProjectConfig.DB_SHEET_ID)

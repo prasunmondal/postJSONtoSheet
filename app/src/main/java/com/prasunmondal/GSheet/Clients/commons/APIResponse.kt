@@ -80,7 +80,7 @@ open class APIResponse {
             result.opId = jsonString.getString("opId")
             result.affectedRows = try {(jsonString.getString("affectedRows")).toInt()} catch (e: Exception) {0}
             result.statusCode = try {(jsonString.getString("statusCode")).toInt()} catch (e: Exception) {0}
-            result.content = jsonString.getString("content")
+            result.content = if(jsonString.has("content")) { jsonString.getString("content")} else {""}
             result.logs = jsonString.getString("logs")
             return result
         }
