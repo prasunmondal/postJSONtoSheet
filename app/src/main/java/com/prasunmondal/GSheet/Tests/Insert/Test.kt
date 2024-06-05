@@ -19,6 +19,7 @@ class Test {
 
             testNewObjectInsert()
 //            InsertUniqueObjectTest()
+            InsertStringArrayTest()
         }
 
         private fun testNewObjectInsert() {

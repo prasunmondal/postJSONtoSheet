@@ -1,4 +1,6 @@
-package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests
+package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs
+
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
 
 abstract class CreateRequest : APIRequests2() {
     lateinit var sheetId: String
