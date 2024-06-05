@@ -6,6 +6,7 @@ import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCallsString
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
 import com.prasunmondal.GSheet.Clients.post.serializable.PostObjectResponse
+import com.prasunmondal.GSheet.Logs.LogMe
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScriptDuplicateCallKey
 import org.json.JSONArray
@@ -22,22 +23,23 @@ abstract class GScript {
 
     abstract fun getJSON(): JSONObject
 
-    fun execute(scriptURL: String): PostObjectResponse {
-//        GScript.addRequest(this)
-//        GScript.execute(scriptURL)
+    // TODO: add direct execution
+//    fun execute(scriptURL: String): PostObjectResponse {
+////        GScript.addRequest(this)
+////        GScript.execute(scriptURL)
+////
+//        return PostObjectResponse("")
 //
-        return PostObjectResponse("")
-
-//        val scriptUrl = URL(scriptURL)
-//
-//        val c = ExecutePostCalls(scriptUrl, getJSON()) { response -> postExecute(response) }
-//        var response = c.execute().get()
-//        return PostObjectResponse(response).getObject()
-    }
+////        val scriptUrl = URL(scriptURL)
+////
+////        val c = ExecutePostCalls(scriptUrl, getJSON()) { response -> postExecute(response) }
+////        var response = c.execute().get()
+////        return PostObjectResponse(response).getObject()
+//    }
     fun postExecute(response: String) {
         if (onCompletion == null)
             return
-        var responseObj = PostObjectResponse(response)
+        val responseObj = PostObjectResponse(response)
         onCompletion!!.accept(responseObj)
     }
 
@@ -65,8 +67,8 @@ abstract class GScript {
         }
 
         fun getCombinedJson(): Array<JSONObject> {
-            var jsonArray = mutableListOf<JSONObject>()
-            calls.forEach { uid, apiCall ->
+            val jsonArray = mutableListOf<JSONObject>()
+            calls.forEach { (uid, apiCall) ->
                 val requestJson = apiCall.getJSON()
                 requestJson.put("opId", uid)
                 jsonArray.add(requestJson)
@@ -86,7 +88,7 @@ abstract class GScript {
             val d = ExecutePostCallsString(scriptUrl, finalRequestJSON) { }//response -> postExecute(response) }
             val response2 = d.execute().get()
 
-            System.out.println("response2: $response2")
+            LogMe.log("response2: $response2")
 
             val apiResponsesList = APIResponse.convertJsonArrayStringToList(response2)
             val map: MutableMap<String, APIResponse> = mutableMapOf()
