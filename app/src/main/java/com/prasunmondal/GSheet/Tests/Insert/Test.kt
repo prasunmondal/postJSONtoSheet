@@ -1,6 +1,5 @@
 package com.prasunmondal.GSheet.Tests.Insert
 
-import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
@@ -28,8 +27,8 @@ class Test {
 //                .execute(ProjectConfig.dBServerScriptURL)
 
             val t = InsertObject()
-            t.settSheetId(ProjectConfig.DB_SHEET_ID)
-            t.settTabName("Sheet2")
+            t.sheetId(ProjectConfig.DB_SHEET_ID)
+            t.tabName("Sheet2")
             t.setDataObject(ModelInsertObject("Prasun", "Mondal"))
 
             GScript.addRequest(t as APIRequests2)
