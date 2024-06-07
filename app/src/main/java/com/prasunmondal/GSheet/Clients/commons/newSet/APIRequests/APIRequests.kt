@@ -3,7 +3,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.StringUtils.StringUtils
 
-abstract class APIRequests2: GScript() {
+abstract class APIRequests: GScript() {
     private var uId: String = setUId()
     var opCode: String = ""
 

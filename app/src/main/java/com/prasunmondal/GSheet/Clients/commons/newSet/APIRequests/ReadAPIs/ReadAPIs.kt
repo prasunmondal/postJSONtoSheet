@@ -1,8 +1,8 @@
 package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests
 
-abstract class ReadAPIs : APIRequests2() {
+abstract class ReadAPIs : APIRequests() {
     lateinit var sheetId: String
     lateinit var tabName: String
     lateinit var data: String

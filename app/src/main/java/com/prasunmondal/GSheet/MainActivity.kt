@@ -4,10 +4,8 @@ package com.prasunmondal.GSheet
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.GSheet.AppContexts.AppContexts
-import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.prasunmondal.GSheet.Tests.Test
-import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -250,12 +248,6 @@ class MainActivity : AppCompatActivity() {
 //        GScript.addRequest(test_insert_java_obj)
 //        GScript.execute(ProjectConfig.dBServerScriptURL)
 //    }
-
-    fun executor(call: APIRequests) {
-        val result = call.execute()
-        println("DB-Call: Raw Response:" + result.content)
-//        println("DB-Call: Response Code:" + result.getResponseCode())
-    }
 }
 
 class TestClass {

@@ -1,11 +1,11 @@
 package com.prasunmondal.GSheet.Clients.commons.newSet
 
+import com.prasunmondal.GSheet.Clients.Exceptions.GScriptDuplicateUIDException
 import com.prasunmondal.GSheet.Clients.commons.APIResponse
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCallsString
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests
 import com.prasunmondal.GSheet.Clients.post.serializable.PostObjectResponse
 import com.prasunmondal.GSheet.Logs.LogMe
-import com.tech4bytes.mbrosv3.Utils.DB.clients.GScriptDuplicateCallKey
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
@@ -45,9 +45,9 @@ abstract class GScript {
     }
 
     companion object {
-        var calls = mutableMapOf<String, APIRequests2>()
+        var calls = mutableMapOf<String, APIRequests>()
 
-        fun addRequest(apiCall: APIRequests2?): String? {
+        fun addRequest(apiCall: APIRequests?): String? {
             if(apiCall == null)
                 return null
 
@@ -56,9 +56,9 @@ abstract class GScript {
             return uid
         }
 
-        fun addRequest(uid: String, apiCall: APIRequests2) {
+        fun addRequest(uid: String, apiCall: APIRequests) {
             if (calls.containsKey(uid)) {
-                throw GScriptDuplicateCallKey()
+                throw GScriptDuplicateUIDException()
             }
             calls[uid] = apiCall
         }

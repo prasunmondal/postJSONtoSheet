@@ -1,6 +1,5 @@
 package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.DeleteAPIs
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
 import org.json.JSONObject
 
 class DeleteAll: DeleteAPIs() {
