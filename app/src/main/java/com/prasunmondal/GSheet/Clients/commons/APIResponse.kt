@@ -7,6 +7,7 @@ import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.reflect.Type
 
 
 open class APIResponse {
@@ -50,12 +51,13 @@ open class APIResponse {
     }
 
     companion object {
-        fun <T> JsonArrayToObjectArray(jsonString: String): List<T> {
+        fun <T> JsonArrayToObjectArray(jsonString: String, clazz: Class<T>): List<T> {
             val jsonArrayString = jsonString.trimIndent()
             val gson = Gson()
             val jsonArray = JsonParser().parse(jsonArrayString).asJsonArray
-            val contentListType = object : TypeToken<List<T>>() {}.type
-            return gson.fromJson(jsonArray, contentListType)
+            val contentListType: Type = TypeToken.getParameterized(MutableList::class.java, clazz).type
+            val t: List<T> = gson.fromJson(jsonArray, contentListType)
+            return t
         }
 
         open fun convertJsonArrayStringToList(jsonArrayString: String?): List<JSONObject> {

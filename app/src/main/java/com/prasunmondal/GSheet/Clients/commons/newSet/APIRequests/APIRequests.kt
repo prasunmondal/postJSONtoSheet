@@ -18,18 +18,4 @@ abstract class APIRequests: GScript() {
         }
         return this.uId
     }
-//    fun setOpCode(opCode: String) {
-//        this.opCode = opCode
-//    }
-
-
-//    fun execute(scriptURL: String): PostObjectResponse {
-//        val scriptUrl = URL(scriptURL)
-//
-//        val c = ExecutePostCalls(scriptUrl, getJSON()) { response -> postExecute(response) }
-//        var response = c.execute().get()
-//        return PostObjectResponse(response).getObject()
-//    }
-
-
 }

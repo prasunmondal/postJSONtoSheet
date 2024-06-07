@@ -4,6 +4,9 @@ package com.prasunmondal.GSheet
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.GSheet.AppContexts.AppContexts
+import com.prasunmondal.GSheet.Logs.LogMe
+import com.prasunmondal.GSheet.Tests.ModelInsertClass
+import com.prasunmondal.GSheet.Tests.ModelInsertObject
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.prasunmondal.GSheet.Tests.Test
 
@@ -20,6 +23,14 @@ class MainActivity : AppCompatActivity() {
 
         Test.start()
 
+        LogMe.log("start")
+        ModelInsertClass.saveToServer(ModelInsertObject("Pras", "Mond"))
+        val list = ModelInsertClass.get(false)
+        ModelInsertClass.deleteData()
+        list.forEach {
+            LogMe.log(it.toString())
+        }
+        LogMe.log("end")
 //        testGetAll()
 //        testDeleteAll()
 //        testInsertObj()

@@ -2,6 +2,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet
 
 import com.prasunmondal.GSheet.Clients.Exceptions.GScriptDuplicateUIDException
 import com.prasunmondal.GSheet.Clients.commons.APIResponse
+import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import com.prasunmondal.GSheet.Clients.commons.ExecutePostCallsString
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests
 import com.prasunmondal.GSheet.Clients.post.serializable.PostObjectResponse
@@ -21,18 +22,19 @@ abstract class GScript {
     abstract fun getJSON(): JSONObject
 
     // TODO: add direct execution
-//    fun execute(scriptURL: String): PostObjectResponse {
-////        GScript.addRequest(this)
-////        GScript.execute(scriptURL)
-////
+    fun execute(scriptURL: String): APIResponse {
+        addRequest(this as APIRequests)
+        val responseMap = GScript.execute(scriptURL)
+        return responseMap.values.iterator().next()
+
 //        return PostObjectResponse("")
 //
-////        val scriptUrl = URL(scriptURL)
-////
-////        val c = ExecutePostCalls(scriptUrl, getJSON()) { response -> postExecute(response) }
-////        var response = c.execute().get()
-////        return PostObjectResponse(response).getObject()
-//    }
+//        val scriptUrl = URL(scriptURL)
+//
+//        val c = ExecutePostCalls(scriptUrl, getJSON()) { response -> postExecute(response) }
+//        var response = c.execute().get()
+//        return PostObjectResponse(response).getObject()
+    }
     fun postExecute(response: String) {
         if (onCompletion == null)
             return
