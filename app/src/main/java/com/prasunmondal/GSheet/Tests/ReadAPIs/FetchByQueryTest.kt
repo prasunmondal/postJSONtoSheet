@@ -1,7 +1,5 @@
 package com.prasunmondal.GSheet.Tests.ReadAPIs
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchAll
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchByQuery
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Tests.ProjectConfig

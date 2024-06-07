@@ -1,12 +1,7 @@
 package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests
 
-import com.prasunmondal.GSheet.Clients.commons.ExecutePostCalls
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
-import com.prasunmondal.GSheet.Clients.post.serializable.PostObjectResponse
 import com.prasunmondal.GSheet.StringUtils.StringUtils
-import org.json.JSONObject
-import java.net.URL
-import java.util.function.Consumer
 
 abstract class APIRequests2: GScript() {
     private var uId: String = setUId()
