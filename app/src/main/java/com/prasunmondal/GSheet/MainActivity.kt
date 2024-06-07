@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.GSheet.AppContexts.AppContexts
 import com.prasunmondal.GSheet.Clients.commons.APIRequests
-import com.prasunmondal.GSheet.Clients.delete.Delete
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.prasunmondal.GSheet.Tests.Test
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
@@ -187,16 +186,16 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun testDeleteAll() {
-        val request = Delete.builder()
-            .scriptId("")
-            .sheetId(ProjectConfig.DB_SHEET_ID)
-            .tabName(ProjectConfig.DB_TAB_APP_OWNER)
-            .build()
-
-        GScript.addRequest(request)
-        GScript.execute(ProjectConfig.dBServerScriptURL)
-    }
+//    private fun testDeleteAll() {
+//        val request = Delete.builder()
+//            .scriptId("")
+//            .sheetId(ProjectConfig.DB_SHEET_ID)
+//            .tabName(ProjectConfig.DB_TAB_APP_OWNER)
+//            .build()
+//
+//        GScript.addRequest(request)
+//        GScript.execute(ProjectConfig.dBServerScriptURL)
+//    }
     private fun testGetAll() {
 //        val t4 = Get.builder()
 //            .scriptId(ProjectConfig.dBServerScriptURL)
