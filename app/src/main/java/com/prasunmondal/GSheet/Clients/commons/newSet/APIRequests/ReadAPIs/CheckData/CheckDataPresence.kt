@@ -3,6 +3,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.Chec
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
 
+// TODO: fix - returns 500 when sheet is empty
 class CheckDataPresence: ReadAPIs() {
     private var keys = ""
     private var values = ""
