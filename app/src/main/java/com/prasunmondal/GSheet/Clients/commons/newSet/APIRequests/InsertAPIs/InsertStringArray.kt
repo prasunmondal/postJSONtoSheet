@@ -3,7 +3,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs
 import com.tech4bytes.extrack.DB.clients.ListUtils
 import org.json.JSONObject
 
-class InsertStringArray: CreateRequest() {
+class InsertStringArray: CreateAPIs() {
 
     private var dataSequence: MutableList<String> = mutableListOf()
     override fun getJSON(): JSONObject {

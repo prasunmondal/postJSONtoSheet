@@ -1,7 +1,7 @@
 package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs
 
 import org.json.JSONObject
-class FetchByQuery: ReadRequest() {
+class FetchByQuery: ReadAPIs() {
     lateinit var query: String
     override fun getJSON(): JSONObject {
         val postDataParams = JSONObject()

@@ -2,7 +2,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs
 
 import org.json.JSONObject
 
-class FetchByAndCondition: ReadRequest() {
+class FetchByAndCondition: ReadAPIs() {
     private var conditionAndColumn = ""
     private var conditionAndValue = ""
     override fun getJSON(): JSONObject {

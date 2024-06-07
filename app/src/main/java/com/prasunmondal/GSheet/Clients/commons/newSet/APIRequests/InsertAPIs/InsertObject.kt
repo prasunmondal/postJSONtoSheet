@@ -3,7 +3,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs
 import com.google.gson.Gson
 import org.json.JSONObject
 
-class InsertObject : CreateRequest() {
+class InsertObject : CreateAPIs() {
     private lateinit var dataObject: Any
 
     fun setDataObject(dataObject: Any): InsertObject {

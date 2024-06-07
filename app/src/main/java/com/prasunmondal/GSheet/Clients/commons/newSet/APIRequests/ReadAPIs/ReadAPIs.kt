@@ -1,12 +1,11 @@
-package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs
+package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs
 
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.APIRequests2
 
-abstract class CreateRequest : APIRequests2() {
+abstract class ReadAPIs : APIRequests2() {
     lateinit var sheetId: String
     lateinit var tabName: String
     lateinit var data: String
-    var appendInServer: Boolean = true
 
     fun sheetId(sheetId: String) {
         this.sheetId = sheetId

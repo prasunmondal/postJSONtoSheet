@@ -2,7 +2,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs
 
 import org.json.JSONObject
 
-class FetchByOrCondition: ReadRequest() {
+class FetchByOrCondition: ReadAPIs() {
     private var conditionOrColumn = ""
     private var conditionOrValue = ""
 

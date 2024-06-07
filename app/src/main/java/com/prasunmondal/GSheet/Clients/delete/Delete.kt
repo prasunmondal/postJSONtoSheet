@@ -88,12 +88,7 @@ class Delete private constructor() : APIRequests, DeleteFlow, DeleteFlow.ScriptI
     }
 
     override fun getJSON(): JSONObject {
-//        val scriptUrl = URL(this.scriptURL)
-        val postDataParams = JSONObject()
-        postDataParams.put("opCode", "DELETE_ALL")
-        postDataParams.put("sheetId", this.sheetId)
-        postDataParams.put("tabName", this.tabName)
-        return postDataParams
+        return JSONObject()
     }
 
     override fun execute(): DeleteResponse {

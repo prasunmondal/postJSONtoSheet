@@ -1,7 +1,7 @@
 package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs
 
 import org.json.JSONObject
-class FetchAll: ReadRequest() {
+class FetchAll: ReadAPIs() {
     override fun getJSON(): JSONObject {
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "FETCH_ALL")

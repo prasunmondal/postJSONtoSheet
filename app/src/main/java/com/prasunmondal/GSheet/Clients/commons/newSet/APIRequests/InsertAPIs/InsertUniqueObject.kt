@@ -3,7 +3,7 @@ package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs
 import com.google.gson.Gson
 import org.json.JSONObject
 
-class InsertUniqueObject : CreateRequest() {
+class InsertUniqueObject : CreateAPIs() {
     private lateinit var dataObject: Any
     private var uniqueColumn = "";
 
