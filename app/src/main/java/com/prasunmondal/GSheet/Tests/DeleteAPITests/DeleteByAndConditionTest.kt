@@ -1,8 +1,6 @@
 package com.prasunmondal.GSheet.Tests.DeleteAPITests
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.DeleteAPIs.DeleteAll
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.DeleteAPIs.DeleteByAndCondition
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchAll
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 

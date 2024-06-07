@@ -1,6 +1,6 @@
-package com.prasunmondal.GSheet.Tests.ReadAPIs
+package com.prasunmondal.GSheet.Tests.ReadAPIs.FetchData
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchByQuery
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchData.FetchByQuery
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 

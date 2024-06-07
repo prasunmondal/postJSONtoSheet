@@ -1,6 +1,6 @@
-package com.prasunmondal.GSheet.Tests.ReadAPIs
+package com.prasunmondal.GSheet.Tests.ReadAPIs.FetchData
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchByAndCondition
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchData.FetchByAndCondition
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Logs.LogMe
 import com.prasunmondal.GSheet.Tests.ProjectConfig

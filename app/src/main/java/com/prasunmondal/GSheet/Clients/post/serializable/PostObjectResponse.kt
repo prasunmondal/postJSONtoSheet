@@ -11,8 +11,4 @@ class PostObjectResponse : APIResponse {
     fun getObject(): PostObjectResponse {
         return this
     }
-
-    fun numberOfRecordsAdded(): Int {
-        return 1
-    }
 }

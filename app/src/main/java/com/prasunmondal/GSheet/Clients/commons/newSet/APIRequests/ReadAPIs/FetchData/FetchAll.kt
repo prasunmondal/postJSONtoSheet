@@ -1,5 +1,6 @@
-package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs
+package com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchData
 
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
 class FetchAll: ReadAPIs() {
     override fun getJSON(): JSONObject {
