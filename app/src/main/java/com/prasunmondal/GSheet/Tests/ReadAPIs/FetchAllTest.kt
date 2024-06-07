@@ -14,13 +14,13 @@ class FetchAllTest {
         t.setUId("test-ti35uy2t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
-        GScript.addRequest(t as APIRequests2)
+        GScript.addRequest(t)
 
         val w = FetchAll()
         w.setUId("test-w245ueyt")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet2")
-        GScript.addRequest(w as APIRequests2)
+        GScript.addRequest(w)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 

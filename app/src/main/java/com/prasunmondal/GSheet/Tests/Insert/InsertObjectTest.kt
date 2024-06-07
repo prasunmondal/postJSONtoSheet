@@ -17,14 +17,14 @@ class InsertObjectTest {
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
         t.setDataObject(ModelInsertObject("Prasun", "Mondal"))
-        GScript.addRequest(t as APIRequests2)
+        GScript.addRequest(t)
 
         val w = InsertObject()
         w.setUId("test-w8324545")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet3")
         w.setDataObject(ModelInsertObject("Prasun", "Mondal"))
-        GScript.addRequest(w as APIRequests2)
+        GScript.addRequest(w)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 

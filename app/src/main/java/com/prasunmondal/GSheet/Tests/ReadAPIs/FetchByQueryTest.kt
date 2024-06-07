@@ -16,7 +16,7 @@ class FetchByQueryTest {
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
         t.query("=QUERY(IMPORTRANGE(\"https://docs.google.com/spreadsheets/d/1p3v4SgXPfB70YjCXCOj57BdLrDiFBoynt7yIWPQ8WmI\",\"sheet2!A1:Az\"), \"select *\")")
-        GScript.addRequest(t as APIRequests2)
+        GScript.addRequest(t)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 

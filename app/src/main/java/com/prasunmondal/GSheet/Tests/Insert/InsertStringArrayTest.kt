@@ -16,14 +16,14 @@ class InsertStringArrayTest {
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
         t.dataObject("prasun2,mondal1")
-        GScript.addRequest(t as APIRequests2)
+        GScript.addRequest(t)
 
         val w = InsertStringArray()
         w.setUId("test-w23u5y44")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet2")
         w.dataObject(listOf("prasun2","mondal1"))
-        GScript.addRequest(w as APIRequests2)
+        GScript.addRequest(w)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 

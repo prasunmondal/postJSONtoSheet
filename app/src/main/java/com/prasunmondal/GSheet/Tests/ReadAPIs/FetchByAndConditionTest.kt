@@ -17,21 +17,21 @@ class FetchByAndConditionTest {
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
         t.conditionAnd("name","Swagata")
-        GScript.addRequest(t as APIRequests2)
+        GScript.addRequest(t)
 
         val w = FetchByAndCondition()
         w.setUId("test-wiew7triq")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet2")
         w.conditionAnd("name","Mondal")
-        GScript.addRequest(w as APIRequests2)
+        GScript.addRequest(w)
 
         val r = FetchByAndCondition()
         r.setUId("test-r2654643")
         r.sheetId(ProjectConfig.DB_SHEET_ID)
         r.tabName("Sheet2")
         r.conditionAnd("name","Prasun")
-        GScript.addRequest(r as APIRequests2)
+        GScript.addRequest(r)
 
         // TODO - Fix multiple AND conditions
         val z = FetchByAndCondition()
@@ -39,7 +39,7 @@ class FetchByAndConditionTest {
         z.sheetId(ProjectConfig.DB_SHEET_ID)
         z.tabName("Sheet2")
         z.conditionAnd("name","Prasun")
-        GScript.addRequest(z as APIRequests2)
+        GScript.addRequest(z)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
         responses.forEach { key, value ->

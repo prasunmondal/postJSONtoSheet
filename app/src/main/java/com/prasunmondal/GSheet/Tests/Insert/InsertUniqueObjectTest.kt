@@ -18,7 +18,7 @@ class InsertUniqueObjectTest {
         t.tabName("Sheet2")
         t.setDataObject(ModelInsertObject("dgbnv", "skjbvkj"))
         t.uniqueColumn("name")
-        GScript.addRequest(t as APIRequests2)
+        GScript.addRequest(t)
 
         val w = InsertUniqueObject()
         w.setUId("test-wi2u5ytf")
@@ -26,7 +26,7 @@ class InsertUniqueObjectTest {
         w.tabName("Sheet3")
         w.setDataObject(ModelInsertObject("Dona", "Mondal"))
         w.uniqueColumn("name")
-        GScript.addRequest(w as APIRequests2)
+        GScript.addRequest(w)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
