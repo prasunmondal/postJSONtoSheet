@@ -1,7 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
 
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.ReadAPIs.FetchData.FetchByQuery
-import com.prasunmondal.libs.gsheet.clients.newSet.GScript
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchByQuery
+import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
 class FetchByQueryTest {

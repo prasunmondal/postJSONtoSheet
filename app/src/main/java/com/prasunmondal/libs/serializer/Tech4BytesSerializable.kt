@@ -2,12 +2,12 @@ package com.prasunmondal.libs.serializer
 
 import com.prasunmondal.libs.AppContexts.AppContexts
 import com.prasunmondal.libs.gsheet.clients.APIResponse
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.APIRequests
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.CreateAPIs.InsertObject
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.DeleteAPIs.DeleteAll
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.ReadAPIs.FetchData.FetchAll
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.ReadAPIs.FetchData.FetchByQuery
-import com.prasunmondal.libs.gsheet.clients.newSet.GScript
+import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
+import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.InsertObject
+import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.DeleteAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchByQuery
+import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 import com.tech4bytes.extrack.centralCache.CentralCache
