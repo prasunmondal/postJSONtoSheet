@@ -49,7 +49,7 @@ open class APIResponse {
     }
 
     override fun toString(): String {
-        return "APIResponse(content='$content', statusCode=$statusCode, affectedRows=$affectedRows, opId='$opId', logs='$logs')"
+        return "APIResponse(opId='$opId', statusCode=$statusCode, affectedRows=$affectedRows, logs='$logs', content='$content')"
     }
 
     companion object {
@@ -78,7 +78,7 @@ open class APIResponse {
             Log.e("parsing to object ", jsonString.toString())
             var result = APIResponse()
             result.opId = jsonString.getString("opId")
-            result.affectedRows = try {(jsonString.getString("affectedRows")).toInt()} catch (e: Exception) {0}
+            result.affectedRows = try {(jsonString.getString("rowsAffected")).toInt()} catch (e: Exception) {0}
             result.statusCode = try {(jsonString.getString("statusCode")).toInt()} catch (e: Exception) {0}
             result.content = if(jsonString.has("content")) { jsonString.getString("content")} else {""}
             result.logs = jsonString.getString("logs")

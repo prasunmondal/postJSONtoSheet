@@ -46,22 +46,6 @@
 //        this.query = query
 //    }
 //
-//    override fun conditionAnd(
-//        conditionColumn: String,
-//        conditionValue: String,
-//    ): GetFlow.FinalRequestBuilder {
-//        if (conditionColumn.isEmpty() || conditionValue.isEmpty())
-//            return this
-//        this.conditionOrColumn = ""
-//        this.conditionOrValue = ""
-//        if (this.conditionAndColumn.isNotEmpty()) {
-//            this.conditionAndColumn += ","
-//            this.conditionAndValue += ","
-//        }
-//        this.conditionAndColumn += conditionColumn
-//        this.conditionAndValue += conditionValue
-//        return this
-//    }
 //
 //    override fun conditionOr(
 //        conditionColumn: String,
@@ -118,20 +102,6 @@
 //        postDataParams.put("opCode", "FETCH_ALL")
 //        postDataParams.put("sheetId", this.sheetId)
 //        postDataParams.put("tabName", this.tabName)
-//
-//        val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
-//        var response = c.execute().get()
-//        return GetResponse(response).getObject()
-//    }
-//
-//    private fun fetchConditionAnd(): GetResponse {
-//        val scriptUrl = URL(this.scriptURL)
-//        val postDataParams = JSONObject()
-//        postDataParams.put("opCode", "FETCH_BY_CONDITION_AND")
-//        postDataParams.put("sheetId", this.sheetId)
-//        postDataParams.put("tabName", this.tabName)
-//        postDataParams.put("dataColumn", this.conditionAndColumn)
-//        postDataParams.put("dataValue", this.conditionAndValue)
 //
 //        val c = ExecutePostCalls(scriptUrl, postDataParams) { response -> postExecute(response) }
 //        var response = c.execute().get()

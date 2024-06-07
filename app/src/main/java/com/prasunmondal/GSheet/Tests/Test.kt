@@ -3,6 +3,7 @@ package com.prasunmondal.GSheet.Tests
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs.InsertObject
 import com.prasunmondal.GSheet.Logs.LogMe
 import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchAllTest
+import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchByAndConditionTest
 import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchByQueryTest
 
 class Test {
@@ -21,6 +22,7 @@ class Test {
 //            InsertStringArrayTest()
             FetchAllTest()
             FetchByQueryTest()
+            FetchByAndConditionTest()
         }
 
 //        fun testInsertObject() {
