@@ -33,6 +33,14 @@ class FetchByAndConditionTest {
         r.conditionAnd("name","Prasun")
         GScript.addRequest(r as APIRequests2)
 
+        // TODO - Fix multiple AND conditions
+        val z = FetchByAndCondition()
+        z.setUId("test-z5634243")
+        z.sheetId(ProjectConfig.DB_SHEET_ID)
+        z.tabName("Sheet2")
+        z.conditionAnd("name","Prasun")
+        GScript.addRequest(z as APIRequests2)
+
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
         responses.forEach { key, value ->
             LogMe.log(value.toString())
