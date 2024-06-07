@@ -1,11 +1,11 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
 
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.ReadAPIs.FetchData.FetchAll
-import com.prasunmondal.libs.gsheet.clients.newSet.GScript
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchAll
+import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.CreateAPIs.InsertObject
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.DeleteAPIs.DeleteAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.InsertObject
+import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.DeleteAll
 
 class FetchAllTest {
     constructor() {

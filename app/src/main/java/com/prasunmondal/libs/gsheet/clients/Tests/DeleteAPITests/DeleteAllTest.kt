@@ -1,7 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.DeleteAPITests
 
-import com.prasunmondal.libs.gsheet.clients.newSet.APIRequests.DeleteAPIs.DeleteAll
-import com.prasunmondal.libs.gsheet.clients.newSet.GScript
+import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.DeleteAll
+import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
 class DeleteAllTest {
