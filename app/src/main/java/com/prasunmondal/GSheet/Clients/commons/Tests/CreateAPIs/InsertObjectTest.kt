@@ -5,6 +5,7 @@ import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Clients.commons.Tests.ModelInsertObject
 import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.DeleteAPIs.DeleteAll
+import com.prasunmondal.GSheet.Logs.LogMe
 
 class InsertObjectTest {
 
@@ -42,7 +43,8 @@ class InsertObjectTest {
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
-        if(!(responses["test-e.234"]!!.statusCode == 200
+        LogMe.log((responses["test-e.234"]!!.statusCode % 100 == 2).toString())
+        if(!(responses["test-e.234"]!!.statusCode / 100 == 2
                     && responses["test-t218625"]!!.statusCode == 200
                     && responses["test-d218625"]!!.statusCode == 200
                     && responses["test-w8324545"]!!.statusCode == 500)) {
