@@ -1,6 +1,6 @@
 package com.prasunmondal.GSheet.Clients.post.serializable
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs.InsertObject
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
 import java.util.function.Consumer
 
 interface PostObjectFlow {

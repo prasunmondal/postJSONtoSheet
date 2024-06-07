@@ -1,6 +1,6 @@
-package com.prasunmondal.GSheet.Tests.Insert
+package com.prasunmondal.GSheet.Tests.CreateAPIs
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs.InsertObject
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Tests.ModelInsertObject
 import com.prasunmondal.GSheet.Tests.ProjectConfig

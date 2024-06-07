@@ -1,7 +1,8 @@
 package com.prasunmondal.GSheet.Tests
 
-import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.InsertAPIs.InsertObject
+import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
 import com.prasunmondal.GSheet.Tests.DeleteAPITests.DeleteAllTest
+import com.prasunmondal.GSheet.Tests.DeleteAPITests.DeleteByAndConditionTest
 import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchAllTest
 import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchByAndConditionTest
 import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchByOrConditionTest
@@ -26,6 +27,7 @@ class Test {
             FetchByAndConditionTest()
             FetchByOrConditionTest()
             DeleteAllTest()
+            DeleteByAndConditionTest()
         }
 
 //        fun testInsertObject() {
