@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.post.serializable
 
-import com.prasunmondal.libs.gsheet.clients.APIResponse
+import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 
 class PostObjectResponse : APIResponse {
 

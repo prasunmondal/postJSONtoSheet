@@ -1,10 +1,11 @@
-package com.prasunmondal.libs.gsheet.clients
+package com.prasunmondal.libs.gsheet.clients.APIResponses
 
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
+import com.prasunmondal.libs.gsheet.clients.JsonTags
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.reflect.Type
@@ -47,7 +48,7 @@ open class APIResponse {
     }
 
     override fun toString(): String {
-        return "APIResponse(opId='$opId', statusCode=$statusCode, affectedRows=$affectedRows, logs='$logs', content='$content')"
+        return "APIResponse(content='$content', statusCode=$statusCode, affectedRows=$affectedRows, opId='$opId', logs='$logs')"
     }
 
     companion object {
@@ -59,7 +60,6 @@ open class APIResponse {
             val t: List<T> = gson.fromJson(jsonArray, contentListType)
             return t
         }
-
         open fun convertJsonArrayStringToList(jsonArrayString: String?): List<JSONObject> {
             val jsonObjectList: MutableList<JSONObject> = ArrayList()
             try {
@@ -77,9 +77,9 @@ open class APIResponse {
             Log.e("parsing to object ", jsonString.toString())
             var result = APIResponse()
             result.opId = jsonString.getString("opId")
-            result.affectedRows = try {(jsonString.getString("rowsAffected")).toInt()} catch (e: Exception) {0}
+            result.affectedRows = try {(jsonString.getString("affectedRows")).toInt()} catch (e: Exception) {0}
             result.statusCode = try {(jsonString.getString("statusCode")).toInt()} catch (e: Exception) {0}
-            result.content = if(jsonString.has("content")) { jsonString.getString("content")} else {""}
+            result.content = jsonString.getString("content")
             result.logs = jsonString.getString("logs")
             return result
         }

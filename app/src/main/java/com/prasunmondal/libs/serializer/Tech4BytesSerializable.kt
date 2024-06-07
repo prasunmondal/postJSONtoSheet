@@ -1,7 +1,6 @@
 package com.prasunmondal.libs.serializer
 
 import com.prasunmondal.libs.AppContexts.AppContexts
-import com.prasunmondal.libs.gsheet.clients.APIResponse
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.InsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.DeleteAll
@@ -9,6 +8,7 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.Fetch
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchByQuery
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 import com.tech4bytes.extrack.centralCache.CentralCache
 
@@ -114,7 +114,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     private fun parseNGetResponse2(rawResponse: String): List<T> {
         LogMe.log(rawResponse)
 //        val typeOfT: Type = TypeToken.getParameterized(MutableList::class.java, clazz).type
-        var parsedResponse = APIResponse.JsonArrayToObjectArray(rawResponse, cacheObjectType)
+        var parsedResponse = APIResponse.JsonArrayToObjectArray<T>(rawResponse, cacheObjectType)
 
         LogMe.log(parsedResponse.size)
         if ((getEmptyListIfEmpty || this.getEmptyListIfEmpty) && parsedResponse.isEmpty())
