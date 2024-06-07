@@ -6,7 +6,6 @@ abstract class ReadRequest : APIRequests2() {
     lateinit var sheetId: String
     lateinit var tabName: String
     lateinit var data: String
-    var query: Boolean = true
 
     fun sheetId(sheetId: String) {
         this.sheetId = sheetId

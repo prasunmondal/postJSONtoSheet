@@ -1,6 +1,6 @@
 package com.prasunmondal.GSheet.Tests
 
-import com.prasunmondal.GSheet.serializer.Tech4BytesSerializable
+//import com.prasunmondal.GSheet.serializer.Tech4BytesSerializable
 
 class ModelInsertObject {
     var name = ""
@@ -15,10 +15,10 @@ class ModelInsertObject {
         return "ModelInsertObject(name='$name', title='$title')"
     }
 }
-object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
-    ProjectConfig.dBServerScriptURL,
-    ProjectConfig.DB_SHEET_ID,
-    "Sheet2",
-    query = null,
-    appendInServer = true,
-    appendInLocal = true)
+//object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
+//    ProjectConfig.dBServerScriptURL,
+//    ProjectConfig.DB_SHEET_ID,
+//    "Sheet2",
+//    query = null,
+//    appendInServer = true,
+//    appendInLocal = true)

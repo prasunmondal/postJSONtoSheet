@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.GSheet.AppContexts.AppContexts
 import com.prasunmondal.GSheet.Clients.commons.APIRequests
 import com.prasunmondal.GSheet.Clients.delete.Delete
-import com.prasunmondal.GSheet.Clients.get.Get
+//import com.prasunmondal.GSheet.Clients.get.Get
 import com.prasunmondal.GSheet.Tests.Test
 import com.prasunmondal.GSheet.Tests.ProjectConfig
 import com.tech4bytes.mbrosv3.Utils.DB.clients.GScript
@@ -198,17 +198,17 @@ class MainActivity : AppCompatActivity() {
         GScript.execute(ProjectConfig.dBServerScriptURL)
     }
     private fun testGetAll() {
-        val t4 = Get.builder()
-            .scriptId(ProjectConfig.dBServerScriptURL)
-            .sheetId(ProjectConfig.DB_SHEET_ID)
-            .tabName(ProjectConfig.DB_TAB_APP_OWNER)
-            .postCompletion(null)
-            .build()
-
-        GScript.addRequest(t4)
-        GScript.addRequest(t4)
-        GScript.addRequest(t4)
-        GScript.execute(ProjectConfig.dBServerScriptURL)
+//        val t4 = Get.builder()
+//            .scriptId(ProjectConfig.dBServerScriptURL)
+//            .sheetId(ProjectConfig.DB_SHEET_ID)
+//            .tabName(ProjectConfig.DB_TAB_APP_OWNER)
+//            .postCompletion(null)
+//            .build()
+//
+//        GScript.addRequest(t4)
+//        GScript.addRequest(t4)
+//        GScript.addRequest(t4)
+//        GScript.execute(ProjectConfig.dBServerScriptURL)
 
 //        val test_insert_java_obj = PostObject.builder()
 //            .scriptId("")
