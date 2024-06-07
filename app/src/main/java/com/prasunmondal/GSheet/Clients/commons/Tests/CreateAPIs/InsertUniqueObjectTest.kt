@@ -1,9 +1,9 @@
-package com.prasunmondal.GSheet.Tests.CreateAPIs
+package com.prasunmondal.GSheet.Clients.commons.Tests.CreateAPIs
 
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertUniqueObject
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
-import com.prasunmondal.GSheet.Tests.ModelInsertObject
-import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Clients.commons.Tests.ModelInsertObject
+import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
 
 class InsertUniqueObjectTest {
 

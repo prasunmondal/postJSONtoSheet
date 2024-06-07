@@ -5,7 +5,6 @@ import org.json.JSONObject
 
 class InsertObject : CreateAPIs() {
     private lateinit var dataObject: Any
-
     fun setDataObject(dataObject: Any): InsertObject {
         this.dataObject = dataObject
         return this

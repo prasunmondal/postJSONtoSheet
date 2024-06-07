@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.GSheet.AppContexts.AppContexts
 import com.prasunmondal.GSheet.Logs.LogMe
-import com.prasunmondal.GSheet.Tests.ModelInsertClass
-import com.prasunmondal.GSheet.Tests.ModelInsertObject
-import com.prasunmondal.GSheet.Tests.ProjectConfig
-import com.prasunmondal.GSheet.Tests.Test
+import com.prasunmondal.GSheet.Clients.commons.Tests.ModelInsertClass
+import com.prasunmondal.GSheet.Clients.commons.Tests.ModelInsertObject
+import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Clients.commons.Tests.Test
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

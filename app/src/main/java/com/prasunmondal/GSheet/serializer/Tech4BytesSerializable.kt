@@ -10,7 +10,7 @@ import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.Fetch
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchData.FetchByQuery
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
 import com.prasunmondal.GSheet.Logs.LogMe
-import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
 import com.tech4bytes.extrack.centralCache.CentralCache
 import java.lang.reflect.Type
 

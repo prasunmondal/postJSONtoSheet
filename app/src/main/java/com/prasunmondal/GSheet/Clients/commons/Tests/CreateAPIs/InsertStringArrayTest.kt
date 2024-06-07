@@ -1,8 +1,8 @@
-package com.prasunmondal.GSheet.Tests.CreateAPIs
+package com.prasunmondal.GSheet.Clients.commons.Tests.CreateAPIs
 
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertStringArray
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
-import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
 
 class InsertStringArrayTest {
 

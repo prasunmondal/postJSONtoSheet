@@ -1,8 +1,8 @@
-package com.prasunmondal.GSheet.Tests.ReadAPIs.FetchData
+package com.prasunmondal.GSheet.Clients.commons.Tests.ReadAPIs.FetchData
 
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.FetchData.FetchByQuery
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
-import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
 
 class FetchByQueryTest {
     constructor() {

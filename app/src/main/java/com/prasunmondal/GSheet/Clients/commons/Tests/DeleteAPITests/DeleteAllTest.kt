@@ -1,8 +1,8 @@
-package com.prasunmondal.GSheet.Tests.DeleteAPITests
+package com.prasunmondal.GSheet.Clients.commons.Tests.DeleteAPITests
 
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.DeleteAPIs.DeleteAll
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
-import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
 
 class DeleteAllTest {
     constructor() {

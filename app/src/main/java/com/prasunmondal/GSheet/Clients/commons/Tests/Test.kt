@@ -1,12 +1,9 @@
-package com.prasunmondal.GSheet.Tests
+package com.prasunmondal.GSheet.Clients.commons.Tests
 
+import com.prasunmondal.GSheet.Clients.commons.Tests.CreateAPIs.InsertObjectTest
+import com.prasunmondal.GSheet.Clients.commons.Tests.DeleteAPITests.DeleteByOrConditionTest
+import com.prasunmondal.GSheet.Clients.commons.Tests.ReadAPIs.CheckData.CheckDataPresenceTest
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.CreateAPIs.InsertObject
-import com.prasunmondal.GSheet.Tests.DeleteAPITests.DeleteAllTest
-import com.prasunmondal.GSheet.Tests.DeleteAPITests.DeleteByAndConditionTest
-import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchAllTest
-import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchByAndConditionTest
-import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchByOrConditionTest
-import com.prasunmondal.GSheet.Tests.ReadAPIs.FetchByQueryTest
 
 class Test {
 
@@ -19,15 +16,17 @@ class Test {
 //            testMultiple()
 
 //        New     New     New     New     New     New     New     New     New
-            InsertObject()
-//            InsertUniqueObjectTest()
-//            InsertStringArrayTest()
-            FetchAllTest()
-            FetchByQueryTest()
-            FetchByAndConditionTest()
-            FetchByOrConditionTest()
-            DeleteAllTest()
-            DeleteByAndConditionTest()
+            InsertObjectTest()
+////            InsertUniqueObjectTest()
+////            InsertStringArrayTest()
+//            FetchAllTest()
+//            FetchByQueryTest()
+//            FetchByAndConditionTest()
+//            FetchByOrConditionTest()
+//            DeleteAllTest()
+//            DeleteByAndConditionTest()
+//            DeleteByOrConditionTest()
+//            CheckDataPresenceTest()
         }
 
 //        fun testInsertObject() {

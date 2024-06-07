@@ -1,8 +1,8 @@
-package com.prasunmondal.GSheet.Tests.ReadAPIs.CheckData
+package com.prasunmondal.GSheet.Clients.commons.Tests.ReadAPIs.CheckData
 
 import com.prasunmondal.GSheet.Clients.commons.newSet.APIRequests.ReadAPIs.CheckData.CheckDataPresence
 import com.prasunmondal.GSheet.Clients.commons.newSet.GScript
-import com.prasunmondal.GSheet.Tests.ProjectConfig
+import com.prasunmondal.GSheet.Clients.commons.Tests.ProjectConfig
 
 class CheckDataPresenceTest {
     init {
