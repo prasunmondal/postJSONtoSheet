@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
 
-import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchByQuery
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByQuery
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
@@ -9,7 +9,7 @@ class FetchByQueryTest {
         test()
     }
     fun test() {
-        val t = FetchByQuery()
+        val t = GSheetFetchByQuery()
         t.setUId("test-83567t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")

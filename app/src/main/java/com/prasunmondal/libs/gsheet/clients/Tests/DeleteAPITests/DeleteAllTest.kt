@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.DeleteAPITests
 
-import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.DeleteAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
@@ -9,7 +9,7 @@ class DeleteAllTest {
         test()
     }
     fun test() {
-        val t = DeleteAll()
+        val t = GSheetDeleteAll()
         t.setUId("test-ti35uy2t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
