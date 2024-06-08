@@ -93,7 +93,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
                 list.forEach {
                     LogMe.log(it.toString())
                 }
-                return list as List<T>
+                return list
 //                if(r.size == 1) {
 //                    return parseAndSaveToCache2(r.get(0)!!.content, cacheKey)
 //                } else {
