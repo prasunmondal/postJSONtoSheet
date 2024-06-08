@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.CreateAPIs
 
-import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.InsertStringArray
+import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertStringArray
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
@@ -10,14 +10,14 @@ class InsertStringArrayTest {
         test()
     }
     fun test() {
-        val t = InsertStringArray()
+        val t = GSheetInsertStringArray()
         t.setUId("test-ti735058")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
         t.dataObject("prasun2,mondal1")
         GScript.addRequest(t)
 
-        val w = InsertStringArray()
+        val w = GSheetInsertStringArray()
         w.setUId("test-w23u5y44")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet2")

@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
 
-import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchByOrCondition
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByOrCondition
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
@@ -10,21 +10,21 @@ class FetchByOrConditionTest {
         test()
     }
     fun test() {
-        val t = FetchByOrCondition()
+        val t = GSheetFetchByOrCondition()
         t.setUId("test-tiu2t4t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
         t.conditionOr("name","Swagata")
         GScript.addRequest(t)
 
-        val w = FetchByOrCondition()
+        val w = GSheetFetchByOrCondition()
         w.setUId("test-wiew7triq")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet2")
         w.conditionOr("name","Mondal")
         GScript.addRequest(w)
 
-        val r = FetchByOrCondition()
+        val r = GSheetFetchByOrCondition()
         r.setUId("test-r2654643")
         r.sheetId(ProjectConfig.DB_SHEET_ID)
         r.tabName("Sheet2")
@@ -32,7 +32,7 @@ class FetchByOrConditionTest {
         GScript.addRequest(r)
 
         // TODO - Fix multiple AND conditions
-        val z = FetchByOrCondition()
+        val z = GSheetFetchByOrCondition()
         z.setUId("test-z5634243")
         z.sheetId(ProjectConfig.DB_SHEET_ID)
         z.tabName("Sheet2")

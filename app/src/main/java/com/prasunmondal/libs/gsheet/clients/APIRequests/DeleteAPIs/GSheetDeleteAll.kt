@@ -2,7 +2,7 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs
 
 import org.json.JSONObject
 
-class DeleteAll: DeleteAPIs() {
+class GSheetDeleteAll: DeleteAPIs() {
     override fun getJSON(): JSONObject {
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "DELETE_ALL")

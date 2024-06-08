@@ -1,11 +1,11 @@
-package com.prasunmondal.libs.serializer
+package com.prasunmondal.libs.gsheet.serializer
 
 import com.prasunmondal.libs.AppContexts.AppContexts
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
-import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.InsertObject
-import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.DeleteAll
-import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchAll
-import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.FetchByQuery
+import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
+import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByQuery
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
@@ -132,12 +132,12 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     }
     private fun getGetRequest(): APIRequests {
         return if(query == null || query!!.isEmpty()) {
-            val request = FetchAll()
+            val request = GSheetFetchAll()
             request.sheetId = sheetURL
             request.tabName = tabname
             request
         } else {
-            val request = FetchByQuery()
+            val request = GSheetFetchByQuery()
             request.sheetId = sheetURL
             request.tabName = tabname
             request.query = query!!
@@ -250,8 +250,8 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         requestObj.execute(ProjectConfig.dBServerScriptURL)
     }
 
-    private fun <T> getSaveRequest(obj: T): InsertObject {
-        var request = InsertObject()
+    private fun <T> getSaveRequest(obj: T): GSheetInsertObject {
+        var request = GSheetInsertObject()
         request.sheetId = sheetURL
         request.tabName = tabname
         request.setDataObject(obj as Any)
@@ -286,8 +286,8 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         GScript.execute(ProjectConfig.dBServerScriptURL)
     }
 
-    fun getDeleteRequest(): DeleteAll {
-        val deleteRequest = DeleteAll()
+    fun getDeleteRequest(): GSheetDeleteAll {
+        val deleteRequest = GSheetDeleteAll()
         deleteRequest.sheetId = sheetURL
         deleteRequest.tabName = tabname
         deleteRequest.execute(ProjectConfig.dBServerScriptURL)

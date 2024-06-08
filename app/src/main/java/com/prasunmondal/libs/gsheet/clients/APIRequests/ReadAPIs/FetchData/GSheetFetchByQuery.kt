@@ -2,7 +2,7 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
-class FetchByQuery: ReadAPIs() {
+class GSheetFetchByQuery: ReadAPIs() {
     lateinit var query: String
     override fun getJSON(): JSONObject {
         val postDataParams = JSONObject()

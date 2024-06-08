@@ -4,7 +4,7 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
 
 // TODO: fix - returns 500 when sheet is empty
-class CheckDataPresence: ReadAPIs() {
+class GSheetCheckDataPresence: ReadAPIs() {
     private var keys = ""
     private var values = ""
 

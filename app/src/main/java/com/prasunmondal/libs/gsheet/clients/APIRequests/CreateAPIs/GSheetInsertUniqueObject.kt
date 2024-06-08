@@ -3,18 +3,27 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs
 import com.google.gson.Gson
 import org.json.JSONObject
 
-class InsertObject : CreateAPIs() {
+class GSheetInsertUniqueObject : CreateAPIs() {
     private lateinit var dataObject: Any
-    fun setDataObject(dataObject: Any): InsertObject {
+    private var uniqueColumn = "";
+
+    fun setDataObject(dataObject: Any) {
         this.dataObject = dataObject
-        return this
     }
+
+    fun uniqueColumn(uniqueColumn: String) {
+        if (this.uniqueColumn != "")
+            this.uniqueColumn += ","
+        this.uniqueColumn += uniqueColumn
+    }
+
     override fun getJSON(): JSONObject {
         val postDataParams = JSONObject()
-        postDataParams.put("opCode", "INSERT_OBJECT")
+        postDataParams.put("opCode", "INSERT_OBJECT_UNIQUE")
         postDataParams.put("sheetId", this.sheetId)
         postDataParams.put("tabName", this.tabName)
         postDataParams.put("objectData", Gson().toJson(this.dataObject))
+        postDataParams.put("uniqueCol", this.uniqueColumn)
         return postDataParams
     }
 }

@@ -1,4 +1,4 @@
-package com.prasunmondal.libs.serializer
+package com.prasunmondal.libs.gsheet.serializer
 
 object Tech4BytesSerializableLocks {
     private val locks = HashMap<String, Any>()

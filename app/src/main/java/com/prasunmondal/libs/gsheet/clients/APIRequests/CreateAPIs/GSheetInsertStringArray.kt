@@ -3,7 +3,7 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs
 import com.tech4bytes.extrack.DB.clients.ListUtils
 import org.json.JSONObject
 
-class InsertStringArray: CreateAPIs() {
+class GSheetInsertStringArray: CreateAPIs() {
 
     private var dataSequence: MutableList<String> = mutableListOf()
     override fun getJSON(): JSONObject {

@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.Tests
 
-import com.prasunmondal.libs.serializer.Tech4BytesSerializable
+import com.prasunmondal.libs.gsheet.serializer.Tech4BytesSerializable
 import java.io.Serializable
 
 //import com.prasunmondal.GSheet.serializer.Tech4BytesSerializable

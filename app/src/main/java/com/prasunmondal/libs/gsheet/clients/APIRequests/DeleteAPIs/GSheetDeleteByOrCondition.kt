@@ -2,7 +2,7 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs
 
 import org.json.JSONObject
 
-class DeleteByOrCondition: DeleteAPIs() {
+class GSheetDeleteByOrCondition: DeleteAPIs() {
     private var conditionOrColumn = ""
     private var conditionOrValue = ""
     override fun getJSON(): JSONObject {

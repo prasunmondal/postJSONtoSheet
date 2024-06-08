@@ -1,10 +1,10 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.CreateAPIs
 
-import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.InsertObject
+import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
-import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.DeleteAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
 import com.prasunmondal.libs.Logs.LogMe
 
 class InsertObjectTest {
@@ -13,20 +13,20 @@ class InsertObjectTest {
         test()
     }
     fun test() {
-        val e = DeleteAll()
+        val e = GSheetDeleteAll()
         e.setUId("test-e.234")
         e.sheetId(ProjectConfig.DB_SHEET_ID)
         e.tabName("Sheet2")
         GScript.addRequest(e)
 
-        val t = InsertObject()
+        val t = GSheetInsertObject()
         t.setUId("test-t218625")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
         t.setDataObject(ModelInsertObject("Prasun", "Mondal"))
         GScript.addRequest(t)
 
-        val d = InsertObject()
+        val d = GSheetInsertObject()
         d.setUId("test-d218625")
         d.sheetId(ProjectConfig.DB_SHEET_ID)
         d.tabName("Sheet2")
@@ -34,7 +34,7 @@ class InsertObjectTest {
         GScript.addRequest(d)
 
         // Should fail due to incorrect Sheet Name
-        val w = InsertObject()
+        val w = GSheetInsertObject()
         w.setUId("test-w8324545")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet3")
