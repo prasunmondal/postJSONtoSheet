@@ -1,8 +1,8 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
 
+import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByOrCondition
 import com.prasunmondal.libs.gsheet.clients.GScript
-import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
@@ -10,12 +10,13 @@ class FetchByOrConditionTest {
     constructor() {
         test()
     }
+
     fun test() {
         val t = GSheetFetchByOrCondition<ModelInsertObject>()
         t.setUId("test-tiu2t4t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
-        t.conditionOr("name","Swagata")
+        t.conditionOr("name", "Swagata")
         t.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(t)
 
@@ -23,7 +24,7 @@ class FetchByOrConditionTest {
         w.setUId("test-wiew7triq")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet2")
-        w.conditionOr("name","Mondal")
+        w.conditionOr("name", "Mondal")
         w.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(w)
 
@@ -31,7 +32,7 @@ class FetchByOrConditionTest {
         r.setUId("test-r2654643")
         r.sheetId(ProjectConfig.DB_SHEET_ID)
         r.tabName("Sheet2")
-        r.conditionOr("name","Prasun")
+        r.conditionOr("name", "Prasun")
         r.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(r)
 
@@ -40,7 +41,7 @@ class FetchByOrConditionTest {
         z.setUId("test-z5634243")
         z.sheetId(ProjectConfig.DB_SHEET_ID)
         z.tabName("Sheet2")
-        z.conditionOr("name","Prasun")
+        z.conditionOr("name", "Prasun")
         z.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(z)
 
@@ -49,9 +50,10 @@ class FetchByOrConditionTest {
             LogMe.log(value.toString())
         }
 
-        if(!(responses["test-tiu2t4t"]!!.statusCode == 200
+        if (!(responses["test-tiu2t4t"]!!.statusCode == 200
                     && responses["test-wiew7triq"]!!.statusCode == 204
-                    && responses["test-r2654643"]!!.statusCode == 200)) {
+                    && responses["test-r2654643"]!!.statusCode == 200)
+        ) {
             throw AssertionError()
         }
     }

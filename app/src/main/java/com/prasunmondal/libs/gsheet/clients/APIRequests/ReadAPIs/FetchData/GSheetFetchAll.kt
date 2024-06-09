@@ -2,7 +2,8 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
-class GSheetFetchAll<T>: ReadAPIs<T>() {
+
+class GSheetFetchAll<T> : ReadAPIs<T>() {
     override fun getJSON(): JSONObject {
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "FETCH_ALL")

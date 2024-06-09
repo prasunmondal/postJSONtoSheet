@@ -1,15 +1,16 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.DeleteAPITests
 
-import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
+import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteByOrCondition
 import com.prasunmondal.libs.gsheet.clients.GScript
+import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
-import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 
 class DeleteByOrConditionTest {
     constructor() {
         test()
     }
+
     fun test() {
         val a = GSheetInsertObject()
         a.setUId("test-a-3456")
@@ -28,8 +29,9 @@ class DeleteByOrConditionTest {
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
-        if(!(responses["test-a-3456"]!!.statusCode == 200
-                    && responses["test-ti87686"]!!.statusCode == 200)) {
+        if (!(responses["test-a-3456"]!!.statusCode == 200
+                    && responses["test-ti87686"]!!.statusCode == 200)
+        ) {
             throw AssertionError()
         }
     }

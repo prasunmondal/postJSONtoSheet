@@ -9,6 +9,7 @@ class FetchByQueryTest {
     constructor() {
         test()
     }
+
     fun test() {
         val t = GSheetFetchByQuery<ModelInsertObject>()
         t.setUId("test-83567t")
@@ -20,8 +21,9 @@ class FetchByQueryTest {
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
-        if(!(responses["test-83567t"]!!.statusCode == 200
-                    && responses["test-83567t"]!!.statusCode == 200)) {
+        if (!(responses["test-83567t"]!!.statusCode == 200
+                    && responses["test-83567t"]!!.statusCode == 200)
+        ) {
             throw AssertionError()
         }
     }

@@ -4,7 +4,7 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
 
 // TODO: fix - returns 500 when sheet is empty
-class GSheetCheckDataPresence: ReadAPIs<CheckResult>() {
+class GSheetCheckDataPresence : ReadAPIs<CheckResult>() {
     private var keys = ""
     private var values = ""
 
@@ -19,6 +19,7 @@ class GSheetCheckDataPresence: ReadAPIs<CheckResult>() {
     private fun initiallizeAttributes() {
         classTypeForResponseParsing = CheckResult::class.java
     }
+
     override fun getJSON(): JSONObject {
         initiallizeAttributes()
 

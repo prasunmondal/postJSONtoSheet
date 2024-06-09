@@ -1,10 +1,10 @@
 package com.prasunmondal.libs.gsheet.clients
 
-import com.prasunmondal.libs.gsheet.exceptions.GScriptDuplicateUIDException
-import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
-import com.prasunmondal.libs.gsheet.post.serializable.PostObjectResponse
 import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
+import com.prasunmondal.libs.gsheet.exceptions.GScriptDuplicateUIDException
+import com.prasunmondal.libs.gsheet.post.serializable.PostObjectResponse
 import com.prasunmondal.libs.gsheet.serializer.parsers.Parser
 import org.json.JSONArray
 import org.json.JSONObject
@@ -34,6 +34,7 @@ abstract class GScript {
 //        var response = c.execute().get()
 //        return PostObjectResponse(response).getObject()
     }
+
     fun postExecute(response: String) {
         if (onCompletion == null)
             return
@@ -49,7 +50,7 @@ abstract class GScript {
         var calls = mutableMapOf<String, APIRequests>()
 
         fun addRequest(apiCall: APIRequests?): String? {
-            if(apiCall == null)
+            if (apiCall == null)
                 return null
 
             val uid = apiCall.getUId()
@@ -83,19 +84,24 @@ abstract class GScript {
                 jsonArray.put(jsonObject)
             }
             val finalRequestJSON = "operations=$jsonArray"
-            val d = ExecutePostCallsString(scriptUrl, finalRequestJSON) { }//response -> postExecute(response) }
+            val d = ExecutePostCallsString(
+                scriptUrl,
+                finalRequestJSON
+            ) { }//response -> postExecute(response) }
             val response2 = d.execute().get()
 
             LogMe.log("response2: $response2")
 
             val apiResponsesList = Parser.convertJsonArrayStringToJsonObjList(response2)
             val map: MutableMap<String, APIResponse> = mutableMapOf()
-            for(apiResponse in apiResponsesList) {
+            for (apiResponse in apiResponsesList) {
                 val responseOpId = apiResponse.get("opId").toString()
                 map[responseOpId] = APIResponse.parseToAPIResponse(apiResponse)
 
                 val requestObj = calls[responseOpId]
-                LogMe.log(requestObj!!.prepareResponse(requestObj,map[responseOpId]!!, null).toString())
+                LogMe.log(
+                    requestObj!!.prepareResponse(requestObj, map[responseOpId]!!, null).toString()
+                )
             }
 
 

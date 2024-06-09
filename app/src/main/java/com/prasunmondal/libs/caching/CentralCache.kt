@@ -25,7 +25,10 @@ class CentralCache {
         CacheFilesList.addToCacheFilesList(filename)
     }
 
-    private fun getCacheDataFromFile(context: Context, cacheKey: String): MutableMap<String, MutableMap<String, CacheModel>> {
+    private fun getCacheDataFromFile(
+        context: Context,
+        cacheKey: String
+    ): MutableMap<String, MutableMap<String, CacheModel>> {
         return try {
             val readObj = IOObjectToFile()
             val result = readObj.ReadObjectFromFile(
@@ -48,9 +51,8 @@ class CentralCache {
             return "CentralCache-" + if (Configuration.configs.storagePatternType == Configuration.DATA_STORING_TYPE.CLASS_FILES) {
                 CacheUtils.getClassKey()
             } else if (Configuration.configs.storagePatternType == Configuration.DATA_STORING_TYPE.CACHE_KEY) {
-                cacheKey.replace("/","-")
-            }
-            else {
+                cacheKey.replace("/", "-")
+            } else {
                 "data.dat"
             }
         }

@@ -8,6 +8,7 @@ class DeleteAllTest {
     constructor() {
         test()
     }
+
     fun test() {
         val t = GSheetDeleteAll()
         t.setUId("test-ti35uy2t")
@@ -17,7 +18,7 @@ class DeleteAllTest {
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
-        if(!(responses["test-ti35uy2t"]!!.statusCode == 200)) {
+        if (!(responses["test-ti35uy2t"]!!.statusCode == 200)) {
             throw AssertionError()
         }
     }

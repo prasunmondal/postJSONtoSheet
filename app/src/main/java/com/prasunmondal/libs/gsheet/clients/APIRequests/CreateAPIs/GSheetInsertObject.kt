@@ -9,6 +9,7 @@ class GSheetInsertObject : CreateAPIs() {
         this.dataObject = dataObject
         return this
     }
+
     override fun getJSON(): JSONObject {
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "INSERT_OBJECT")

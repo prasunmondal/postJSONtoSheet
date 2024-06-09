@@ -54,7 +54,8 @@ open class APIResponse {
             val jsonArrayString = jsonString.trimIndent()
             val gson = Gson()
             val jsonArray = JsonParser().parse(jsonArrayString).asJsonArray
-            val contentListType: Type = TypeToken.getParameterized(MutableList::class.java, clazz).type
+            val contentListType: Type =
+                TypeToken.getParameterized(MutableList::class.java, clazz).type
             val t: List<T> = gson.fromJson(jsonArray, contentListType)
             return t
         }
@@ -63,8 +64,16 @@ open class APIResponse {
             Log.e("parsing to object ", jsonString.toString())
             var result = APIResponse()
             result.opId = jsonString.getString("opId")
-            result.affectedRows = try {(jsonString.getString("affectedRows")).toInt()} catch (e: Exception) {0}
-            result.statusCode = try {(jsonString.getString("statusCode")).toInt()} catch (e: Exception) {0}
+            result.affectedRows = try {
+                (jsonString.getString("affectedRows")).toInt()
+            } catch (e: Exception) {
+                0
+            }
+            result.statusCode = try {
+                (jsonString.getString("statusCode")).toInt()
+            } catch (e: Exception) {
+                0
+            }
             result.content = jsonString.getString("content")
             result.logs = jsonString.getString("logs")
             return result

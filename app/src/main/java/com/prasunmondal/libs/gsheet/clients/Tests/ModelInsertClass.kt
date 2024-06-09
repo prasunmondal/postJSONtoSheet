@@ -5,7 +5,7 @@ import java.io.Serializable
 
 //import com.prasunmondal.GSheet.serializer.Tech4BytesSerializable
 
-class ModelInsertObject: Serializable {
+class ModelInsertObject : Serializable {
     var name = ""
     var title = ""
 
@@ -18,6 +18,7 @@ class ModelInsertObject: Serializable {
         return "ModelInsertObject(name='$name', title='$title')"
     }
 }
+
 object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
     ProjectConfig.dBServerScriptURL,
     ProjectConfig.DB_SHEET_ID,
@@ -25,4 +26,5 @@ object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
     query = null,
     classTypeForResponseParsing = ModelInsertObject::class.java,
     appendInServer = true,
-    appendInLocal = true)
+    appendInLocal = true
+)

@@ -1,15 +1,16 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.CheckData
 
-import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
+import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.CheckData.GSheetCheckDataPresence
 import com.prasunmondal.libs.gsheet.clients.GScript
+import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
-import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 
 class CheckDataPresenceTest {
     init {
         test()
     }
+
     fun test() {
         val f = GSheetInsertObject()
         f.setUId("test-t218625")
@@ -43,8 +44,9 @@ class CheckDataPresenceTest {
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
-        if(!(responses["test-t34674"]!!.statusCode == 200
-                    && responses["test-w23456"]!!.statusCode == 204)) {
+        if (!(responses["test-t34674"]!!.statusCode == 200
+                    && responses["test-w23456"]!!.statusCode == 204)
+        ) {
             throw AssertionError()
         }
     }

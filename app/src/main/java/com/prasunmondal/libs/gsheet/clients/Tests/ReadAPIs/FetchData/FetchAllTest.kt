@@ -1,16 +1,17 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
 
-import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
-import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchAll
-import com.prasunmondal.libs.gsheet.clients.GScript
-import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchAll
+import com.prasunmondal.libs.gsheet.clients.GScript
+import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
+import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
 class FetchAllTest {
     constructor() {
         test()
     }
+
     fun test() {
         val e = GSheetDeleteAll()
         e.setUId("test-e.234")
@@ -48,8 +49,9 @@ class FetchAllTest {
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
-        if(!(responses["test-ti35uy2t"]!!.statusCode == 200
-                    && responses["test-w245ueyt"]!!.statusCode == 200)) {
+        if (!(responses["test-ti35uy2t"]!!.statusCode == 200
+                    && responses["test-w245ueyt"]!!.statusCode == 200)
+        ) {
             throw AssertionError()
         }
     }

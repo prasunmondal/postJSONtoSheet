@@ -1,14 +1,14 @@
 package com.prasunmondal.libs.gsheet.serializer
 
 import com.prasunmondal.libs.AppContexts.AppContexts
+import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchAll
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByQuery
-import com.prasunmondal.libs.gsheet.clients.GScript
-import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
+import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 import com.tech4bytes.extrack.centralCache.CentralCache
 
@@ -86,7 +86,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
 
                 val r = getFromServer()
                 var list: List<T> = listOf()
-                r.forEach { k,v ->
+                r.forEach { k, v ->
                     LogMe.log(v.content)
                     list = parseAndSaveToCache2(v.content, cacheKey)
                 }
@@ -114,7 +114,8 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     private fun parseNGetResponse2(rawResponse: String): List<T> {
         LogMe.log(rawResponse)
 //        val typeOfT: Type = TypeToken.getParameterized(MutableList::class.java, clazz).type
-        var parsedResponse = APIResponse.JsonArrayToObjectArray<T>(rawResponse, classTypeForResponseParsing)
+        var parsedResponse =
+            APIResponse.JsonArrayToObjectArray<T>(rawResponse, classTypeForResponseParsing)
 
         LogMe.log(parsedResponse.size)
         if ((getEmptyListIfEmpty || this.getEmptyListIfEmpty) && parsedResponse.isEmpty())
@@ -125,13 +126,14 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     }
 
     fun getGetRequest(useCache: Boolean = true, cacheTag: String = this.cacheTag): APIRequests? {
-        return if(useCache && isDataAvailable(cacheTag))
+        return if (useCache && isDataAvailable(cacheTag))
             null
         else
             getGetRequest()
     }
+
     private fun getGetRequest(): APIRequests {
-        return if(query == null || query!!.isEmpty()) {
+        return if (query == null || query!!.isEmpty()) {
             val request = GSheetFetchAll<T>()
             request.sheetId = sheetURL
             request.tabName = tabname
@@ -146,6 +148,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
             request
         }
     }
+
     fun isDataAvailable(cacheTag: String = "default"): Boolean {
         val useCache = true
         val cacheKey = getFilterName(cacheTag)
@@ -159,7 +162,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     }
 
     fun parseAndSaveToCache2(response: String, cacheKey: String? = null): List<T> {
-        val resolvedCacheKey = if(cacheKey.isNullOrEmpty()) {
+        val resolvedCacheKey = if (cacheKey.isNullOrEmpty()) {
             getFilterName()
         } else {
             cacheKey
@@ -218,7 +221,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
      */
     fun saveToLocal(dataObject: Any?, cacheKey: String? = getFilterName()) {
         var finalCacheKey = cacheKey
-        if(cacheKey == null) {
+        if (cacheKey == null) {
             finalCacheKey = getFilterName()
         }
         LogMe.log("Expensive Operation - saving data to local: $finalCacheKey")

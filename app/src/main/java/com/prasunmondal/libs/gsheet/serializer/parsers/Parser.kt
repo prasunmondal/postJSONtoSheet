@@ -25,7 +25,7 @@ class Parser {
             return jsonObjectList
         }
 
-//        fun <T> JsonArrayToObjectArray(jsonString: String, clazz: Class<T>): List<T> {
+        //        fun <T> JsonArrayToObjectArray(jsonString: String, clazz: Class<T>): List<T> {
 //            val jsonArrayString = jsonString.trimIndent()
 //            val gson = Gson()
 //            val jsonArray = JsonParser().parse(jsonArrayString).asJsonArray

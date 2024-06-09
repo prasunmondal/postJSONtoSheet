@@ -1,17 +1,18 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.CreateAPIs
 
+import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
+import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
-import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
-import com.prasunmondal.libs.Logs.LogMe
 
 class InsertObjectTest {
 
     constructor() {
         test()
     }
+
     fun test() {
         val e = GSheetDeleteAll()
         e.setUId("test-e.234")
@@ -44,10 +45,11 @@ class InsertObjectTest {
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
         LogMe.log((responses["test-e.234"]!!.statusCode % 100 == 2).toString())
-        if(!(responses["test-e.234"]!!.statusCode / 100 == 2
+        if (!(responses["test-e.234"]!!.statusCode / 100 == 2
                     && responses["test-t218625"]!!.statusCode == 200
                     && responses["test-d218625"]!!.statusCode == 200
-                    && responses["test-w8324545"]!!.statusCode == 500)) {
+                    && responses["test-w8324545"]!!.statusCode == 500)
+        ) {
             throw AssertionError()
         }
     }

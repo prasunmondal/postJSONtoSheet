@@ -10,6 +10,7 @@ class InsertUniqueObjectTest {
     constructor() {
         test()
     }
+
     fun test() {
         val t = GSheetInsertUniqueObject()
         t.setUId("test-t7569286")
@@ -29,8 +30,9 @@ class InsertUniqueObjectTest {
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)
 
-        if(!(responses["test-t7569286"]!!.statusCode == 200
-                    && responses["test-wi2u5ytf"]!!.statusCode == 400)) {
+        if (!(responses["test-t7569286"]!!.statusCode == 200
+                    && responses["test-wi2u5ytf"]!!.statusCode == 400)
+        ) {
             throw AssertionError()
         }
     }

@@ -194,7 +194,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    private fun testDeleteAll() {
+    //    private fun testDeleteAll() {
 //        val request = Delete.builder()
 //            .scriptId("")
 //            .sheetId(ProjectConfig.DB_SHEET_ID)
