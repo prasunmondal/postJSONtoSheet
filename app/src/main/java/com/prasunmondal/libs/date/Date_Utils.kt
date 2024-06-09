@@ -11,7 +11,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 
-class DateUtils {
+class Date_Utils {
     companion object {
         var datePattern = "yyyy-MM-dd HH:mm:ss"
         var timeZone = "Asia/Kolkata"

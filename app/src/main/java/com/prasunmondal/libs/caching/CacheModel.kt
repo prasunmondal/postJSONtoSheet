@@ -1,7 +1,7 @@
 package com.tech4bytes.mbrosv3.Utils.centralCache
 
 import com.prasunmondal.libs.Logs.LogMe
-import com.tech4bytes.mbrosv3.Utils.Date.DateUtils
+import com.tech4bytes.mbrosv3.Utils.Date.Date_Utils
 import java.time.LocalDateTime
 
 class CacheModel : java.io.Serializable {
@@ -11,7 +11,7 @@ class CacheModel : java.io.Serializable {
 
     constructor(content: Any?) {
         entryTime = LocalDateTime.now()
-        expiryTime = DateUtils.getNextTimeOccurrenceTimestamp(1)
+        expiryTime = Date_Utils.getNextTimeOccurrenceTimestamp(1)
 //        Toast.makeText(AppContexts.get(), "$entryTime - $expiryTime", Toast.LENGTH_SHORT).show()
         LogMe.log("$entryTime - $expiryTime")
         this.content = content
