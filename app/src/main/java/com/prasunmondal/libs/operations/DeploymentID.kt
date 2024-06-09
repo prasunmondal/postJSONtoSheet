@@ -3,6 +3,6 @@ package com.prasunmondal.libs.operations
 class DeploymentID {
     companion object {
         var deploymentId =
-            "AKfycbzFcdNL9flY5UzLlZEz-N2mT0MaS9OrlppDm8celVbOtku29VKzSpM_6TCD2BF7s65T"
+            "AKfycbwl_aw5g64ksg-lSnP6qV_84viC0N_pCSlUSXjzciNtoXs7VAZuuutK2L6dIiqVpz0D"
     }
 }

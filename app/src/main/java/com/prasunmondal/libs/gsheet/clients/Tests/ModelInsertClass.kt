@@ -23,6 +23,6 @@ object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
     ProjectConfig.DB_SHEET_ID,
     "Sheet2",
     query = null,
-    cacheObjectType = ModelInsertObject::class.java,
+    classTypeForResponseParsing = ModelInsertObject::class.java,
     appendInServer = true,
     appendInLocal = true)

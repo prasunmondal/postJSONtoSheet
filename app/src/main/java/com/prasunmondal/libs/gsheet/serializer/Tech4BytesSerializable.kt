@@ -28,7 +28,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     var query: String?
 
     @Transient
-    var cacheObjectType: Class<T>
+    var classTypeForResponseParsing: Class<T>
 
     @Transient
     var appendInServer: Boolean
@@ -47,7 +47,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         sheetURL: String,
         tabname: String,
         query: String? = null,
-        cacheObjectType: Class<T>,
+        classTypeForResponseParsing: Class<T>,
         appendInServer: Boolean,
         appendInLocal: Boolean,
         getEmptyListIfNoResultsFoundInServer: Boolean = false,
@@ -56,7 +56,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         this.sheetURL = sheetURL
         this.tabname = tabname
         this.query = query
-        this.cacheObjectType = cacheObjectType
+        this.classTypeForResponseParsing = classTypeForResponseParsing
         this.appendInServer = appendInServer
         this.appendInLocal = appendInLocal
         this.getEmptyListIfEmpty = getEmptyListIfNoResultsFoundInServer
@@ -114,7 +114,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     private fun parseNGetResponse2(rawResponse: String): List<T> {
         LogMe.log(rawResponse)
 //        val typeOfT: Type = TypeToken.getParameterized(MutableList::class.java, clazz).type
-        var parsedResponse = APIResponse.JsonArrayToObjectArray<T>(rawResponse, cacheObjectType)
+        var parsedResponse = APIResponse.JsonArrayToObjectArray<T>(rawResponse, classTypeForResponseParsing)
 
         LogMe.log(parsedResponse.size)
         if ((getEmptyListIfEmpty || this.getEmptyListIfEmpty) && parsedResponse.isEmpty())
@@ -132,15 +132,17 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
     }
     private fun getGetRequest(): APIRequests {
         return if(query == null || query!!.isEmpty()) {
-            val request = GSheetFetchAll()
+            val request = GSheetFetchAll<T>()
             request.sheetId = sheetURL
             request.tabName = tabname
+            request.classTypeForResponseParsing = classTypeForResponseParsing
             request
         } else {
-            val request = GSheetFetchByQuery()
+            val request = GSheetFetchByQuery<T>()
             request.sheetId = sheetURL
             request.tabName = tabname
             request.query = query!!
+            request.classTypeForResponseParsing = classTypeForResponseParsing
             request
         }
     }

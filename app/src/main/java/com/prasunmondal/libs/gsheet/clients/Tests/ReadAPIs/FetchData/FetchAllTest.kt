@@ -32,16 +32,18 @@ class FetchAllTest {
         d.setDataObject(ModelInsertObject("Dona", "Mondal"))
         GScript.addRequest(d)
 
-        val t = GSheetFetchAll()
+        val t = GSheetFetchAll<ModelInsertObject>()
         t.setUId("test-ti35uy2t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
         t.tabName("Sheet2")
+        t.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(t)
 
-        val w = GSheetFetchAll()
+        val w = GSheetFetchAll<ModelInsertObject>()
         w.setUId("test-w245ueyt")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
         w.tabName("Sheet2")
+        w.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(w)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)

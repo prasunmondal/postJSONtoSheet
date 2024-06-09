@@ -3,7 +3,7 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
 
-class GSheetFetchByAndCondition: ReadAPIs() {
+class GSheetFetchByAndCondition<T>: ReadAPIs<T>() {
     private var conditionAndColumn = ""
     private var conditionAndValue = ""
     override fun getJSON(): JSONObject {

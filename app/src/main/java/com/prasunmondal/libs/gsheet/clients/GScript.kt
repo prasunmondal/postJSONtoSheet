@@ -5,6 +5,7 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.post.serializable.PostObjectResponse
 import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
+import com.prasunmondal.libs.gsheet.serializer.parsers.Parser
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URL
@@ -87,11 +88,16 @@ abstract class GScript {
 
             LogMe.log("response2: $response2")
 
-            val apiResponsesList = APIResponse.convertJsonArrayStringToList(response2)
+            val apiResponsesList = Parser.convertJsonArrayStringToJsonObjList(response2)
             val map: MutableMap<String, APIResponse> = mutableMapOf()
             for(apiResponse in apiResponsesList) {
-                map[apiResponse.get("opId").toString()] = APIResponse.parseToAPIResponse(apiResponse)
+                val responseOpId = apiResponse.get("opId").toString()
+                map[responseOpId] = APIResponse.parseToAPIResponse(apiResponse)
+
+                val requestObj = calls[responseOpId]
+                LogMe.log(requestObj!!.prepareResponse(requestObj,map[responseOpId]!!, null).toString())
             }
+
 
 //            calls.forEach { t, u ->
 //                u.

@@ -2,6 +2,7 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests
 
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.StringUtils.StringUtils
+import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 
 abstract class APIRequests: GScript() {
     private var uId: String = setUId()
@@ -17,5 +18,17 @@ abstract class APIRequests: GScript() {
             this.uId = uId
         }
         return this.uId
+    }
+
+    open fun prepareResponse(requestObj: APIRequests, receivedResponseObj: APIResponse, buildingResponseObj: APIResponse? = null): APIResponse {
+        var buildingResponseObj_ = buildingResponseObj
+        if(buildingResponseObj_ == null)
+            buildingResponseObj_ = APIResponse()
+        buildingResponseObj_.affectedRows = receivedResponseObj.statusCode
+        buildingResponseObj_.statusCode = receivedResponseObj.statusCode
+        buildingResponseObj_.content = receivedResponseObj.content
+        buildingResponseObj_.opId = receivedResponseObj.opId
+        buildingResponseObj_.logs = receivedResponseObj.logs
+        return buildingResponseObj_
     }
 }
