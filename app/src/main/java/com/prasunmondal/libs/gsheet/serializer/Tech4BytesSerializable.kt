@@ -63,6 +63,8 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         this.cacheTag = cacheTag
     }
 
+    abstract fun getRequest(): APIRequests
+
     fun get(
         useCache: Boolean = true,
         getEmptyListIfEmpty: Boolean = false,

@@ -1,30 +1,15 @@
-package com.prasunmondal.libs.gsheet.clients.Tests
+package com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchAll
+import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
+import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 import com.prasunmondal.libs.gsheet.serializer.Tech4BytesSerializable
-import java.io.Serializable
 
-//import com.prasunmondal.GSheet.serializer.Tech4BytesSerializable
-
-class ModelInsertObject : Serializable {
-    var name = ""
-    var title = ""
-
-    constructor(name: String, title: String) {
-        this.name = name
-        this.title = title
-    }
-
-    override fun toString(): String {
-        return "ModelInsertObject(name='$name', title='$title')"
-    }
-}
-
-object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
+object TestSheet2Model : Tech4BytesSerializable<ModelInsertObject>(
     ProjectConfig.dBServerScriptURL,
     ProjectConfig.DB_SHEET_ID,
-    "TestSheet1",
+    "TestSheet2",
     query = null,
     classTypeForResponseParsing = ModelInsertObject::class.java,
     appendInServer = true,
@@ -33,9 +18,8 @@ object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
     override fun getRequest(): APIRequests {
         val t = GSheetFetchAll<ModelInsertObject>()
         t.sheetId = ProjectConfig.DB_SHEET_ID
-        t.tabName = "TestSheet1"
+        t.tabName = "TestSheet2"
         t.classTypeForResponseParsing = ModelInsertObject::class.java
         return t
     }
-
 }

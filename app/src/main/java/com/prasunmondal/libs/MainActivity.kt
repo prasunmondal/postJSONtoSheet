@@ -22,14 +22,14 @@ class MainActivity : AppCompatActivity() {
 
         Test.start()
 
-        LogMe.log("start")
-        ModelInsertClass.saveToServer(ModelInsertObject("Pras", "Mond"))
-        val list = ModelInsertClass.get(false)
-        ModelInsertClass.deleteData()
-        list.forEach {
-            LogMe.log(it.toString())
-        }
-        LogMe.log("end")
+//        LogMe.log("start")
+//        ModelInsertClass.saveToServer(ModelInsertObject("Pras", "Mond"))
+//        val list = ModelInsertClass.get(false)
+//        ModelInsertClass.deleteData()
+//        list.forEach {
+//            LogMe.log(it.toString())
+//        }
+//        LogMe.log("end")
 //        testGetAll()
 //        testDeleteAll()
 //        testInsertObj()
