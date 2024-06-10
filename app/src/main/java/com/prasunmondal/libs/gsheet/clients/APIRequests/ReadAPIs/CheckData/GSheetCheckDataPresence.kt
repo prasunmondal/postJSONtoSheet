@@ -7,6 +7,7 @@ import org.json.JSONObject
 class GSheetCheckDataPresence : ReadAPIs<CheckResult>() {
     private var keys = ""
     private var values = ""
+    override var classTypeForResponseParsing = CheckResult::class.java
 
     fun keys(keys: String) {
         this.keys = keys
@@ -16,13 +17,7 @@ class GSheetCheckDataPresence : ReadAPIs<CheckResult>() {
         this.values = values
     }
 
-    private fun initiallizeAttributes() {
-        classTypeForResponseParsing = CheckResult::class.java
-    }
-
     override fun getJSON(): JSONObject {
-        initiallizeAttributes()
-
         val postDataParams = JSONObject()
         postDataParams.put("opCode", "IS_PRESENT_CONDITIONAL_AND")
         postDataParams.put("sheetId", this.sheetId)

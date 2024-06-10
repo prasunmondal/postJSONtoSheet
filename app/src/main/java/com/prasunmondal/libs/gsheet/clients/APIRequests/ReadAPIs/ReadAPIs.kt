@@ -3,13 +3,16 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 import com.prasunmondal.libs.gsheet.clients.APIResponses.ReadResponse
+import com.prasunmondal.libs.gsheet.clients.responseCaching.ResponseCache
 import com.prasunmondal.libs.gsheet.serializer.parsers.Parser
+import com.tech4bytes.extrack.centralCache.CentralCache
 
-abstract class ReadAPIs<T> : APIRequests() {
+abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
     lateinit var sheetId: String
     lateinit var tabName: String
     lateinit var data: String
-    lateinit var classTypeForResponseParsing: Class<T>
+    open lateinit var classTypeForResponseParsing: Class<T>
+    var cacheData: Boolean = true
 
     fun sheetId(sheetId: String) {
         this.sheetId = sheetId
@@ -17,6 +20,10 @@ abstract class ReadAPIs<T> : APIRequests() {
 
     fun tabName(tabName: String) {
         this.tabName = tabName
+    }
+
+    override fun getCacheKey(): String {
+        return "${this.sheetId}\\${this.tabName}\\${getJSON()}"
     }
 
     override fun prepareResponse(

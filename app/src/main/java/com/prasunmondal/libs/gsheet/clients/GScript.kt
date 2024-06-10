@@ -2,17 +2,20 @@ package com.prasunmondal.libs.gsheet.clients
 
 import com.prasunmondal.libs.Logs.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
+import com.prasunmondal.libs.gsheet.clients.responseCaching.ResponseCache
 import com.prasunmondal.libs.gsheet.exceptions.GScriptDuplicateUIDException
 import com.prasunmondal.libs.gsheet.post.serializable.PostObjectResponse
 import com.prasunmondal.libs.gsheet.serializer.parsers.Parser
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.Serializable
 import java.net.URL
 import java.util.UUID
 import java.util.function.Consumer
 
-abstract class GScript {
+abstract class GScript: Serializable {
 
     lateinit var scriptURL: String
     lateinit var json: JSONObject
@@ -96,12 +99,15 @@ abstract class GScript {
             val map: MutableMap<String, APIResponse> = mutableMapOf()
             for (apiResponse in apiResponsesList) {
                 val responseOpId = apiResponse.get("opId").toString()
+                val requestObj = calls[responseOpId]
                 map[responseOpId] = APIResponse.parseToAPIResponse(apiResponse)
 
-                val requestObj = calls[responseOpId]
-                LogMe.log(
-                    requestObj!!.prepareResponse(requestObj, map[responseOpId]!!, null).toString()
-                )
+                val preparedResponse = requestObj!!.prepareResponse(requestObj, map[responseOpId]!!, null)
+
+                // Enable caching of responses only for read APIs
+                if(requestObj is ReadAPIs<*>) {
+                    ResponseCache.saveToLocal(requestObj, preparedResponse)
+                }
             }
 
 

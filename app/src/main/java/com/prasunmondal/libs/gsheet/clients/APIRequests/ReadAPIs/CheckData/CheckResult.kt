@@ -1,5 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.CheckData
 
-class CheckResult {
+import java.io.Serializable
+
+class CheckResult: Serializable {
     var result = false
 }

@@ -7,9 +7,10 @@ import com.google.gson.JsonParser
 import com.google.gson.reflect.TypeToken
 import com.prasunmondal.libs.gsheet.clients.JsonTags
 import org.json.JSONObject
+import java.io.Serializable
 import java.lang.reflect.Type
 
-open class APIResponse {
+open class APIResponse: Serializable {
     var content: String = ""
     var statusCode: Int = 0
     var affectedRows = 0
