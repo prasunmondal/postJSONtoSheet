@@ -17,20 +17,20 @@ class InsertObjectTest {
         val e = GSheetDeleteAll()
         e.setUId("test-e.234")
         e.sheetId(ProjectConfig.DB_SHEET_ID)
-        e.tabName("Sheet2")
+        e.tabName("TestSheet1")
         GScript.addRequest(e)
 
         val t = GSheetInsertObject()
         t.setUId("test-t218625")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
-        t.tabName("Sheet2")
+        t.tabName("TestSheet1")
         t.setDataObject(ModelInsertObject("Prasun", "Mondal"))
         GScript.addRequest(t)
 
         val d = GSheetInsertObject()
         d.setUId("test-d218625")
         d.sheetId(ProjectConfig.DB_SHEET_ID)
-        d.tabName("Sheet2")
+        d.tabName("TestSheet1")
         d.setDataObject(ModelInsertObject("Dona", "Mondal"))
         GScript.addRequest(d)
 

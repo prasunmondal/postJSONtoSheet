@@ -16,21 +16,21 @@ class FetchByAndConditionTest {
         val a = GSheetInsertObject()
         a.setUId("test-a-3456")
         a.sheetId(ProjectConfig.DB_SHEET_ID)
-        a.tabName("Sheet2")
+        a.tabName("TestSheet1")
         a.setDataObject(ModelInsertObject("Swagata", "Mondal"))
         GScript.addRequest(a)
 
         val b = GSheetInsertObject()
         b.setUId("test-a-3458")
         b.sheetId(ProjectConfig.DB_SHEET_ID)
-        b.tabName("Sheet2")
+        b.tabName("TestSheet1")
         b.setDataObject(ModelInsertObject("Dona", "Mondal"))
         GScript.addRequest(b)
 
         val t = GSheetFetchByAndCondition<ModelInsertObject>()
         t.setUId("test-tiu2t4t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
-        t.tabName("Sheet2")
+        t.tabName("TestSheet1")
         t.conditionAnd("name", "Swagata")
         t.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(t)
@@ -38,7 +38,7 @@ class FetchByAndConditionTest {
         val w = GSheetFetchByAndCondition<ModelInsertObject>()
         w.setUId("test-wiew7triq")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
-        w.tabName("Sheet2")
+        w.tabName("TestSheet1")
         w.conditionAnd("name", "Mondal")
         w.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(w)
@@ -46,7 +46,7 @@ class FetchByAndConditionTest {
         val r = GSheetFetchByAndCondition<ModelInsertObject>()
         r.setUId("test-r2654643")
         r.sheetId(ProjectConfig.DB_SHEET_ID)
-        r.tabName("Sheet2")
+        r.tabName("TestSheet1")
         r.conditionAnd("name", "Prasun")
         r.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(r)
@@ -55,7 +55,7 @@ class FetchByAndConditionTest {
         val z = GSheetFetchByAndCondition<ModelInsertObject>()
         z.setUId("test-z5634243")
         z.sheetId(ProjectConfig.DB_SHEET_ID)
-        z.tabName("Sheet2")
+        z.tabName("TestSheet1")
         z.conditionAnd("name", "Prasun")
         z.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(z)

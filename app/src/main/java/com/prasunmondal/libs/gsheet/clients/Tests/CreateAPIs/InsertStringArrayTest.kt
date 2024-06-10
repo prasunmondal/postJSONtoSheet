@@ -14,14 +14,14 @@ class InsertStringArrayTest {
         val t = GSheetInsertStringArray()
         t.setUId("test-ti735058")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
-        t.tabName("Sheet2")
+        t.tabName("TestSheet1")
         t.dataObject("prasun2,mondal1")
         GScript.addRequest(t)
 
         val w = GSheetInsertStringArray()
         w.setUId("test-w23u5y44")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
-        w.tabName("Sheet2")
+        w.tabName("TestSheet1")
         w.dataObject(listOf("prasun2", "mondal1"))
         GScript.addRequest(w)
 

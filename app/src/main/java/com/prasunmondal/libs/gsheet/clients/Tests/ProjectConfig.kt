@@ -6,7 +6,7 @@ import java.io.FileNotFoundException
 object ProjectConfig {
     @JvmField
     var DB_SHEET_ID = "1p3v4SgXPfB70YjCXCOj57BdLrDiFBoynt7yIWPQ8WmI"
-    var DB_TAB_APP_OWNER = "Sheet2"
+    var DB_TAB_APP_OWNER = "TestSheet1"
 
     @JvmStatic
     @get:Throws(FileNotFoundException::class)

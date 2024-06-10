@@ -15,7 +15,7 @@ class InsertUniqueObjectTest {
         val t = GSheetInsertUniqueObject()
         t.setUId("test-t7569286")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
-        t.tabName("Sheet2")
+        t.tabName("TestSheet1")
         t.setDataObject(ModelInsertObject("dgbnv", "skjbvkj"))
         t.uniqueColumn("name")
         GScript.addRequest(t)

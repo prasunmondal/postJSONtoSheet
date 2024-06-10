@@ -15,7 +15,7 @@ class FetchByOrConditionTest {
         val t = GSheetFetchByOrCondition<ModelInsertObject>()
         t.setUId("test-tiu2t4t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
-        t.tabName("Sheet2")
+        t.tabName("TestSheet1")
         t.conditionOr("name", "Swagata")
         t.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(t)
@@ -23,7 +23,7 @@ class FetchByOrConditionTest {
         val w = GSheetFetchByOrCondition<ModelInsertObject>()
         w.setUId("test-wiew7triq")
         w.sheetId(ProjectConfig.DB_SHEET_ID)
-        w.tabName("Sheet2")
+        w.tabName("TestSheet1")
         w.conditionOr("name", "Mondal")
         w.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(w)
@@ -31,7 +31,7 @@ class FetchByOrConditionTest {
         val r = GSheetFetchByOrCondition<ModelInsertObject>()
         r.setUId("test-r2654643")
         r.sheetId(ProjectConfig.DB_SHEET_ID)
-        r.tabName("Sheet2")
+        r.tabName("TestSheet1")
         r.conditionOr("name", "Prasun")
         r.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(r)
@@ -40,7 +40,7 @@ class FetchByOrConditionTest {
         val z = GSheetFetchByOrCondition<ModelInsertObject>()
         z.setUId("test-z5634243")
         z.sheetId(ProjectConfig.DB_SHEET_ID)
-        z.tabName("Sheet2")
+        z.tabName("TestSheet1")
         z.conditionOr("name", "Prasun")
         z.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(z)

@@ -13,7 +13,7 @@ class DeleteAllTest {
         val t = GSheetDeleteAll()
         t.setUId("test-ti35uy2t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
-        t.tabName("Sheet2")
+        t.tabName("TestSheet1")
         GScript.addRequest(t)
 
         val responses = GScript.execute(ProjectConfig.dBServerScriptURL)

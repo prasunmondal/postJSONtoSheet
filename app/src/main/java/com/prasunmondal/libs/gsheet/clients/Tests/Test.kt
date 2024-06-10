@@ -9,6 +9,7 @@ import com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData.FetchAllTes
 import com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData.FetchByAndConditionTest
 import com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData.FetchByOrConditionTest
 import com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData.FetchByQueryTest
+import com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps.TestBulkOps
 
 class Test {
 
@@ -32,6 +33,8 @@ class Test {
             DeleteByAndConditionTest()
             DeleteByOrConditionTest()
             CheckDataPresenceTest()
+
+            TestBulkOps()
 //        }
 
 //        fun testInsertObject() {

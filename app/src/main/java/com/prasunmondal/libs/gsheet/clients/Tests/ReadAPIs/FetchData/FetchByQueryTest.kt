@@ -14,7 +14,7 @@ class FetchByQueryTest {
         val t = GSheetFetchByQuery<ModelInsertObject>()
         t.setUId("test-83567t")
         t.sheetId(ProjectConfig.DB_SHEET_ID)
-        t.tabName("Sheet2")
+        t.tabName("TestSheet1")
         t.query("=QUERY(IMPORTRANGE(\"https://docs.google.com/spreadsheets/d/1p3v4SgXPfB70YjCXCOj57BdLrDiFBoynt7yIWPQ8WmI\",\"sheet2!A1:Az\"), \"select *\")")
         t.classTypeForResponseParsing = ModelInsertObject::class.java
         GScript.addRequest(t)

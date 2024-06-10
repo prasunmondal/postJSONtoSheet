@@ -1,14 +1,15 @@
-package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
+package com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.CheckData.GSheetCheckDataPresence
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchAll
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 
-class FetchAllTest {
-    constructor() {
+class TestBulkOps {
+    init {
         test()
     }
 

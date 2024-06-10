@@ -22,7 +22,7 @@ class ModelInsertObject : Serializable {
 object ModelInsertClass : Tech4BytesSerializable<ModelInsertObject>(
     ProjectConfig.dBServerScriptURL,
     ProjectConfig.DB_SHEET_ID,
-    "Sheet2",
+    "TestSheet1",
     query = null,
     classTypeForResponseParsing = ModelInsertObject::class.java,
     appendInServer = true,
