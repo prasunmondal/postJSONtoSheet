@@ -61,6 +61,12 @@ abstract class GScript: Serializable {
             return uid
         }
 
+        fun addRequest(apiCallsList: List<APIRequests>) {
+            apiCallsList.forEach {
+                addRequest(it)
+            }
+        }
+
         fun addRequest(uid: String, apiCall: APIRequests) {
             if (calls.containsKey(uid)) {
                 throw GScriptDuplicateUIDException()

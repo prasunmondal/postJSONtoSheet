@@ -2,13 +2,14 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests
 
 import com.android.volley.Cache
 import com.prasunmondal.libs.StringUtils.StringUtils
+import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.responseCaching.ResponseCache
 
 abstract class APIRequests: GScript() {
     private var uId: String = setUId()
-    var opCode: String = ""
+    open var opCode: String = ""
 
     fun getUId(): String {
         return uId
@@ -21,6 +22,10 @@ abstract class APIRequests: GScript() {
             this.uId = uId
         }
         return this.uId
+    }
+
+    open fun <T> defaultInitialize(request: APIRequests, reqValues: APIRequestsTemplates<T>): APIRequests {
+        return request
     }
 
     open fun prepareResponse(

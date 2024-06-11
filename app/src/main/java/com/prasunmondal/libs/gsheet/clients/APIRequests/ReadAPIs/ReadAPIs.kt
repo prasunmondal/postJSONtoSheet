@@ -1,11 +1,11 @@
 package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
+import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequestsTemplates
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 import com.prasunmondal.libs.gsheet.clients.APIResponses.ReadResponse
 import com.prasunmondal.libs.gsheet.clients.responseCaching.ResponseCache
 import com.prasunmondal.libs.gsheet.serializer.parsers.Parser
-import com.tech4bytes.extrack.centralCache.CentralCache
 
 abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
     lateinit var sheetId: String
@@ -26,6 +26,15 @@ abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
         return "${this.sheetId}\\${this.tabName}\\${getJSON()}"
     }
 
+    override fun <T> defaultInitialize(request: APIRequests, reqValues: APIRequestsTemplates<T>): APIRequests {
+        var request_ = request as ReadAPIs<T>
+        super.defaultInitialize(request, reqValues)
+        request_.sheetId = reqValues.sheetURL
+        request_.tabName = reqValues.tabname
+        request_.classTypeForResponseParsing = reqValues.classTypeForResponseParsing
+        request_.cacheData = cacheData
+        return request
+    }
     override fun prepareResponse(
         requestObj: APIRequests,
         receivedResponseObj: APIResponse,
