@@ -4,9 +4,6 @@ package com.prasunmondal.libs
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.libs.AppContexts.AppContexts
-import com.prasunmondal.libs.Logs.LogMe
-import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertClass
-import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.Test
 
 class MainActivity : AppCompatActivity() {

@@ -10,7 +10,7 @@ import org.json.JSONObject
 import java.io.Serializable
 import java.lang.reflect.Type
 
-open class APIResponse: Serializable {
+open class APIResponse : Serializable {
     var content: String = ""
     var statusCode: Int = 0
     var affectedRows = 0

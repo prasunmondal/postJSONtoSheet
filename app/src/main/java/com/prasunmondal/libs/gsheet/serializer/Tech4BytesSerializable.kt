@@ -51,7 +51,8 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         appendInServer: Boolean,
         appendInLocal: Boolean,
         getEmptyListIfNoResultsFoundInServer: Boolean = false,
-        cacheTag: String = "default") {
+        cacheTag: String = "default"
+    ) {
         this.scriptURL = scriptURL
         this.sheetURL = sheetURL
         this.tabname = tabname

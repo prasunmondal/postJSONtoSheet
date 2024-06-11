@@ -26,7 +26,10 @@ abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
         return "${this.sheetId}\\${this.tabName}\\${getJSON()}"
     }
 
-    override fun <T> defaultInitialize(request: APIRequests, reqValues: APIRequestsTemplates<T>): APIRequests {
+    override fun <T> defaultInitialize(
+        request: APIRequests,
+        reqValues: APIRequestsTemplates<T>
+    ): APIRequests {
         var request_ = request as ReadAPIs<T>
         super.defaultInitialize(request, reqValues)
         request_.sheetId = reqValues.sheetURL
@@ -35,6 +38,7 @@ abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
         request_.cacheData = cacheData
         return request
     }
+
     override fun prepareResponse(
         requestObj: APIRequests,
         receivedResponseObj: APIResponse,

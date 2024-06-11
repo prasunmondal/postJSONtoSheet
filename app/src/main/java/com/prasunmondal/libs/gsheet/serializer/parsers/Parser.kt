@@ -38,7 +38,8 @@ class Parser {
             val jsonArrayString = jsonString.trimIndent()
             val gson = Gson()
             val jsonArray = JsonParser().parse(jsonArrayString).asJsonArray
-            val contentListType: Type = TypeToken.getParameterized(MutableList::class.java, clazz).type
+            val contentListType: Type =
+                TypeToken.getParameterized(MutableList::class.java, clazz).type
             val t: List<T> = gson.fromJson(jsonArray, contentListType)
             return t
         }

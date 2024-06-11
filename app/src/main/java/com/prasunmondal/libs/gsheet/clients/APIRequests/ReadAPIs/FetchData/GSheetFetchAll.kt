@@ -3,7 +3,6 @@ package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequestsTemplates
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
-import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 import org.json.JSONObject
 
 class GSheetFetchAll<T> : ReadAPIs<T>() {
@@ -17,7 +16,10 @@ class GSheetFetchAll<T> : ReadAPIs<T>() {
         return postDataParams
     }
 
-    override fun <T> defaultInitialize(request: APIRequests, reqValues: APIRequestsTemplates<T>): APIRequests {
+    override fun <T> defaultInitialize(
+        request: APIRequests,
+        reqValues: APIRequestsTemplates<T>
+    ): APIRequests {
         var request_ = request as ReadAPIs<T>
         super.defaultInitialize(request, reqValues)
         request_.opCode = opCode

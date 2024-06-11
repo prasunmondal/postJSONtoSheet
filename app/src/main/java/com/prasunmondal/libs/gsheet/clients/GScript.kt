@@ -15,7 +15,7 @@ import java.net.URL
 import java.util.UUID
 import java.util.function.Consumer
 
-abstract class GScript: Serializable {
+abstract class GScript : Serializable {
 
     lateinit var scriptURL: String
     lateinit var json: JSONObject
@@ -108,10 +108,11 @@ abstract class GScript: Serializable {
                 val requestObj = calls[responseOpId]
                 map[responseOpId] = APIResponse.parseToAPIResponse(apiResponse)
 
-                val preparedResponse = requestObj!!.prepareResponse(requestObj, map[responseOpId]!!, null)
+                val preparedResponse =
+                    requestObj!!.prepareResponse(requestObj, map[responseOpId]!!, null)
 
                 // Enable caching of responses only for read APIs
-                if(requestObj is ReadAPIs<*>) {
+                if (requestObj is ReadAPIs<*>) {
                     ResponseCache.saveToLocal(requestObj, preparedResponse)
                 }
             }

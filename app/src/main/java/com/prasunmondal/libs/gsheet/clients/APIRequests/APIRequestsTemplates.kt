@@ -45,7 +45,8 @@ open class APIRequestsTemplates<T> {
         appendInServer: Boolean,
         appendInLocal: Boolean,
         getEmptyListIfNoResultsFoundInServer: Boolean = false,
-        cacheTag: String = "default") {
+        cacheTag: String = "default"
+    ) {
         this.scriptURL = scriptURL
         this.sheetURL = sheetURL
         this.tabname = tabname
@@ -59,7 +60,7 @@ open class APIRequestsTemplates<T> {
 
     fun prepareFetchAllRequest(): GSheetFetchAll<T> {
         val request = GSheetFetchAll<T>()
-        if(sheetURL.isNotBlank() && tabname.isNotBlank()) {
+        if (sheetURL.isNotBlank() && tabname.isNotBlank()) {
             request.sheetId(sheetURL)
             request.tabName(tabname)
             request.classTypeForResponseParsing = classTypeForResponseParsing
@@ -69,7 +70,7 @@ open class APIRequestsTemplates<T> {
 
     fun prepareDeleteAllRequest(): APIRequests {
         val request = GSheetDeleteAll()
-        if(sheetURL.isNotBlank() && tabname.isNotBlank()) {
+        if (sheetURL.isNotBlank() && tabname.isNotBlank()) {
             request.sheetId(sheetURL)
             request.tabName(tabname)
             apiTemplates["DELETE_ALL"] = request
@@ -84,6 +85,7 @@ open class APIRequestsTemplates<T> {
         request.setDataObject(obj as Any)
         return request
     }
+
     fun prepareInsertRequest(obj: List<T>): List<GSheetInsertObject> {
         val requestsList: List<GSheetInsertObject> = listOf()
         obj.forEach {
@@ -97,14 +99,14 @@ open class APIRequestsTemplates<T> {
 
     fun <T> initialize(requestToInitiallize: APIRequests): Any {
         var request = requestToInitiallize
-        if(requestToInitiallize is ReadAPIs<*>) {
+        if (requestToInitiallize is ReadAPIs<*>) {
             request = requestToInitiallize as ReadAPIs<T>
             request.sheetId = sheetURL
             request.tabName = tabname
             request.classTypeForResponseParsing = classTypeForResponseParsing as Class<T>
             request.cacheData = true
         }
-        if(requestToInitiallize is ReadAPIs<*>) {
+        if (requestToInitiallize is ReadAPIs<*>) {
             request = requestToInitiallize as ReadAPIs<T>
             request.sheetId = sheetURL
             request.tabName = tabname

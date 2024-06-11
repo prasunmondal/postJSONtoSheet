@@ -1,7 +1,5 @@
 package com.prasunmondal.libs.gsheet.clients.APIResponses
 
-import java.io.Serializable
-
 class ReadResponse<T> : APIResponse() {
     lateinit var sheetId: String
     lateinit var tabName: String
