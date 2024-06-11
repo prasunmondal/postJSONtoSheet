@@ -9,6 +9,7 @@ class TestBulkOps {
     }
 
     fun test() {
+        TestSheet1Model.get()
         GScript.addRequest(TestSheet1Model.prepareFetchAllRequest())
         GScript.addRequest(TestSheet1Model.customFetchRequest())
         GScript.addRequest(TestSheet2Model.prepareFetchAllRequest())

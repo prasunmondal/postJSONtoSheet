@@ -1,7 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.CheckData
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
-import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequestsTemplates
+import com.prasunmondal.libs.gsheet.clients.responseCaching.APIRequestsTemplates
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import org.json.JSONObject
 

@@ -1,7 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
-import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequestsTemplates
+import com.prasunmondal.libs.gsheet.clients.responseCaching.APIRequestsTemplates
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByAndCondition
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
