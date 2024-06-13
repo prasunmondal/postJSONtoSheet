@@ -42,16 +42,21 @@ public class IOObjectToFile {
 
     public synchronized void WriteObjectToFile(Context context, String fileName, Object object) throws IOException {
         LogMe.log("Writing to file: " + fileName);
+        LogMe.log("Writing to file content: " + object.toString());
+        FileOutputStream fos = null;
+        ObjectOutputStream os = null;
         try {
-            FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-            ObjectOutputStream os = new ObjectOutputStream(fos);
+            fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            os = new ObjectOutputStream(fos);
             os.writeObject(object);
-            os.close();
-            fos.close();
         } catch (Exception e) {
             System.out.println("Error while writing object to file: " + fileName);
             System.out.println(e);
             throw e;
+        } finally {
+            assert os != null;
+            os.close();
+            fos.close();
         }
     }
 
