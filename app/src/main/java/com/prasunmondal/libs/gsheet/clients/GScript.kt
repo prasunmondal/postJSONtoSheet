@@ -25,17 +25,12 @@ abstract class GScript : Serializable {
 
     // TODO: add direct execution
     fun execute(scriptURL: String): APIResponse {
-        addRequest(this as APIRequests)
-        val responseMap = Companion.execute(scriptURL)
-        return responseMap.values.iterator().next()
-
-//        return PostObjectResponse("")
-//
-//        val scriptUrl = URL(scriptURL)
-//
-//        val c = ExecutePostCalls(scriptUrl, getJSON()) { response -> postExecute(response) }
-//        var response = c.execute().get()
-//        return PostObjectResponse(response).getObject()
+        val apiRequest = this  as APIRequests
+        val instantCalls: MutableMap<String, APIRequests> = mutableMapOf()
+        var uId = generateUniqueString()
+        instantCalls[uId] = apiRequest
+        val response = GScript.execute(instantCalls, scriptURL)
+        return response[uId]!!
     }
 
     fun postExecute(response: String) {
@@ -51,7 +46,6 @@ abstract class GScript : Serializable {
 
     companion object {
         var calls = mutableMapOf<String, APIRequests>()
-
         fun addRequest(apiCall: APIRequests?): String? {
             if (apiCall == null)
                 return null
@@ -74,9 +68,9 @@ abstract class GScript : Serializable {
             calls[uid] = apiCall
         }
 
-        fun getCombinedJson(): Array<JSONObject> {
+        fun getCombinedJson(requestList: MutableMap<String, APIRequests>): Array<JSONObject> {
             val jsonArray = mutableListOf<JSONObject>()
-            calls.forEach { (uid, apiCall) ->
+            requestList.forEach { (uid, apiCall) ->
                 val requestJson = apiCall.getJSON()
                 requestJson.put("opId", uid)
                 jsonArray.add(requestJson)
@@ -85,8 +79,13 @@ abstract class GScript : Serializable {
         }
 
         fun execute(scriptURL: String): MutableMap<String, APIResponse> {
+            val responseList = execute(calls, scriptURL)
+            calls.clear()
+            return responseList
+        }
+        fun execute(calls: MutableMap<String, APIRequests>, scriptURL: String): MutableMap<String, APIResponse> {
             val scriptUrl = URL(scriptURL)
-            val jsonObjectArray = getCombinedJson()
+            val jsonObjectArray = getCombinedJson(calls)
 
             val jsonArray = JSONArray()
             for (jsonObject in jsonObjectArray) {
@@ -122,7 +121,6 @@ abstract class GScript : Serializable {
 //                u.
 //            }
 
-            calls.clear()
             return map
         }
 
