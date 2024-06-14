@@ -2,7 +2,7 @@ package com.tech4bytes.extrack.centralCache
 
 class Configuration {
     object configs {
-        var storagePatternType = DATA_STORING_TYPE.CLASS_FILES
+        var storagePatternType = DATA_STORING_TYPE.SINGLE_FILE
     }
 
     enum class DATA_LOAD_MODE {
