@@ -36,6 +36,7 @@ class CentralCache {
                 getFileName(cacheKey)
             ) as MutableMap<String, MutableMap<String, CacheModel>>
             LogMe.log("Reading records from file: ${getFileName(cacheKey)}: Successful")
+            LogMe.log("Reading records from file contents: $result")
             result
         } catch (e: Exception) {
             LogMe.log("Reading records from file: ${getFileName(cacheKey)}: Failed")
@@ -57,7 +58,7 @@ class CentralCache {
             }
         }
 
-        fun <T> get(context: Context, key: String, useCache: Boolean = true): T? {
+        fun <T> get(context: Context, key: String, useCache: Boolean = true, appendCacheKeyPrefix: Boolean = true): T? {
 
 
             // if user wants to force refresh the values in the cache, pass useCache as false
@@ -66,7 +67,7 @@ class CentralCache {
                 return null
             }
 
-            val cacheObjectKey = CacheUtils.getCacheKey(key)
+            val cacheObjectKey = CacheUtils.getCacheKey(key, appendCacheKeyPrefix)
             val cacheClassKey = CacheUtils.getClassKey()
             LogMe.log("Getting data from Cache - key: $cacheObjectKey")
             var classElements = centralCache.cache[cacheClassKey]
@@ -117,9 +118,9 @@ class CentralCache {
 //            return content
 //        }
 
-        fun <T> put(key: String, data: T) {
+        fun <T> put(key: String, data: T, appendCacheKeyPrefix: Boolean = true) {
             val cacheClassKey = CacheUtils.getClassKey()
-            val cacheKey = CacheUtils.getCacheKey(key)
+            val cacheKey = CacheUtils.getCacheKey(key, appendCacheKeyPrefix)
             LogMe.log("Putting data to Cache - key: $cacheKey")
             val presentData = centralCache.cache[cacheClassKey]
             if (presentData == null) {

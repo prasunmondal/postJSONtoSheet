@@ -3,7 +3,9 @@ package com.tech4bytes.extrack.centralCache.utils
 class CacheUtils {
 
     companion object {
-        fun getCacheKey(key: String): String {
+        fun getCacheKey(key: String, appendCacheKeyPrefix: Boolean = true): String {
+            if(!appendCacheKeyPrefix)
+                return key
             return ClassDetailsUtils.getCaller() + "/" + key
         }
 

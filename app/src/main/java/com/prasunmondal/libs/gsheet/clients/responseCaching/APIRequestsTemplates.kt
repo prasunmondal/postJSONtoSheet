@@ -1,6 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.responseCaching
 
 import android.content.Context
+import com.prasunmondal.libs.AppContexts.AppContexts
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
@@ -8,7 +9,7 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GShee
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.tech4bytes.extrack.centralCache.CentralCache
 
-open class APIRequestsTemplates<T> {
+open class APIRequestsTemplates<T>: CachingUtils {
 
     val apiTemplates: MutableMap<String, APIRequests> = mutableMapOf()
 
@@ -71,6 +72,10 @@ open class APIRequestsTemplates<T> {
             request.classTypeForResponseParsing = classTypeForResponseParsing
         }
         return request
+    }
+
+    fun fetchAll(useCache: Boolean = true): List<T> {
+        return get(AppContexts.get(), prepareFetchAllRequest(), useCache)
     }
 
     fun prepareDeleteAllRequest(): APIRequests {
