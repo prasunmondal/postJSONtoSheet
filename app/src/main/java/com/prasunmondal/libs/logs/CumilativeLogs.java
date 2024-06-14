@@ -1,4 +1,6 @@
-package com.prasunmondal.libs.Logs;
+package com.prasunmondal.libs.logs;
+
+import com.prasunmondal.libs.logs.instant.terminal.LogMe;
 
 public class CumilativeLogs {
     static String appendingLogs = "";

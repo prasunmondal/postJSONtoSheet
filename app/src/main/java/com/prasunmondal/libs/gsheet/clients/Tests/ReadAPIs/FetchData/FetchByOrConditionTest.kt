@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.ReadAPIs.FetchData
 
-import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByOrCondition
 import com.prasunmondal.libs.gsheet.clients.GScript
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject

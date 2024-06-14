@@ -2,7 +2,7 @@ package com.prasunmondal.libs.files;
 
 import android.content.Context;
 
-import com.prasunmondal.libs.Logs.LogMe;
+import com.prasunmondal.libs.logs.instant.terminal.LogMe;
 
 import java.io.File;
 import java.io.FileInputStream;

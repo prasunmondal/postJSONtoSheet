@@ -1,4 +1,8 @@
-package com.prasunmondal.libs.Logs;
+package com.prasunmondal.libs.logs.instant.terminal;
+
+import com.prasunmondal.libs.logs.CumilativeLogs;
+import com.prasunmondal.libs.logs.LogConfigurations;
+import com.prasunmondal.libs.logs.LogUtils;
 
 public class LogStackTrace extends CumilativeLogs {
     public static void logStackTrace() {

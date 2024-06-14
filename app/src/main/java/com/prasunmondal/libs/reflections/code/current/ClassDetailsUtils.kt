@@ -1,5 +1,6 @@
-package com.tech4bytes.extrack.centralCache.utils
+package com.prasunmondal.libs.reflections.code.current
 
+import com.prasunmondal.libs.gsheet.clients.Tests.Test
 import kotlin.reflect.KClass
 
 class ClassDetailsUtils {
@@ -13,7 +14,7 @@ class ClassDetailsUtils {
         fun getCaller(thresholdClass: String = ""): String {
             val parentPackage =
                 if (thresholdClass.isNotEmpty()) thresholdClass
-                else "com.tech4bytes.extrack.centralCache"
+                else "com.prasunmondal.libs.reflections.code"
 
             var startSearching = false
 
@@ -27,12 +28,13 @@ class ClassDetailsUtils {
                     startSearching = true
 
                 if (startSearching && !trace.className.startsWith(parentPackage))
-                    return Class.forName(trace.className).name
+                    return Class.forName(trace.className).name.substringBefore('$')
             }
             return ""
         }
 
         fun <T : Any> getClassName(clazz: KClass<T>): String {
+            Test.javaClass.name
             return clazz.qualifiedName + ""
         }
     }

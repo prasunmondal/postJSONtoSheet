@@ -1,4 +1,4 @@
-package com.prasunmondal.libs.operations
+package com.prasunmondal.libs.caching.operations
 
 class DeploymentID {
     companion object {

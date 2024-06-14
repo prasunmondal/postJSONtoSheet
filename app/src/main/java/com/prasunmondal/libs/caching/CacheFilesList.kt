@@ -1,7 +1,7 @@
 package com.tech4bytes.mbrosv3.Utils.centralCache
 
 import com.prasunmondal.libs.AppContexts.AppContexts
-import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.files.IOObjectToFile
 
 class CacheFilesList : java.io.Serializable {

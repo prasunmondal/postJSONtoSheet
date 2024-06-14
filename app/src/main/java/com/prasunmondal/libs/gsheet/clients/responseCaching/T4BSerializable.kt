@@ -1,7 +1,7 @@
 //package com.prasunmondal.libs.gsheet.clients.responseCaching
 //
 //import com.prasunmondal.libs.AppContexts.AppContexts
-//import com.prasunmondal.libs.Logs.LogMe
+//import com.prasunmondal.libs.Logs.instant.LogMe
 //import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 //import com.prasunmondal.libs.gsheet.clients.GScript
 //import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig

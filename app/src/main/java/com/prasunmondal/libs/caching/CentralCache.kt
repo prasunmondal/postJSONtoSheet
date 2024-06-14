@@ -2,10 +2,10 @@ package com.tech4bytes.extrack.centralCache
 
 import android.content.Context
 import com.prasunmondal.libs.AppContexts.AppContexts
-import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.files.IOObjectToFile
 import com.tech4bytes.extrack.centralCache.utils.CacheUtils
-import com.tech4bytes.extrack.centralCache.utils.ClassDetailsUtils
+import com.prasunmondal.libs.reflections.code.current.ClassDetailsUtils
 import com.tech4bytes.mbrosv3.Utils.centralCache.CacheFilesList
 import com.tech4bytes.mbrosv3.Utils.centralCache.CacheModel
 import java.time.LocalDateTime

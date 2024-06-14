@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.responseCaching
 
-import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse

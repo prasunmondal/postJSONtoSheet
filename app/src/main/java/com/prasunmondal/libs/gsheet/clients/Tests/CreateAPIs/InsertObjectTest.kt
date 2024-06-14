@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.CreateAPIs
 
-import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
 import com.prasunmondal.libs.gsheet.clients.GScript

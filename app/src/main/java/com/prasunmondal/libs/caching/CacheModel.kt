@@ -1,6 +1,6 @@
 package com.tech4bytes.mbrosv3.Utils.centralCache
 
-import com.prasunmondal.libs.Logs.LogMe
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.tech4bytes.mbrosv3.Utils.Date.Date_Utils
 import java.time.LocalDateTime
 

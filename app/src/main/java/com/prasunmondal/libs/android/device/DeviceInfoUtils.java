@@ -1,4 +1,4 @@
-package com.prasunmondal.libs.Logs;
+package com.prasunmondal.libs.android.device;
 
 import android.os.Build;
 

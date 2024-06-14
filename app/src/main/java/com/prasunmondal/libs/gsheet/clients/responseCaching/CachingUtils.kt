@@ -1,8 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.responseCaching
 
 import android.content.Context
-import com.prasunmondal.libs.Logs.LogMe
-import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps.TestSheet1Model.scriptURL
 import com.prasunmondal.libs.gsheet.serializer.Tech4BytesSerializableLocks
