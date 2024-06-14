@@ -31,9 +31,9 @@ object LogUtils {
     val prefix: String
         get() {
             val caller = caller
-            return LogConfigurations.APP_LOGS_PREFIX + GetStacktraceDetails.className(caller) + ":" + getLineNumber(
+            return LogConfigurations.APP_LOGS_PREFIX + GetStacktraceDetails.className(caller) + ":" + GetStacktraceDetails.getLineNumber(
                 caller
-            ) + "|" + getMethodName(caller) + "(): "
+            ) + "|" + GetStacktraceDetails.getMethodName(caller) + "(): "
         }
 
     @JvmStatic
@@ -72,18 +72,6 @@ object LogUtils {
             str.append(LogConfigurations.OFFSET_STRING_UNIT)
         }
         return str.toString()
-    }
-
-    private fun getLineNumber(caller: StackTraceElement): Int {
-        return caller.lineNumber
-    }
-
-    private fun getMethodName(caller: StackTraceElement): String {
-        var methodName = caller.methodName
-        if (methodName == "<init>") {
-            methodName = LogConfigurations.CONSTRUCTOR_INDICATOR
-        }
-        return methodName
     }
 
     fun getdepth(): Int {
