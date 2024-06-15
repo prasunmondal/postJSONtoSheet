@@ -2,11 +2,12 @@ package com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps
 
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchByAndCondition
+import com.prasunmondal.libs.gsheet.clients.GSheetSerialized
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 import com.prasunmondal.libs.gsheet.clients.responseCaching.APIRequestsTemplates
 
-object TestSheet1Model : APIRequestsTemplates<ModelInsertObject>(
+object TestSheet1Model : GSheetSerialized<ModelInsertObject>(
     ProjectConfig.dBServerScriptURL,
     ProjectConfig.DB_SHEET_ID,
     "TestSheet1",

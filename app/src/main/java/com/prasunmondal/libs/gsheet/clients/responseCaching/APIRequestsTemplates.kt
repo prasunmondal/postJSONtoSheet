@@ -6,6 +6,9 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertO
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.FetchData.GSheetFetchAll
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
+import com.prasunmondal.libs.gsheet.clients.GScript
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
+import com.tech4bytes.extrack.centralCache.CentralCache
 
 open class APIRequestsTemplates<T> : CachingUtils {
 
@@ -72,8 +75,18 @@ open class APIRequestsTemplates<T> : CachingUtils {
         return request
     }
 
+    fun queueFetchAll() {
+        val request = prepareFetchAllRequest()
+        GScript.addRequest(request)
+    }
+
     fun fetchAll(useCache: Boolean = true): List<T> {
         return get(AppContexts.get(), prepareFetchAllRequest(), useCache)
+    }
+
+    fun queueDeleteAll() {
+        val request = prepareDeleteAllRequest()
+        GScript.addRequest(request)
     }
 
     fun prepareDeleteAllRequest(): APIRequests {
@@ -86,6 +99,15 @@ open class APIRequestsTemplates<T> : CachingUtils {
         return request
     }
 
+    fun insert(obj: T) {
+        prepareInsertRequest(obj).execute(this.scriptURL)
+    }
+
+    fun queueInsert(obj: List<T>) {
+        val listOfReqs = prepareInsertRequest(obj)
+        GScript.addRequest(listOfReqs)
+    }
+
     fun prepareInsertRequest(obj: T): GSheetInsertObject {
         val request = GSheetInsertObject()
         request.sheetId = sheetURL
@@ -95,12 +117,9 @@ open class APIRequestsTemplates<T> : CachingUtils {
     }
 
     fun prepareInsertRequest(obj: List<T>): List<GSheetInsertObject> {
-        val requestsList: List<GSheetInsertObject> = listOf()
+        val requestsList: MutableList<GSheetInsertObject> = mutableListOf()
         obj.forEach {
-            val request = GSheetInsertObject()
-            request.sheetId = sheetURL
-            request.tabName = tabname
-            request.setDataObject(it as Any)
+            requestsList.add(prepareInsertRequest(it))
         }
         return requestsList
     }

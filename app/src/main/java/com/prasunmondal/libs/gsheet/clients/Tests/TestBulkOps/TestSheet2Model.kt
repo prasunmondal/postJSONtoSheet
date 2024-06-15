@@ -1,10 +1,11 @@
 package com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps
 
+import com.prasunmondal.libs.gsheet.clients.GSheetSerialized
 import com.prasunmondal.libs.gsheet.clients.Tests.ModelInsertObject
 import com.prasunmondal.libs.gsheet.clients.Tests.ProjectConfig
 import com.prasunmondal.libs.gsheet.clients.responseCaching.APIRequestsTemplates
 
-object TestSheet2Model : APIRequestsTemplates<ModelInsertObject>(
+object TestSheet2Model : GSheetSerialized<ModelInsertObject>(
     ProjectConfig.dBServerScriptURL,
     ProjectConfig.DB_SHEET_ID,
     "TestSheet2",

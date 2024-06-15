@@ -6,11 +6,9 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps.TestSheet1Model.scriptURL
 import com.prasunmondal.libs.gsheet.serializer.Tech4BytesSerializableLocks
 import com.prasunmondal.libs.logs.instant.terminal.LogMe
+import com.tech4bytes.extrack.centralCache.CentralCache
 
 open class CachingUtils {
-
-//    companion object {
-
     fun <T> get(context: Context, request: ReadAPIs<T>, useCache: Boolean): List<T> {
         val cacheKey = request.getCacheKey()
         val cacheResults = try {
@@ -46,6 +44,8 @@ open class CachingUtils {
                     cacheResults as List<T>
             }
         }
-//        }
+    }
+    fun <T> insert(obj: List<T>) {
+
     }
 }
