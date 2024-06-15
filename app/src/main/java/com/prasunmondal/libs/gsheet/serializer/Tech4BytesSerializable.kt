@@ -1,6 +1,7 @@
 package com.prasunmondal.libs.gsheet.serializer
 
-import com.prasunmondal.libs.AppContexts.AppContexts
+import com.prasunmondal.libs.app.contexts.AppContexts
+import com.prasunmondal.libs.caching.CentralCacheObj
 import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
@@ -74,9 +75,9 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         val cacheKey = getFilterName(cacheTag)
         LogMe.log("Getting records: $cacheKey")
         val cacheResults = try {
-            CentralCache.get<T>(AppContexts.get(), cacheKey, useCache)
+            CentralCacheObj.centralCache.get<T>(AppContexts.get(), cacheKey, useCache)
         } catch (ex: ClassCastException) {
-            arrayListOf(CentralCache.get<T>(AppContexts.get(), cacheKey, useCache))
+            arrayListOf(CentralCacheObj.centralCache.get<T>(AppContexts.get(), cacheKey, useCache))
         }
 
         LogMe.log("Getting delivery records: Cache Hit: " + (cacheResults != null))
@@ -157,9 +158,9 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         val cacheKey = getFilterName(cacheTag)
         LogMe.log("Getting records: " + cacheKey)
         val cacheResults = try {
-            CentralCache.get<T>(AppContexts.get(), cacheKey, useCache)
+            CentralCacheObj.centralCache.get<T>(AppContexts.get(), cacheKey, useCache)
         } catch (ex: ClassCastException) {
-            arrayListOf(CentralCache.get<T>(AppContexts.get(), cacheKey, useCache))
+            arrayListOf(CentralCacheObj.centralCache.get<T>(AppContexts.get(), cacheKey, useCache))
         }
         return cacheResults != null
     }
@@ -171,7 +172,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
             cacheKey
         }
         val parsedData = parseNGetResponse2(response)
-        CentralCache.put(resolvedCacheKey, parsedData)
+        CentralCacheObj.centralCache.put(resolvedCacheKey, parsedData)
         LogMe.log("Put Complete")
         LogMe.log("cacheKey: $resolvedCacheKey")
         LogMe.log(parsedData.size)
@@ -232,7 +233,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
             finalCacheKey = getFilterName()
         }
         if (dataObject == null) {
-            CentralCache.put(finalCacheKey, dataObject)
+            CentralCacheObj.centralCache.put(finalCacheKey, dataObject)
             return
         }
 
@@ -245,7 +246,7 @@ abstract class Tech4BytesSerializable<T : Any> : java.io.Serializable {
         } else {
             dataObject
         }
-        CentralCache.put(finalCacheKey, dataToSave)
+        CentralCacheObj.centralCache.put(finalCacheKey, dataToSave)
     }
 
     fun <T> saveToServer(obj: T) {

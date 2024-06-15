@@ -1,7 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.responseCaching
 
-import android.content.Context
-import com.prasunmondal.libs.AppContexts.AppContexts
+import com.prasunmondal.libs.app.contexts.AppContexts
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll

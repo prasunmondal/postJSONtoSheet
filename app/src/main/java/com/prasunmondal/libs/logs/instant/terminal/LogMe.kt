@@ -1,6 +1,6 @@
 package com.prasunmondal.libs.logs.instant.terminal
 
-import com.prasunmondal.libs.AppContexts.AppContexts.Companion.get
+import com.prasunmondal.libs.app.contexts.AppContexts.Companion.get
 import com.prasunmondal.libs.logs.LogConfigurations
 import com.prasunmondal.libs.logs.LogUtils
 import com.prasunmondal.libs.logs.instant.sheets.LogToSheet
