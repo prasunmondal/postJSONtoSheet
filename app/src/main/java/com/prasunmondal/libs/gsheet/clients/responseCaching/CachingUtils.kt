@@ -6,19 +6,13 @@ import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.Tests.TestBulkOps.TestSheet1Model.scriptURL
 import com.prasunmondal.libs.gsheet.serializer.Tech4BytesSerializableLocks
 import com.prasunmondal.libs.logs.instant.terminal.LogMe
-import com.tech4bytes.extrack.centralCache.CentralCache
 
 open class CachingUtils {
     fun <T> get(context: Context, request: ReadAPIs<T>, useCache: Boolean): List<T> {
         val cacheKey = request.getCacheKey()
-        val cacheResults = try {
-            CentralCacheObj.centralCache.get<T>(context, cacheKey, useCache, false)
-        } catch (ex: ClassCastException) {
-            arrayListOf(CentralCacheObj.centralCache.get<T>(context, cacheKey, useCache, false))
-        }
+        var cacheResults = readFromCache(context, request, useCache)
 
         LogMe.log("Getting delivery records: Cache Hit: " + (cacheResults != null))
-        LogMe.log("Getting delivery records: Results: " + cacheResults)
         return if (cacheResults != null) {
             cacheResults as List<T>
         } else {
@@ -26,18 +20,7 @@ open class CachingUtils {
                 // Synchronized code block
                 println("Synchronized function called with key: $cacheKey")
                 request.execute(scriptURL)
-                val cacheResults = try {
-                    CentralCacheObj.centralCache.get<T>(context, cacheKey, useCache, false)
-                } catch (ex: ClassCastException) {
-                    arrayListOf(
-                        CentralCacheObj.centralCache.get<T>(
-                            context,
-                            cacheKey,
-                            useCache,
-                            false
-                        )
-                    )
-                }
+                cacheResults = readFromCache(context, request, useCache)
                 if (cacheResults == null)
                     listOf()
                 else
@@ -45,6 +28,16 @@ open class CachingUtils {
             }
         }
     }
+
+    private fun <T> readFromCache(context: Context, request: ReadAPIs<T>, useCache: Boolean): Any? {
+        val cacheKey = request.getCacheKey()
+        return try {
+            CentralCacheObj.centralCache.get<T>(context, cacheKey, useCache, false)
+        } catch (ex: ClassCastException) {
+            arrayListOf(CentralCacheObj.centralCache.get<T>(context, cacheKey, useCache, false))
+        }
+    }
+
     fun <T> insert(obj: List<T>) {
 
     }

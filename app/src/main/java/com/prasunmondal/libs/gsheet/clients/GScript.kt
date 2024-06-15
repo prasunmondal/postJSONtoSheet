@@ -124,11 +124,11 @@ abstract class GScript : Serializable {
                 val requestObj = filteredCalls[responseOpId]
                 map[responseOpId] = APIResponse.parseToAPIResponse(apiResponse)
 
-                val preparedResponse =
-                    requestObj!!.prepareResponse(requestObj, map[responseOpId]!!, null)
+                val preparedResponse = requestObj!!.prepareResponse(requestObj, map[responseOpId]!!, null)
 
                 // Enable caching of responses only for read APIs
                 if (requestObj is ReadAPIs<*>) {
+                    requestObj.sorting(requestObj.filter(preparedResponse))
                     ResponseCache.saveToLocal(requestObj, preparedResponse as ReadResponse<*>)
                 }
             }

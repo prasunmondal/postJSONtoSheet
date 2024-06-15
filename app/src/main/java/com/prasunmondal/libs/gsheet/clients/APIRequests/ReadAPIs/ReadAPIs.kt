@@ -6,6 +6,7 @@ import com.prasunmondal.libs.gsheet.clients.APIResponses.ReadResponse
 import com.prasunmondal.libs.gsheet.clients.responseCaching.APIRequestsTemplates
 import com.prasunmondal.libs.gsheet.clients.responseCaching.ResponseCache
 import com.prasunmondal.libs.gsheet.serializer.parsers.Parser
+import kotlin.reflect.KFunction
 
 abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
     lateinit var sheetId: String
@@ -13,6 +14,8 @@ abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
     lateinit var data: String
     open lateinit var classTypeForResponseParsing: Class<T>
     var cacheData: Boolean = true
+    var filter: (APIResponse) -> APIResponse = { apiResponse -> apiResponse }
+    var sorting: (APIResponse) -> APIResponse = { apiResponse -> apiResponse }
 
     fun sheetId(sheetId: String) {
         this.sheetId = sheetId
