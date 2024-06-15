@@ -2,12 +2,10 @@ package com.prasunmondal.libs.gsheet.clients.responseCaching
 
 import com.prasunmondal.libs.app.contexts.AppContexts
 import com.prasunmondal.libs.caching.CentralCacheObj
-import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
-import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
 import com.prasunmondal.libs.gsheet.clients.APIResponses.ReadResponse
-import com.tech4bytes.extrack.centralCache.CentralCache
+import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import java.io.Serializable
 
 interface ResponseCache : Serializable {
@@ -28,7 +26,12 @@ interface ResponseCache : Serializable {
             if (requestObj is ReadAPIs<*>) {
                 val cacheKey = requestObj.getCacheKey()
                 LogMe.log("Expensive Operation - saving data to local: $cacheKey")
-                return CentralCacheObj.centralCache.isAvailable(AppContexts.get(), cacheKey, true, false)
+                return CentralCacheObj.centralCache.isAvailable(
+                    AppContexts.get(),
+                    cacheKey,
+                    true,
+                    false
+                )
             }
             return false
         }

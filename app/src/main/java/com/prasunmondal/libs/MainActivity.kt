@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         Test.start()
         Tests()
     }
+
     private fun testGetAll() {
     }
 }

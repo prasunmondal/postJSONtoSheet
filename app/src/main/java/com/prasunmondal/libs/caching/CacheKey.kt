@@ -4,7 +4,7 @@ import com.prasunmondal.libs.reflections.code.current.ClassDetailsUtils
 
 open class CacheKey {
     fun getCacheKey(key: String, appendCacheKeyPrefix: Boolean = true): String {
-        if(!appendCacheKeyPrefix)
+        if (!appendCacheKeyPrefix)
             return key
         return ClassDetailsUtils.getCaller() + "/" + key
     }
