@@ -5,11 +5,9 @@ import com.prasunmondal.libs.app.contexts.AppContexts
 import com.prasunmondal.libs.caching.CacheFileOps
 import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.files.IOObjectToFile
-import com.tech4bytes.extrack.centralCache.utils.CacheUtils
 import com.prasunmondal.libs.reflections.code.current.ClassDetailsUtils
 import com.tech4bytes.mbrosv3.Utils.centralCache.CacheFilesList
 import com.tech4bytes.mbrosv3.Utils.centralCache.CacheModel
-import java.time.LocalDateTime
 import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")
@@ -30,41 +28,41 @@ open class CentralCache: CacheFileOps() {
             }
 
             val cacheObjectKey = getCacheKey(key, appendCacheKeyPrefix)
-            val cacheClassKey = CacheUtils.getClassKey()
-            LogMe.log("Getting data from Cache - key: $cacheObjectKey")
-            var classElements = centralCache.cache[cacheClassKey]
+            val cacheClassKey = getClassKey()
 
-            if (classElements != null && classElements.containsKey(cacheObjectKey)) {
-                LogMe.log("Cache Hit (key:$cacheObjectKey)- Local Memory")
-                val cacheObj = classElements[cacheObjectKey]!!
-                if (cacheObj.expiryTime.isBefore(LocalDateTime.now())) {
-                    LogMe.log("Data Expired (key:$cacheObjectKey)")
-                    LogMe.log("Deleting cache data")
-                    centralCache.cache[cacheClassKey]!!.remove(cacheObjectKey)
-                    centralCache.saveCacheDataToFile(cacheObjectKey, centralCache.cache)
-                    return null
-                }
-                return cacheObj.content as T
+            // check if the value is available in local cache
+            var valueFromCache =  getFromCacheMemory<T>(key, appendCacheKeyPrefix)
+            if(valueFromCache != null) {
+                return valueFromCache
             }
 
+            // if not available in local cache,
+            // load from cache file
             centralCache.cache = centralCache.getCacheDataFromFile(context, cacheObjectKey)
-            classElements = centralCache.cache[cacheClassKey]
-            if (classElements != null && classElements.containsKey(cacheObjectKey)) {
-                LogMe.log("Cache Hit (key:$cacheObjectKey)- File")
-                val cacheObj = classElements[cacheObjectKey]!!
-                if (cacheObj.expiryTime.isBefore(LocalDateTime.now())) {
-                    LogMe.log("Data Expired (key:$cacheObjectKey)- Local Memory")
-                    LogMe.log("Deleting cache data")
-                    centralCache.cache[cacheClassKey]!!.remove(cacheObjectKey)
-                    centralCache.saveCacheDataToFile(cacheObjectKey, centralCache.cache)
-                    return null
-                }
-                return cacheObj.content as T
+            valueFromCache = getFromCacheMemory<T>(key, appendCacheKeyPrefix)
+            return if(valueFromCache != null) {
+                valueFromCache
+            } else {
+                LogMe.log("Cache Miss (key:$cacheObjectKey)")
+                null
             }
-
-            LogMe.log("Cache Miss (key:$cacheObjectKey)")
-            return null
         }
+
+    fun <T> getFromCacheMemory(key: String, appendCacheKeyPrefix: Boolean): T? {
+        val cacheObjectKey = getCacheKey(key, appendCacheKeyPrefix)
+        val cacheClassKey = getClassKey()
+
+        val classElements = centralCache.cache[cacheClassKey]
+        if (classElements != null && classElements.containsKey(cacheObjectKey)) {
+            LogMe.log("Cache Hit (key:$cacheObjectKey)- File")
+            val cacheObj = classElements[cacheObjectKey]!!
+            if (cacheObj.isExpired(cacheObjectKey, cacheClassKey)) {
+                return null
+            }
+            return cacheObj.content as T
+        }
+        return null
+    }
 
         /**
          * First try to get the value from cache,
@@ -81,7 +79,7 @@ open class CentralCache: CacheFileOps() {
 //        }
 
         fun <T> put(key: String, data: T, appendCacheKeyPrefix: Boolean = true) {
-            val cacheClassKey = CacheUtils.getClassKey()
+            val cacheClassKey = getClassKey()
             val cacheKey = getCacheKey(key, appendCacheKeyPrefix)
             LogMe.log("Putting data to Cache - key: $cacheKey")
             val presentData = centralCache.cache[cacheClassKey]
@@ -109,7 +107,7 @@ open class CentralCache: CacheFileOps() {
         }
 
         fun invalidateClassCache(cacheKey: String) {
-            centralCache.cache[CacheUtils.getClassKey()] = hashMapOf()
+            centralCache.cache[getClassKey()] = hashMapOf()
             centralCache.saveCacheDataToFile(cacheKey, centralCache.cache)
         }
 

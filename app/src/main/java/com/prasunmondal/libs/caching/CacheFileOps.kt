@@ -7,7 +7,7 @@ import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.tech4bytes.mbrosv3.Utils.centralCache.CacheFilesList
 import com.tech4bytes.mbrosv3.Utils.centralCache.CacheModel
 
-open class CacheFileOps: CacheKey() {
+open class CacheFileOps: CacheFileName() {
     fun saveCacheDataToFile(cacheKey: String, cache: MutableMap<String, MutableMap<String, CacheModel>>) {
         LogMe.log("Saving cache data - File: ${getFileName(cacheKey)}")
         val filename = getFileName(cacheKey)
