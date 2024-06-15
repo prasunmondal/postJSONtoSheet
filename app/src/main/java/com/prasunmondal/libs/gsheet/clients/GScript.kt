@@ -1,5 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients
 
+import com.prasunmondal.libs.app.contexts.AppContexts
+import com.prasunmondal.libs.caching.CentralCacheObj
 import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
@@ -25,12 +27,12 @@ abstract class GScript : Serializable {
     abstract fun getJSON(): JSONObject
 
     // TODO: add direct execution
-    fun execute(scriptURL: String): APIResponse {
+    fun execute(scriptURL: String, useCache: Boolean = true): APIResponse {
         val apiRequest = this  as APIRequests
         val instantCalls: MutableMap<String, APIRequests> = mutableMapOf()
         var uId = generateUniqueString()
         instantCalls[uId] = apiRequest
-        val response = GScript.execute(instantCalls, scriptURL)
+        val response = execute(instantCalls, scriptURL, useCache)
         return response[uId]!!
     }
 
@@ -79,14 +81,22 @@ abstract class GScript : Serializable {
             return jsonArray.toTypedArray()
         }
 
-        fun execute(scriptURL: String): MutableMap<String, APIResponse> {
-            val responseList = execute(calls, scriptURL)
+        fun execute(scriptURL: String, useCache: Boolean = true): MutableMap<String, APIResponse> {
+            val responseList = execute(calls, scriptURL, useCache)
             calls.clear()
             return responseList
         }
-        fun execute(calls: MutableMap<String, APIRequests>, scriptURL: String): MutableMap<String, APIResponse> {
+
+        fun removeCallsWhoseResponsesAreCached(apiRequest: APIRequests): Boolean {
+            return !ResponseCache.isCached(apiRequest)
+        }
+        fun execute(calls: MutableMap<String, APIRequests>, scriptURL: String, useCache: Boolean = true): MutableMap<String, APIResponse> {
             val scriptUrl = URL(scriptURL)
-            val jsonObjectArray = getCombinedJson(calls)
+            val filteredCalls = calls.filter { (key, apiRequest) -> removeCallsWhoseResponsesAreCached(apiRequest) } as MutableMap
+
+            if(filteredCalls.isEmpty()) return mutableMapOf()
+
+            val jsonObjectArray = getCombinedJson(filteredCalls)
 
             val jsonArray = JSONArray()
             for (jsonObject in jsonObjectArray) {
@@ -105,7 +115,7 @@ abstract class GScript : Serializable {
             val map: MutableMap<String, APIResponse> = mutableMapOf()
             for (apiResponse in apiResponsesList) {
                 val responseOpId = apiResponse.get("opId").toString()
-                val requestObj = calls[responseOpId]
+                val requestObj = filteredCalls[responseOpId]
                 map[responseOpId] = APIResponse.parseToAPIResponse(apiResponse)
 
                 val preparedResponse =

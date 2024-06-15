@@ -47,6 +47,46 @@ open class CentralCache: CacheFileOps() {
             }
         }
 
+    fun isAvailable(context: Context, key: String, useCache: Boolean = true, appendCacheKeyPrefix: Boolean = true): Boolean {
+
+        // if user wants to force refresh the values in the cache, pass useCache as false
+        if (!useCache) {
+            LogMe.log("UseCache: False (Forced to not use cached data)")
+            return false
+        }
+
+        val cacheObjectKey = getCacheKey(key, appendCacheKeyPrefix)
+
+        // check if the value is available in local cache
+        val isPresentInCache =  getAvailableInCacheMemory(key, appendCacheKeyPrefix)
+        if(isPresentInCache) {
+            return true
+        }
+
+        // if not available in local cache,
+        // load from cache file
+        CentralCacheObj.centralCache.cache = CentralCacheObj.centralCache.getCacheDataFromFile(context, cacheObjectKey)
+
+        val t = getAvailableInCacheMemory(key, appendCacheKeyPrefix)
+        return t
+    }
+
+    fun getAvailableInCacheMemory(key: String, appendCacheKeyPrefix: Boolean): Boolean {
+        val cacheObjectKey = getCacheKey(key, appendCacheKeyPrefix)
+        val cacheClassKey = getClassKey()
+
+        val classElements = CentralCacheObj.centralCache.cache[cacheClassKey]
+        if (classElements != null && classElements.containsKey(cacheObjectKey)) {
+            LogMe.log("Cache Hit (key:$cacheObjectKey)- File")
+            val cacheObj = classElements[cacheObjectKey]!!
+            if (cacheObj.isExpired(cacheObjectKey, cacheClassKey)) {
+                return false
+            }
+            return true
+        }
+        return false
+    }
+
     fun <T> getFromCacheMemory(key: String, appendCacheKeyPrefix: Boolean): T? {
         val cacheObjectKey = getCacheKey(key, appendCacheKeyPrefix)
         val cacheClassKey = getClassKey()

@@ -1,5 +1,6 @@
 package com.prasunmondal.libs.gsheet.clients.responseCaching
 
+import com.prasunmondal.libs.app.contexts.AppContexts
 import com.prasunmondal.libs.caching.CentralCacheObj
 import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
@@ -21,6 +22,15 @@ interface ResponseCache : Serializable {
                 LogMe.log("Expensive Operation - saving data to local: $cacheKey")
                 CentralCacheObj.centralCache.put(cacheKey, responseObj.parsedResponse, false)
             }
+        }
+
+        fun isCached(requestObj: APIRequests): Boolean {
+            if (requestObj is ReadAPIs<*>) {
+                val cacheKey = requestObj.getCacheKey()
+                LogMe.log("Expensive Operation - saving data to local: $cacheKey")
+                return CentralCacheObj.centralCache.isAvailable(AppContexts.get(), cacheKey, true, false)
+            }
+            return false
         }
     }
 }
