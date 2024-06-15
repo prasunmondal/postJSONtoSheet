@@ -23,7 +23,7 @@ class CacheModel : java.io.Serializable {
 
     fun isExpired(cacheObjectKey: String, cacheClassKey: String): Boolean {
         val isExpired = this.expiryTime.isBefore(LocalDateTime.now())
-        if(isExpired) {
+        if (isExpired) {
             deletedExpiredData(cacheObjectKey, cacheClassKey)
             return true
         }
@@ -34,6 +34,9 @@ class CacheModel : java.io.Serializable {
         LogMe.log("Data Expired (key:$cacheObjectKey)")
         LogMe.log("Deleting cache data")
         CentralCacheObj.centralCache.cache[cacheClassKey]!!.remove(cacheObjectKey)
-        CentralCacheObj.centralCache.saveCacheDataToFile(cacheObjectKey, CentralCacheObj.centralCache.cache)
+        CentralCacheObj.centralCache.saveCacheDataToFile(
+            cacheObjectKey,
+            CentralCacheObj.centralCache.cache
+        )
     }
 }
