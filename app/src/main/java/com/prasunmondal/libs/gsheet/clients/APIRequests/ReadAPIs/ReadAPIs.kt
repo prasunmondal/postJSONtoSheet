@@ -43,12 +43,15 @@ abstract class ReadAPIs<T> : APIRequests(), ResponseCache {
         requestObj: APIRequests,
         receivedResponseObj: APIResponse,
         buildingResponseObj: APIResponse?
-    ): APIResponse {
-        var buildingResponseObj_ = buildingResponseObj as ReadResponse<T>?
-        if (buildingResponseObj_ == null)
-            buildingResponseObj_ = ReadResponse()
+    ): ReadResponse<T> {
+        var buildingResponseObj_ =
+            (if (buildingResponseObj == null)
+                super.prepareResponse(requestObj, receivedResponseObj, ReadResponse<T>())
+            else
+                super.prepareResponse(requestObj, receivedResponseObj, buildingResponseObj)
+                    ) as ReadResponse<T>
 
-        super.prepareResponse(requestObj, receivedResponseObj, buildingResponseObj)
+//        super.prepareResponse(requestObj, receivedResponseObj, buildingResponseObj)
         buildingResponseObj_.sheetId = this.sheetId
         buildingResponseObj_.tabName = this.tabName
         buildingResponseObj_.parsedResponse = Parser.convertJsonArrayStringToJavaObjList(

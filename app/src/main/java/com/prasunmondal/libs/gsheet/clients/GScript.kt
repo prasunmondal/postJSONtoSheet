@@ -4,6 +4,7 @@ import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.ReadAPIs.ReadAPIs
 import com.prasunmondal.libs.gsheet.clients.APIResponses.APIResponse
+import com.prasunmondal.libs.gsheet.clients.APIResponses.ReadResponse
 import com.prasunmondal.libs.gsheet.clients.responseCaching.ResponseCache
 import com.prasunmondal.libs.gsheet.exceptions.GScriptDuplicateUIDException
 import com.prasunmondal.libs.gsheet.post.serializable.PostObjectResponse
@@ -112,7 +113,7 @@ abstract class GScript : Serializable {
 
                 // Enable caching of responses only for read APIs
                 if (requestObj is ReadAPIs<*>) {
-                    ResponseCache.saveToLocal(requestObj, preparedResponse)
+                    ResponseCache.saveToLocal(requestObj, preparedResponse as ReadResponse<*>)
                 }
             }
 

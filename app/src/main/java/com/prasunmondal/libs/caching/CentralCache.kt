@@ -3,6 +3,7 @@ package com.tech4bytes.extrack.centralCache
 import android.content.Context
 import com.prasunmondal.libs.app.contexts.AppContexts
 import com.prasunmondal.libs.caching.CacheFileOps
+import com.prasunmondal.libs.caching.CentralCacheObj
 import com.prasunmondal.libs.logs.instant.terminal.LogMe
 import com.prasunmondal.libs.files.IOObjectToFile
 import com.prasunmondal.libs.reflections.code.current.ClassDetailsUtils
@@ -16,8 +17,6 @@ open class CentralCache: CacheFileOps() {
     // Map of filenames, and (contents with key)
     var cache: MutableMap<String, MutableMap<String, CacheModel>> = hashMapOf()
 
-
-        private var centralCache = CentralCache()
 
         fun <T> get(context: Context, key: String, useCache: Boolean = true, appendCacheKeyPrefix: Boolean = true): T? {
 
@@ -38,7 +37,7 @@ open class CentralCache: CacheFileOps() {
 
             // if not available in local cache,
             // load from cache file
-            centralCache.cache = centralCache.getCacheDataFromFile(context, cacheObjectKey)
+            CentralCacheObj.centralCache.cache = CentralCacheObj.centralCache.getCacheDataFromFile(context, cacheObjectKey)
             valueFromCache = getFromCacheMemory<T>(key, appendCacheKeyPrefix)
             return if(valueFromCache != null) {
                 valueFromCache
@@ -52,7 +51,7 @@ open class CentralCache: CacheFileOps() {
         val cacheObjectKey = getCacheKey(key, appendCacheKeyPrefix)
         val cacheClassKey = getClassKey()
 
-        val classElements = centralCache.cache[cacheClassKey]
+        val classElements = CentralCacheObj.centralCache.cache[cacheClassKey]
         if (classElements != null && classElements.containsKey(cacheObjectKey)) {
             LogMe.log("Cache Hit (key:$cacheObjectKey)- File")
             val cacheObj = classElements[cacheObjectKey]!!
@@ -82,12 +81,12 @@ open class CentralCache: CacheFileOps() {
             val cacheClassKey = getClassKey()
             val cacheKey = getCacheKey(key, appendCacheKeyPrefix)
             LogMe.log("Putting data to Cache - key: $cacheKey")
-            val presentData = centralCache.cache[cacheClassKey]
+            val presentData = CentralCacheObj.centralCache.cache[cacheClassKey]
             if (presentData == null) {
-                centralCache.cache[cacheClassKey] = hashMapOf()
+                CentralCacheObj.centralCache.cache[cacheClassKey] = hashMapOf()
             }
-            centralCache.cache[cacheClassKey]!![cacheKey] = CacheModel(data as Any?)
-            centralCache.saveCacheDataToFile(cacheKey, centralCache.cache)
+            CentralCacheObj.centralCache.cache[cacheClassKey]!![cacheKey] = CacheModel(data as Any?)
+            CentralCacheObj.centralCache.saveCacheDataToFile(cacheKey, CentralCacheObj.centralCache.cache)
         }
 
         fun <T> putNGet(key: String, data: T): T {
@@ -96,7 +95,7 @@ open class CentralCache: CacheFileOps() {
         }
 
         fun invalidateFullCache() {
-            centralCache.cache.clear()
+            CentralCacheObj.centralCache.cache.clear()
             val cacheFiles = CacheFilesList.getCacheFilesList()
             val writeObj = IOObjectToFile()
             cacheFiles.forEach {
@@ -107,13 +106,13 @@ open class CentralCache: CacheFileOps() {
         }
 
         fun invalidateClassCache(cacheKey: String) {
-            centralCache.cache[getClassKey()] = hashMapOf()
-            centralCache.saveCacheDataToFile(cacheKey, centralCache.cache)
+            CentralCacheObj.centralCache.cache[getClassKey()] = hashMapOf()
+            CentralCacheObj.centralCache.saveCacheDataToFile(cacheKey, CentralCacheObj.centralCache.cache)
         }
 
         fun <T : Any> invalidateClassCache(clazz: KClass<T>, cacheKey: String) {
-            centralCache.cache[ClassDetailsUtils.getClassName(clazz)] = hashMapOf()
-            centralCache.saveCacheDataToFile(cacheKey, centralCache.cache)
+            CentralCacheObj.centralCache.cache[ClassDetailsUtils.getClassName(clazz)] = hashMapOf()
+            CentralCacheObj.centralCache.saveCacheDataToFile(cacheKey, CentralCacheObj.centralCache.cache)
         }
 
 }

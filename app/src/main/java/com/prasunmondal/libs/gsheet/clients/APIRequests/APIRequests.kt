@@ -37,7 +37,7 @@ abstract class APIRequests : GScript() {
         var buildingResponseObj_ = buildingResponseObj
         if (buildingResponseObj_ == null)
             buildingResponseObj_ = APIResponse()
-        buildingResponseObj_.affectedRows = receivedResponseObj.statusCode
+        buildingResponseObj_.affectedRows = receivedResponseObj.affectedRows
         buildingResponseObj_.statusCode = receivedResponseObj.statusCode
         buildingResponseObj_.content = receivedResponseObj.content
         buildingResponseObj_.opId = receivedResponseObj.opId

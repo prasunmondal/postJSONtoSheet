@@ -20,6 +20,7 @@ open class CachingUtils {
             }
 
             LogMe.log("Getting delivery records: Cache Hit: " + (cacheResults != null))
+            LogMe.log("Getting delivery records: Results: " + cacheResults)
             return if (cacheResults != null) {
                 cacheResults as List<T>
             } else {

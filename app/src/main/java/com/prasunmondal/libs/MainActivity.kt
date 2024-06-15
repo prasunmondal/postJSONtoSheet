@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     fun testAll() {
 
-//        Test.start()
+        Test.start()
         Tests()
     }
     private fun testGetAll() {
