@@ -87,8 +87,11 @@ abstract class GScript : Serializable {
             return responseList
         }
 
+
         fun removeCallsWhoseResponsesAreCached(apiRequest: APIRequests): Boolean {
-            return !ResponseCache.isCached(apiRequest)
+//            Enable the below code to filter the calls that are already cached.
+//            return !ResponseCache.isCached(apiRequest)
+            return true
         }
         fun execute(calls: MutableMap<String, APIRequests>, scriptURL: String, useCache: Boolean = true): MutableMap<String, APIResponse> {
             val scriptUrl = URL(scriptURL)
