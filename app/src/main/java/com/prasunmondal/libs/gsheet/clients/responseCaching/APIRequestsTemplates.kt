@@ -1,6 +1,7 @@
 package com.prasunmondal.libs.gsheet.clients.responseCaching
 
 import com.prasunmondal.libs.app.contexts.AppContexts
+import com.prasunmondal.libs.caching.CentralCacheObj
 import com.prasunmondal.libs.gsheet.clients.APIRequests.APIRequests
 import com.prasunmondal.libs.gsheet.clients.APIRequests.CreateAPIs.GSheetInsertObject
 import com.prasunmondal.libs.gsheet.clients.APIRequests.DeleteAPIs.GSheetDeleteAll
@@ -100,7 +101,8 @@ open class APIRequestsTemplates<T> : CachingUtils {
     }
 
     fun insert(obj: T) {
-        prepareInsertRequest(obj).execute(this.scriptURL)
+        val t = prepareInsertRequest(obj)
+        t.execute(this.scriptURL)
     }
 
     fun queueInsert(obj: List<T>) {

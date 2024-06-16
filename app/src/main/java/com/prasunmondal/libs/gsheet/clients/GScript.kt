@@ -132,12 +132,6 @@ abstract class GScript : Serializable {
                     ResponseCache.saveToLocal(requestObj, preparedResponse as ReadResponse<*>)
                 }
             }
-
-
-//            calls.forEach { t, u ->
-//                u.
-//            }
-
             return map
         }
 
